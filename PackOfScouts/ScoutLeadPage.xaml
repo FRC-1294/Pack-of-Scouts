@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PackOfScouts.ScoutLeadPage"
+             Title="Scout Lead Dashboard">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+
+        <Editor
+            Grid.Column="0"
+            MinimumWidthRequest="250"
+            Margin="5"/>
+
+        <VerticalStackLayout
+            Grid.Column="1"
+            Margin="5"
+            WidthRequest="150"
+            HorizontalOptions="Center">
+
+            <Image 
+                Source="pack_of_scouts.png"
+                SemanticProperties.Description="Scouty Mac Scout"
+                HeightRequest="100"
+                Margin="5"/>
+
+            <Image
+                Source="pack_of_scouts.png"
+                SemanticProperties.Description="Scouty Mac Scout"
+                HeightRequest="100"
+                Margin="5"/>
+
+            <Button 
+                Text="Open Lead File" 
+                Clicked="OnOpenScoutLeadFileClicked" />
+
+            <Button
+                Text="Save Lead File"
+                Clicked="OnSaveScoutLeadFileClicked" />
+
+            <Button 
+                Text="Import Scout File"
+                Clicked="OnImportScoutFileClicked" />
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
