@@ -16,7 +16,6 @@
             Margin="5"/>
 
         <VerticalStackLayout
-            x:Name="lamo"
             Grid.Column="1"
             Margin="5"
             WidthRequest="150"

@@ -21,12 +21,6 @@
             WidthRequest="150"
             HorizontalOptions="Center">
 
-            <Image 
-                Source="pack_of_scouts.png"
-                SemanticProperties.Description="Scouty Mac Scout"
-                HeightRequest="100"
-                Margin="5"/>
-
             <Image
                 Source="pack_of_scouts.png"
                 SemanticProperties.Description="Scouty Mac Scout"
