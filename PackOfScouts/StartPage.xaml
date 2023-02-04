@@ -10,8 +10,8 @@
             VerticalOptions="Center">
 
             <Image
-                Source="pack_of_scouts.png"
-                SemanticProperties.Description="Scouty Mac Scout"
+                Source="pack_of_parts.png"
+                SemanticProperties.Description="POP Logo"
                 HeightRequest="200"
                 HorizontalOptions="Center" />
 
@@ -23,7 +23,7 @@
 
             <HorizontalStackLayout
                 HorizontalOptions="Center">
-                
+
                 <Button
                     x:Name="ScoutBtn"
                     Text="Scout"

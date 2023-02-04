@@ -22,8 +22,8 @@
             HorizontalOptions="Center">
 
             <Image
-                Source="pack_of_scouts.png"
-                SemanticProperties.Description="Scouty Mac Scout"
+                Source="pack_of_parts.png"
+                SemanticProperties.Description="POP Logo"
                 HeightRequest="100"
                 Margin="5"/>
 

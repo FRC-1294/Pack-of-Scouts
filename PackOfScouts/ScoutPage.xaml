@@ -5,37 +5,94 @@
              Title="Scout Dashboard">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Editor
-            Grid.Column="0"
-            MinimumWidthRequest="250"
+        <TableView>
+            <TableRoot>
+                <TableSection>
+                    <SwitchCell Text="Functioning Auto?"
+                        On="False" Grid.Column="0" Grid.Row="0" />
+                    <SwitchCell Text="Move out of Zone?"
+                        On="False" Grid.Column="0" Grid.Row="0" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+
+
+        <Image
+            Grid.Column="1"
+            Grid.Row="0"
+            Source="pack_of_parts.png"
+            SemanticProperties.Description="POP Logo"
+            HeightRequest="100"
             Margin="5"/>
 
-        <VerticalStackLayout
-            Grid.Column="1"
-            Margin="5"
-            WidthRequest="150"
-            HorizontalOptions="Center">
-
-            <Image
-                Source="pack_of_scouts.png"
-                SemanticProperties.Description="Scouty Mac Scout"
-                HeightRequest="100"
-                Margin="5"/>
-
-            <Button 
+        <HorizontalStackLayout
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            Margin="20">
+            <Button
+                x:Name="OpenFile"
                 Text="Open Scout File" 
-                Clicked="OnOpenScoutFileClicked" />
+                TextColor="RoyalBlue"
+                Clicked="OnOpenScoutFileClicked"
+                HeightRequest="80" />
 
             <Button
+                x:Name="SaveFile"
                 Text="Save Scout File"
-                Clicked="OnSaveScoutFileClicked" />
+                TextColor="RoyalBlue"
+                Clicked="OnSaveScoutFileClicked"
+                HeightRequest="80" />
 
-        </VerticalStackLayout>
+            <Button
+                x:Name="Finish"
+                Text="Done with Auto"
+                TextColor="RoyalBlue"
+                HeightRequest="80"
+                />
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout
+            Grid.Column="0"
+            Grid.Row="1">
+            <VerticalStackLayout
+                Margin="8">
+                <Label Text="Cones Scored:" />
+                <Stepper 
+                    Minimum="0" Maximum="10" Increment="1" 
+                    ValueChanged="OnStepperValueChangedCone" />
+                <Label x:Name="_displayConeLabel"  Text="0 cones scored"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout
+                Margin="5">
+                <Label Text="Cubes Scored:" />
+                <Stepper 
+                    Minimum="0" Maximum="10" Increment="1" 
+                    ValueChanged="OnStepperValueChangedCube" />
+                <Label x:Name="_displayCubeLabel"  Text="0 cubes scored"/>
+            </VerticalStackLayout>
+
+        </HorizontalStackLayout>
+
+        <Picker Title="Charge Station"
+                TitleColor="#70d3ee" Grid.Row="1" Grid.Column="1">
+            <Picker.Items>
+                <x:String>No Attempt</x:String>
+                <x:String>Failed Attempt</x:String>
+                <x:String>Not Engaged</x:String>
+                <x:String>Engaged</x:String>
+            </Picker.Items>
+        </Picker>
     </Grid>
 </ContentPage>
    
