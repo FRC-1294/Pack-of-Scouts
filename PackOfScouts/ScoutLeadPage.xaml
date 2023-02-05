@@ -36,8 +36,8 @@
                 Clicked="OnSaveScoutLeadFileClicked" />
 
             <Button 
-                Text="Import Scout File"
-                Clicked="OnImportScoutFileClicked" />
+                Text="Scan QR Code"
+                Clicked="OnScanScoutQRCodeClicked" />
 
         </VerticalStackLayout>
     </Grid>

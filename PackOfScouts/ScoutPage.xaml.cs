@@ -73,4 +73,9 @@ public partial class ScoutPage : ContentPage
 
         var fr = await FilePicker.PickAsync(options);
     }
+
+    private async void OnShowQRCodeClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ShowQRCodePage("https://www.google.com"));
+    }
 }

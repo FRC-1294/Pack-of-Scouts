@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace PackOfScouts;
 
 public partial class ScoutLeadPage : ContentPage
@@ -39,19 +41,12 @@ public partial class ScoutLeadPage : ContentPage
         var fr = await FilePicker.PickAsync(options);
     }
 
-    private async void OnImportScoutFileClicked(object sender, EventArgs e)
+    private async void OnScanScoutQRCodeClicked(object sender, EventArgs e)
     {
-        var d = new Dictionary<DevicePlatform, IEnumerable<string>>
-        {
-            { DevicePlatform.WinUI, new[] {"*.json" } },
-        };
+        string filename = QrCode.QrCodeUtils.CapturePicture();
+        Debug.WriteLine($"Saving picture to {filename}");
 
-        var options = new PickOptions
-        {
-            PickerTitle = "Select a Scout file to load",
-            FileTypes = new(d),
-        };
-
-        var fr = await FilePicker.PickAsync(options);
+        string text = QrCode.QrCodeUtils.LoadQrCode(filename);
+        Debug.WriteLine($"Code was {text}");
     }
 }

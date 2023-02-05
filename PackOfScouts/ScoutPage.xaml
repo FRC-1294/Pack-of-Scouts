@@ -60,6 +60,14 @@
                 TextColor="RoyalBlue"
                 HeightRequest="80"
                 />
+
+            <Button
+                x:Name="ShowQRCode"
+                Text="Show QR Code"
+                TextColor="RoyalBlue"
+                HeightRequest="80"
+                Clicked="OnShowQRCodeClicked"
+                />
         </HorizontalStackLayout>
 
         <HorizontalStackLayout
