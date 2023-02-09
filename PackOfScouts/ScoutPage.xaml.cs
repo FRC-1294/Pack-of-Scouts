@@ -7,11 +7,6 @@ public partial class ScoutPage : ContentPage
     public ScoutPage()
     {
         InitializeComponent();
-        double screenWidth = (int)DeviceDisplay.MainDisplayInfo.Width / 5;
-        //currently code can only math screen width of computer, not screen size of app -- fix later
-        Finish.WidthRequest = screenWidth;
-        SaveFile.WidthRequest = screenWidth;
-        OpenFile.WidthRequest = screenWidth;
 
 
     }
@@ -25,7 +20,7 @@ public partial class ScoutPage : ContentPage
         }
         else
         {
-            _displayConeLabel.Text = string.Format("{0} cone scored", value);
+            _displayConeLabel.Text = string.Format("{0} cones scored", value);
         }
 
     }
@@ -72,5 +67,10 @@ public partial class ScoutPage : ContentPage
         };
 
         var fr = await FilePicker.PickAsync(options);
+    }
+
+    private async void OnDoneWithAutoClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Tele_op());
     }
 }

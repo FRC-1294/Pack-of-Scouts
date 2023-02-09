@@ -8,7 +8,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -16,51 +16,64 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <TableView>
-            <TableRoot>
-                <TableSection>
-                    <SwitchCell Text="Functioning Auto?"
-                        On="False" Grid.Column="0" Grid.Row="0" />
-                    <SwitchCell Text="Move out of Zone?"
-                        On="False" Grid.Column="0" Grid.Row="0" />
-                </TableSection>
-            </TableRoot>
-        </TableView>
-
-
+        <StackLayout Orientation="Vertical" Margin="10">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Functioning auto?" />
+                <Switch IsToggled="False" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Move out of zone?" />
+                <Switch IsToggled="False" />
+            </StackLayout>
+        </StackLayout>
+        
         <Image
             Grid.Column="1"
             Grid.Row="0"
             Source="pack_of_parts.png"
             SemanticProperties.Description="POP Logo"
-            HeightRequest="100"
             Margin="5"/>
 
-        <HorizontalStackLayout
+        <Grid
             Grid.Row="2"
             Grid.ColumnSpan="2"
             Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Button
+                Grid.Row="0"
+                Grid.Column="0"
                 x:Name="OpenFile"
                 Text="Open Scout File" 
                 TextColor="RoyalBlue"
                 Clicked="OnOpenScoutFileClicked"
-                HeightRequest="80" />
+                Margin="10"/>
 
             <Button
+                Grid.Row="0"
+                Grid.Column="1"
                 x:Name="SaveFile"
                 Text="Save Scout File"
                 TextColor="RoyalBlue"
                 Clicked="OnSaveScoutFileClicked"
-                HeightRequest="80" />
+                Margin="10"/>
 
             <Button
+                Grid.Row="0"
+                Grid.Column="2"
                 x:Name="Finish"
                 Text="Done with Auto"
                 TextColor="RoyalBlue"
-                HeightRequest="80"
+                Clicked="OnDoneWithAutoClicked"
+                Margin="10"
                 />
-        </HorizontalStackLayout>
+        </Grid>
 
         <HorizontalStackLayout
             Grid.Column="0"

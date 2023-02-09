@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PackOfScouts.Tele_op"
+             Title="Tele_op">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid
+            Grid.Column="0" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Text="Cone Scoring Abilities" Grid.Column="0" Grid.Row="0"/>
+            <Switch x:Name="HighCone" IsToggled="False" Toggled="OnHighConeToggled" Grid.Row="1" Grid.Column="0"/>
+            <Label Text="High Cone" Grid.Row="1" Grid.Column="1"/>
+            <Switch x:Name="MidCone" IsToggled="False" Toggled="OnMidConeToggled" Grid.Row="2" Grid.Column="0"/>
+            <Label Text="Mid Cone" Grid.Row="2" Grid.Column="1"/>
+            <Switch x:Name="LowCone" IsToggled="False" Grid.Row="3" Grid.Column="0"/>
+            <Label Text="Low Cone" Grid.Row="3" Grid.Column="1"/>
+        </Grid>
+
+
+        <VerticalStackLayout>
+            <Label Text="Cube Scoring Abilities"/>
+            <TableView>
+                <TableRoot>
+                    <TableSection>
+                        <SwitchCell x:Name="HighCube"  Text="High"
+                        On="False" Grid.Column="0" Grid.Row="0" />
+                        <SwitchCell x:Name="MidCube" Text="Mid"
+                        On="False" Grid.Column="0" Grid.Row="0" />
+                        <SwitchCell x:Name="LowCube" Text="Low"
+                        On="False" Grid.Column="0" Grid.Row="0" />
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage>
