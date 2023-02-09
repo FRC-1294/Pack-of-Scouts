@@ -41,7 +41,7 @@ public partial class ScoutLeadPage : ContentPage
         var fr = await FilePicker.PickAsync(options);
     }
 
-    private async void OnScanScoutQRCodeClicked(object sender, EventArgs e)
+    private void OnScanScoutQRCodeClicked(object sender, EventArgs e)
     {
         string filename = QrCode.QrCodeUtils.CapturePicture();
         Debug.WriteLine($"Saving picture to {filename}");

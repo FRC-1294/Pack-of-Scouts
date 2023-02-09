@@ -26,10 +26,12 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label Text="Cone Scoring Abilities" Grid.Column="0" Grid.Row="0"/>
-            <Switch x:Name="HighCone" IsToggled="False" Toggled="OnHighConeToggled" Grid.Row="1" Grid.Column="0"/>
-            <Label Text="High Cone" Grid.Row="1" Grid.Column="1"/>
-            <Switch x:Name="MidCone" IsToggled="False" Toggled="OnMidConeToggled" Grid.Row="2" Grid.Column="0"/>
-            <Label Text="Mid Cone" Grid.Row="2" Grid.Column="1"/>
+			<Switch x:Name="HighCone" IsToggled="False" Grid.Row="1" Grid.Column="0"/>
+			<!--<Switch x:Name="HighCone" IsToggled="False" Toggled="OnHighConeToggled" Grid.Row="1" Grid.Column="0"/>-->
+			<Label Text="High Cone" Grid.Row="1" Grid.Column="1"/>
+			<Switch x:Name="MidCone" IsToggled="False" Grid.Row="2" Grid.Column="0"/>
+			<!--<Switch x:Name="MidCone" IsToggled="False" Toggled="OnMidConeToggled" Grid.Row="2" Grid.Column="0"/>-->
+			<Label Text="Mid Cone" Grid.Row="2" Grid.Column="1"/>
             <Switch x:Name="LowCone" IsToggled="False" Grid.Row="3" Grid.Column="0"/>
             <Label Text="Low Cone" Grid.Row="3" Grid.Column="1"/>
         </Grid>

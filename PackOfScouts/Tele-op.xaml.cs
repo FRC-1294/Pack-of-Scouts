@@ -7,13 +7,13 @@ public partial class Tele_op : ContentPage
 		InitializeComponent();
 	}
 
-    void OnHighConeToggled(object sender, ValueChangedEventArgs e)
+    void OnHighConeToggled(object sender, ToggledEventArgs e)
 	{
-        OnMidConeToggled(sender, e);
+		LowCone.IsToggled = true;
 		MidCone.IsToggled = true;
 	}
 
-    void OnMidConeToggled(object sender, ValueChangedEventArgs e)
+    void OnMidConeToggled(object sender, ToggledEventArgs e)
     {
 		LowCone.IsToggled = true;
     }
