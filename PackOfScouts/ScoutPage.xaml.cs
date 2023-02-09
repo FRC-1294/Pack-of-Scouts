@@ -73,4 +73,10 @@ public partial class ScoutPage : ContentPage
     {
         await Navigation.PushAsync(new Tele_op());
     }
+
+    private async void OnShowQRCodeClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ShowQRCodePage("https://www.google.com"));
+    }
 }
+
