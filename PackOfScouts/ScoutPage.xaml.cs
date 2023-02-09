@@ -71,7 +71,7 @@ public partial class ScoutPage : ContentPage
 
     private async void OnDoneWithAutoClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Tele_op());
+        await Navigation.PushAsync(new TeleOperator());
     }
 
     private async void OnShowQRCodeClicked(object sender, EventArgs e)

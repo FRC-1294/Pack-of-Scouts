@@ -47,11 +47,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Tele-op.xaml.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Include="Tele-op.xaml.cs" />
+	  <Content Include="TeleOperator.xaml.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -59,7 +55,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Tele-op.xaml"/>
+	  <MauiXaml Update="TeleOperator.xaml" />
 
 	  <ProjectReference Include="..\PackOfScouts.QrCode\PackOfScouts.QrCode.csproj" />
 	</ItemGroup>

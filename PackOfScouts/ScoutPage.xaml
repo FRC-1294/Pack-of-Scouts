@@ -80,7 +80,6 @@
 			   x:Name="ShowQRCode"
 			   Text="Show QR Code"
 			   TextColor="RoyalBlue"
-			   HeightRequest="80"
 			   Clicked="OnShowQRCodeClicked"
                 />
 
