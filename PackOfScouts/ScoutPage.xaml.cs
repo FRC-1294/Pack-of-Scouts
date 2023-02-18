@@ -1,12 +1,21 @@
 using Microsoft.Maui.ApplicationModel.DataTransfer;
+using Microsoft.Maui.Layouts;
+using Windows.ApplicationModel.Activation;
 
 namespace PackOfScouts;
 
 public partial class ScoutPage : ContentPage
 {
+    int conesScored = 0;
+    int cubesScored = 0;
+    bool functioningAuto = false;
+    bool moveOutOfZone = false;
+    string chargeStationStatus = null;
     public ScoutPage()
     {
         InitializeComponent();
+        //int conesScored = 0;
+        //int cubesScored = 0;
 
 
     }
@@ -22,6 +31,7 @@ public partial class ScoutPage : ContentPage
         {
             _displayConeLabel.Text = string.Format("{0} cones scored", value);
         }
+        conesScored++;
 
     }
 
@@ -36,7 +46,30 @@ public partial class ScoutPage : ContentPage
         {
             _displayCubeLabel.Text = string.Format("{0} cubes scored", value);
         }
+        cubesScored++;
     }
+
+    void OnFunctionAutoToggled(object sender, ToggledEventArgs e)
+    {
+        functioningAuto = true;
+    }
+
+    void OnMoveOutOfZoneToggled(object sender, ToggledEventArgs e)
+    {
+        moveOutOfZone = true;
+    }
+
+    void OnChargeStationStatusChanged(object sender, EventArgs e)
+    {
+        var picker = (Picker)sender;
+        int selectedIndex = picker.SelectedIndex;
+
+        if (selectedIndex != -1)
+        {
+            chargeStationStatus = (string)picker.ItemsSource[selectedIndex];
+        }
+    }
+
     private async void OnOpenScoutFileClicked(object sender, EventArgs e)
     {
         var d = new Dictionary<DevicePlatform, IEnumerable<string>>

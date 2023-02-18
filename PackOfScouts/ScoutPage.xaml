@@ -19,11 +19,11 @@
         <StackLayout Orientation="Vertical" Margin="10">
             <StackLayout Orientation="Horizontal">
                 <Label Text="Functioning auto?" />
-                <Switch IsToggled="False" />
+                <Switch IsToggled="False" Toggled="OnFunctionAutoToggled"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Move out of zone?" />
-                <Switch IsToggled="False" />
+                <Switch IsToggled="False" Toggled="OnMoveOutOfZoneToggled"/>
             </StackLayout>
         </StackLayout>
         
@@ -81,6 +81,7 @@
 			   Text="Show QR Code"
 			   TextColor="RoyalBlue"
 			   Clicked="OnShowQRCodeClicked"
+                Margin ="10"
                 />
 
         </Grid>
@@ -107,8 +108,9 @@
 
         </HorizontalStackLayout>
 
-        <Picker Title="Charge Station"
-                TitleColor="#70d3ee" Grid.Row="1" Grid.Column="1">
+        <Picker Title="Charge Station Status"
+                TitleColor="#70d3ee" Grid.Row="1" Grid.Column="1"
+                SelectedIndexChanged="OnChargeStationStatusChanged">
             <Picker.Items>
                 <x:String>No Attempt</x:String>
                 <x:String>Failed Attempt</x:String>
