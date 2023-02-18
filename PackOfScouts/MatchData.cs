@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PackOfScouts
-{
-    internal class MatchData
-    {
-        
-    }
+namespace PackOfScouts;
+
+public class MatchData { 
+    internal int matchNumber;
+    internal int robotNumber;
+    
 }
+
