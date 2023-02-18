@@ -1,5 +1,6 @@
 using Microsoft.Maui.ApplicationModel.DataTransfer;
 using Microsoft.Maui.Layouts;
+using System.Text.Json;
 using Windows.ApplicationModel.Activation;
 
 namespace PackOfScouts;
@@ -130,8 +131,9 @@ public partial class ScoutPage : ContentPage
             ConesScoredHighTeleop = 5,
             Notes = "This is the best robot ever",
         };
-        m.CreateFile();
-        await Navigation.PushAsync(new ShowQRCodePage("https://www.google.com"));
+
+        var json = JsonSerializer.Serialize(m);
+        await Navigation.PushAsync(new ShowQRCodePage(json));
     }
 }
 
