@@ -109,6 +109,8 @@ public partial class ScoutPage : ContentPage
 
     private async void OnShowQRCodeClicked(object sender, EventArgs e)
     {
+        MatchData m = new MatchData(15,1294,1,12,10,0,0,2,0,0,1,3,3,9,3,4,5,"The best robot ever <3");
+        m.createFile();
         await Navigation.PushAsync(new ShowQRCodePage("https://www.google.com"));
     }
 }
