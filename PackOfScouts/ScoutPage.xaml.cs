@@ -109,8 +109,28 @@ public partial class ScoutPage : ContentPage
 
     private async void OnShowQRCodeClicked(object sender, EventArgs e)
     {
-        MatchData m = new MatchData(15,1294,1,12,10,0,0,2,0,0,1,3,3,9,3,4,5,"The best robot ever <3");
-        m.createFile();
+        var m = new MatchData
+        {
+            MatchNumber = 15,
+            RobotNumber = 1294,
+            FunctioningAuto = 1,
+            ChargeStationPointsAuto = 12,
+            ChargeStationPointsTeleop = 10,
+            ConesScoredLowAuto = 0,
+            ConesScoredMidAuto = 0,
+            ConesScoredHighAuto = 2,
+            CubesScoredLowAuto = 0,
+            CubesScoredMidAuto = 0,
+            CubesScoredHighAuto = 1,
+            CubesScoredLowTeleop = 3,
+            CubesScoredMidTeleop = 3,
+            CubesScoredHighTeleop = 9,
+            ConesScoredLowTeleop = 3,
+            ConesScoredMidTeleop = 4,
+            ConesScoredHighTeleop = 5,
+            Notes = "This is the best robot ever",
+        };
+        m.CreateFile();
         await Navigation.PushAsync(new ShowQRCodePage("https://www.google.com"));
     }
 }

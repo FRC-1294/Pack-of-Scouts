@@ -1,86 +1,38 @@
-﻿
+﻿namespace PackOfScouts;
 
-namespace PackOfScouts;
-
-public class MatchData {
-    internal int matchNumber;
-    internal int robotNumber;
-    internal int functioningAuto;
-    internal int chargeStationPointsAuto;
-    internal int chargeStationPointsTeleop;
-    internal int conesScoredLowAuto;
-    internal int conesScoredMidAuto;
-    internal int conesScoredHighAuto;
-    internal int cubesScoredLowAuto;
-    internal int cubesScoredMidAuto;
-    internal int cubesScoredHighAuto;
-    internal int conesScoredLowTeleop;
-    internal int conesScoredMidTeleop;
-    internal int conesScoredHighTeleop;
-    internal int cubesScoredLowTeleop;
-    internal int cubesScoredMidTeleop;
-    internal int cubesScoredHighTeleop;
-    internal String notes;
-    internal int fouls;
-    internal int tech_fouls;
+internal sealed class MatchData
+{
+    public int MatchNumber { get; set; }
+    public int RobotNumber { get; set; }
+    public int FunctioningAuto { get; set; }
+    public int ChargeStationPointsAuto { get; set; }
+    public int ChargeStationPointsTeleop { get; set; }
+    public int ConesScoredLowAuto { get; set; }
+    public int ConesScoredMidAuto { get; set; }
+    public int ConesScoredHighAuto { get; set; }
+    public int CubesScoredLowAuto { get; set; }
+    public int CubesScoredMidAuto { get; set; }
+    public int CubesScoredHighAuto { get; set; }
+    public int ConesScoredLowTeleop { get; set; }
+    public int ConesScoredMidTeleop { get; set; }
+    public int ConesScoredHighTeleop { get; set; }
+    public int CubesScoredLowTeleop { get; set; }
+    public int CubesScoredMidTeleop { get; set; }
+    public int CubesScoredHighTeleop { get; set; }
+    public String Notes { get; set; }
+    public int Fouls { get; set; }
+    public int TechFouls { get; set; }
     // NONE, YELLOW, RED
-    internal String cards;
+    public String Cards { get; set; }
 
-
-
-    //NOT DONE YET
-    public MatchData(int matchNumber, 
-        int robotNumber,
-        int functioningAuto, 
-        int chargeStationPointsAuto, 
-        int chargeStationPointsTeleop, 
-        int conesScoredLowAuto,
-        int conesScoredMidAuto,
-        int conesScoredHighAuto,
-        int cubesScoredLowAuto,
-        int cubesScoredMidAuto,
-        int cubesScoredHighAuto,
-        int cubesScoredLowTeleop,
-        int cubesScoredMidTeleop,
-        int cubesScoredHighTeleop,
-        int conesScoredLowTeleop,
-        int conesScoredMidTeleop,
-        int conesScoredHighTeleop,
-        String notes) {
-        this.matchNumber = matchNumber;
-        this.robotNumber = robotNumber;
-        this.functioningAuto = functioningAuto;
-        this.chargeStationPointsTeleop= chargeStationPointsTeleop;
-        this.chargeStationPointsAuto = chargeStationPointsAuto;
-        this.conesScoredLowAuto = conesScoredLowAuto;
-        this.conesScoredLowTeleop = conesScoredLowTeleop;
-        this.conesScoredMidAuto = conesScoredMidAuto;
-        this.conesScoredMidTeleop = conesScoredMidTeleop;
-        this.conesScoredHighTeleop = conesScoredHighTeleop;
-        this.conesScoredHighAuto = conesScoredHighAuto;
-        this.cubesScoredLowAuto = cubesScoredLowAuto;
-        this.cubesScoredLowTeleop = cubesScoredLowTeleop;
-        this.cubesScoredMidAuto = cubesScoredMidAuto;
-        this.cubesScoredMidTeleop = cubesScoredMidTeleop;
-        this.cubesScoredHighTeleop = cubesScoredHighTeleop;
-        this.cubesScoredHighAuto = cubesScoredHighAuto;
-        this.notes = notes;
-        
-    }
-
-    public void createFile() {
+    public void CreateFile()
+    {
         string path = @"C:\Users\user\randomData";
-        using (StreamWriter outputFile = new StreamWriter(path + robotNumber + "_" + matchNumber)) {
-            outputFile.WriteLine(matchNumber);
-            outputFile.WriteLine(robotNumber);
-            outputFile.WriteLine(functioningAuto);
-            outputFile.WriteLine(chargeStationPointsAuto);
-            outputFile.WriteLine(chargeStationPointsTeleop);
-            
-        }
+        using StreamWriter outputFile = new(path + RobotNumber + "_" + MatchNumber);
+        outputFile.WriteLine(MatchNumber);
+        outputFile.WriteLine(RobotNumber);
+        outputFile.WriteLine(FunctioningAuto);
+        outputFile.WriteLine(ChargeStationPointsAuto);
+        outputFile.WriteLine(ChargeStationPointsTeleop);
     }
-
-
-
 }
-
