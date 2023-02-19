@@ -3,11 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PackOfScouts.TeleOperator"
              Title="TeleOperator"
-			 BackgroundColor="#0080FF">
+			 BackgroundColor="DarkBlue">
 	        
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -26,34 +27,133 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label Text="Cone Scoring Abilities" Grid.Column="0" Grid.Row="0"/>
-			<Switch x:Name="HighCone" IsToggled="False" Grid.Row="1" Grid.Column="0"/>
-			<!--<Switch x:Name="HighCone" IsToggled="False" Toggled="OnHighConeToggled" Grid.Row="1" Grid.Column="0"/>-->
-			<Label Text="High Cone" Grid.Row="1" Grid.Column="1"/>
-			<Switch x:Name="MidCone" IsToggled="False" Grid.Row="2" Grid.Column="0"/>
-			<!--<Switch x:Name="MidCone" IsToggled="False" Toggled="OnMidConeToggled" Grid.Row="2" Grid.Column="0"/>-->
-			<Label Text="Mid Cone" Grid.Row="2" Grid.Column="1"/>
-            <Switch x:Name="LowCone" IsToggled="False" Grid.Row="3" Grid.Column="0"/>
-            <Label Text="Low Cone" Grid.Row="3" Grid.Column="1"/>
+            <Switch x:Name="HighCone" IsToggled="False" Grid.Row="1" Grid.Column="1"/>
+            <Label Text="High Cone" Grid.Row="1" Grid.Column="0"/>
+            <Switch x:Name="MidCone" IsToggled="False" Grid.Row="2" Grid.Column="1"/>
+            <Label Text="Mid Cone" Grid.Row="2" Grid.Column="0"/>
+            <Switch x:Name="LowCone" IsToggled="False" Grid.Row="3" Grid.Column="1"/>
+            <Label Text="Low Cone" Grid.Row="3" Grid.Column="0"/>
+
+            <Label Text="Cube Scoring Abilities" Grid.Column="3" Grid.Row="0"/>
+            <Switch x:Name="HighCube" IsToggled="False" Grid.Row="1" Grid.Column="4"/>
+            <Label Text="High Cube" Grid.Row="1" Grid.Column="3"/>
+            <Switch x:Name="MidCube" IsToggled="False" Grid.Row="2" Grid.Column="4"/>
+            <Label Text="Mid Cube" Grid.Row="2" Grid.Column="3"/>
+            <Switch x:Name="LowCube" IsToggled="False" Grid.Row="3" Grid.Column="4"/>
+            <Label Text="Low Cube" Grid.Row="3" Grid.Column="3"/>
+        </Grid>
+        <Image
+            Grid.Column="1"
+            Grid.Row="0"
+            Source="pack_of_parts.png"
+            SemanticProperties.Description="POP Logo"
+            Margin="5"/>
+
+        <Grid Grid.Row="1" Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0"
+                       Text="Defense?"/>
+                <Switch IsToggled="False" Grid.Row="0" Grid.Column="1"/>
+                <Label Grid.Row="1" Grid.Column="0"
+                       Text="Broke?"/>
+                <Switch IsToggled="False" Grid.Row="1" Grid.Column="1"/>
+            </Grid>
         </Grid>
 
+        <Label Text="Notes" Grid.Row="1" Grid.Column="0"/>
+        <Editor x:Name="notesTextBox"
+            Placeholder="Enter your notes here"
+            Grid.Row="2" Grid.Column="1"
+            BackgroundColor="Black"
+            TextChanged="OnNotesTextChanged"/>
+        <!--Completed="OnEditorCompleted"-->
 
-        <VerticalStackLayout>
-            <Label Text="Cube Scoring Abilities"/>
-            <TableView>
-                <TableRoot>
-                    <TableSection>
-                        <SwitchCell x:Name="HighCube"  Text="High"
-                        On="False" Grid.Column="0" Grid.Row="0" />
-                        <SwitchCell x:Name="MidCube" Text="Mid"
-                        On="False" Grid.Column="0" Grid.Row="0" />
-                        <SwitchCell x:Name="LowCube" Text="Low"
-                        On="False" Grid.Column="0" Grid.Row="0" />
-                    </TableSection>
-                </TableRoot>
-            </TableView>
-        </VerticalStackLayout>
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0">
+                <!--Grid for number of cones/cubes scored-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Cones Scored:" Grid.Column="0" Grid.Row="0"/>
+                <Stepper 
+                    Minimum="0" Maximum="10" Increment="1" 
+                    ValueChanged="OnStepperValueChangedCone"
+                    Grid.Column="0" Grid.Row="1"/>
+                <Label x:Name="_displayConeLabel"  Text="0 cones scored"
+                       Grid.Column="0" Grid.Row="2"/>
+                <Label Text="Cubes Scored:" Grid.Column="1" Grid.Row="0"/>
+                <Stepper 
+                    Minimum="0" Maximum="10" Increment="1" 
+                    ValueChanged="OnStepperValueChangedCube"
+                    Grid.Column="1" Grid.Row="1"/>
+                <Label x:Name="_displayCubeLabel"  Text="0 cubes scored"
+                       Grid.Column="1" Grid.Row="2"/>
+            </Grid>
+            <!-- End of Grid for number of cones/cubes scored-->
+            <!-- Start of Grid for number of missed scores-->
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Missed scoring opportunities" Grid.Column="0" Grid.Row="0"/>
+                <Stepper 
+                    Minimum="0" Maximum="10" Increment="1" 
+                    ValueChanged="OnStepperValueChangedMisses"
+                    Grid.Column="0" Grid.Row="1"/>
+                <Label x:Name="_displayMistakesLabel"  Text="0 cones scored"
+                       Grid.Column="0" Grid.Row="2"/>
+            </Grid>
+            <Picker Title="Charge Station Status"
+                TitleColor="#70d3ee" Grid.Row="2" Grid.Column="0"
+                SelectedIndexChanged="OnChargeStationStatusChanged">
+                <Picker.Items>
+                    <x:String>No Attempt</x:String>
+                    <x:String>Failed Attempt</x:String>
+                    <x:String>Not Engaged</x:String>
+                    <x:String>Engaged</x:String>
+                </Picker.Items>
+            </Picker>
 
+        </Grid>
+        
     </Grid>
 </ContentPage>
