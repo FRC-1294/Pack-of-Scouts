@@ -112,7 +112,7 @@
             
 
             <Label Text="Notes" Grid.Row="1" Grid.ColumnSpan="2" TextColor="#0D47A1"/>
-            <Editor x:Name="notesTextBox"
+            <Editor x:Name="notesTextBox" MaxLength="800"
             Placeholder="Enter match notes here"
             Grid.Row="2" Grid.ColumnSpan="2"
             BackgroundColor="#1976D2"
@@ -182,7 +182,7 @@
                 <Label x:Name="_displayMistakesLabel"  Text="0 cones scored"
                        Grid.Column="0" Grid.Row="2" TextColor="#0D47A1"/>
             </Grid>
-            <Picker Title="Charge Station Status"
+            <Picker Title="Charge Station Status" x:Name="chargeStationPicker"
                 TitleColor="#0D47A1" Grid.Row="2" Grid.Column="0"
                 SelectedIndexChanged="OnChargeStationStatusChanged">
                 <Picker.Items>
