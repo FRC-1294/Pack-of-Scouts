@@ -80,11 +80,8 @@
 
         </Grid>
 
-<<<<<<< HEAD
         <Picker Title="Charge Station Status" x:Name="chargeStationPicker"
-=======
-        <Picker Title="Charge Station Status"
->>>>>>> 475115c (New UI changes)
+
                 TitleColor="#0D47A1" Grid.Row="1" Grid.Column="1"
                 SelectedIndexChanged="OnChargeStationStatusChanged">
             <Picker.Items>

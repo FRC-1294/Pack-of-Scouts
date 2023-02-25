@@ -12,6 +12,7 @@ public partial class ScoutPage : ContentPage
     int moveOutOfZone = 0;
     int chargeStationIndex = -1;
     public ScoutPage(int matchNum, int robotNum)
+
     {
         InitializeComponent();
 
@@ -60,6 +61,7 @@ public partial class ScoutPage : ContentPage
     void OnChargeStationStatusChanged(object sender, EventArgs e)
     {
 
+	cf31f71 (Scout UI almost done)
         chargeStationIndex = chargeStationPicker.SelectedIndex;
     }
 
@@ -67,7 +69,5 @@ public partial class ScoutPage : ContentPage
     {
         await Navigation.PushAsync(new TeleOperator(cubesScored, conesScored, functioningAuto, moveOutOfZone, chargeStationIndex));
     }
-
-    
 }
 
