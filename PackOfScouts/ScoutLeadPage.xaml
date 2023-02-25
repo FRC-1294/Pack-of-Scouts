@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PackOfScouts.ScoutLeadPage"
-             Title="Scout Lead Dashboard">
+             Title="Scout Lead Dashboard"
+             x:Name="LeadPage">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -14,6 +15,19 @@
             Grid.Column="0"
             MinimumWidthRequest="250"
             Margin="5"/>
+
+        <Picker x:Name="Stats"
+            Title="Select a stat"
+            HorizontalOptions="End"
+            TranslationX="-20"
+            TranslationY="20">
+        </Picker>
+
+
+        <TableView x:Name="Selection"
+            TranslationX="20"
+            TranslationY="50"
+         />
 
         <VerticalStackLayout
             Grid.Column="1"

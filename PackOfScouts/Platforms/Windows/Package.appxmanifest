@@ -11,14 +11,14 @@
   xmlns:uap6="http://schemas.microsoft.com/appx/manifest/uap/windows10/6"
   IgnorableNamespaces="uap rescap uap3 iot uap4 uap2 uap6">
 
-  <Identity Name="maui-package-name-placeholder" Publisher="CN=User Name" Version="0.0.0.0" />
+  <Identity Name="pack-of-scouts" Publisher="CN=User Name" Version="0.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="57D760A7-3E19-4783-BA9B-303FC8B75FED" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>$placeholder$</DisplayName>
-    <PublisherDisplayName>User Name</PublisherDisplayName>
-    <Logo>$placeholder$.png</Logo>
+    <DisplayName>Pack of Scouts</DisplayName>
+    <PublisherDisplayName>Pack of Parts</PublisherDisplayName>
+    <Logo>pack_of_parts.png</Logo>
   </Properties>
 
   <Dependencies>
@@ -33,56 +33,31 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="$placeholder$"
-        Description="$placeholder$"
-        Square150x150Logo="$placeholder$.png"
-        Square44x44Logo="$placeholder$.png"
+        DisplayName="pack-of-scouts"
+        Description="pack-of-scouts"
+        Square150x150Logo="pack_of_parts.png"
+        Square44x44Logo="pack_of_parts.png"
         BackgroundColor="transparent">
-        <uap:DefaultTile Square71x71Logo="$placeholder$.png" Wide310x150Logo="$placeholder$.png" Square310x310Logo="$placeholder$.png" />
-        <uap:SplashScreen Image="$placeholder$.png" />
+        <uap:DefaultTile Square71x71Logo="pack_of_parts.png" Wide310x150Logo="pack_of_parts.png" Square310x310Logo="pack_of_parts.png" >
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo"/>
+            <uap:ShowOn Tile="wide310x150Logo"/>
+            <uap:ShowOn Tile="square310x310Logo"/>
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile >
+        <uap:SplashScreen Image="pack_of_parts.png" />
       </uap:VisualElements>
     </Application>
   </Applications>
 
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
-    <uap3:Capability Name="backgroundMediaPlayback"/>
-    <iot:Capability Name="lowLevelDevices"/>
-    <uap:Capability Name="objects3D"/>
-    <uap:Capability Name="musicLibrary"/>
-    <uap4:Capability Name="offlineMapsManagement"/>
-    <uap:Capability Name="phoneCall"/>
-    <uap2:Capability Name="phoneCallHistoryPublic"/>
-    <uap:Capability Name="picturesLibrary"/>
-    <Capability Name="privateNetworkClientServer"/>
-    <uap3:Capability Name="remoteSystem"/>
     <uap:Capability Name="removableStorage"/>
-    <uap:Capability Name="sharedUserCertificates"/>
-    <uap2:Capability Name="spatialPerception"/>
-    <iot:Capability Name="systemManagement"/>
-    <uap:Capability Name="userAccountInformation"/>
-    <uap4:Capability Name="userDataTasks"/>
-    <uap3:Capability Name="userNotificationListener"/>
-    <uap:Capability Name="videosLibrary"/>
-    <uap:Capability Name="voipCall"/>
-    <uap:Capability Name="blockedChatMessages"/>
-    <uap:Capability Name="chat"/>
-    <Capability Name="codeGeneration"/>
-    <uap:Capability Name="contacts"/>
-    <uap:Capability Name="enterpriseAuthentication"/>
     <uap6:Capability Name="graphicsCapture"/>
     <Capability Name="internetClientServer"/>
     <Capability Name="internetClient"/>
-    <Capability Name="allJoyn"/>
-    <uap:Capability Name="appointments"/>
-    <DeviceCapability Name="microphone"/>
     <DeviceCapability Name="webcam"/>
     <DeviceCapability Name="lowLevel"/>
-    <DeviceCapability Name="pointOfService"/>
-    <DeviceCapability Name="proximity"/>
-    <DeviceCapability Name="bluetooth"/>
-    <DeviceCapability Name="gazeInput"/>
-    <DeviceCapability Name="location"/>
   </Capabilities>
 
 </Package>
