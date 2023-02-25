@@ -9,6 +9,12 @@ public partial class TeleOperator : ContentPage
     int cubesScored = 0;
     int missedScores = 0;
     string chargeStationStatus = null;
+    string highestCube = null;
+    string highestCone = null;
+    bool defense = false;
+    bool broke = false;
+    int fouls = 0;
+
     public TeleOperator()
 	{
 		InitializeComponent();
@@ -16,24 +22,64 @@ public partial class TeleOperator : ContentPage
 
     void OnHighConeToggled(object sender, ToggledEventArgs e)
 	{
-		LowCone.IsToggled = true;
-		MidCone.IsToggled = true;
-	}
+		if (HighCone.IsToggled)
+        {
+            LowCone.IsToggled = true;
+            MidCone.IsToggled = true;
+            highestCone = "high cone";
+
+        }
+        else
+        {
+            LowCone.IsToggled = false;
+            MidCone.IsToggled = false;
+            highestCone = null;
+
+        }
+    }
 
     private void OnMidConeToggled(object sender, ToggledEventArgs e)
     {
-		LowCone.IsToggled = true;
+        if (MidCone.IsToggled) 
+        {
+            LowCone.IsToggled = true;
+            highestCone = "mid cone";
+        }
+        else
+        {
+            LowCone.IsToggled = false;
+            highestCone= null;
+        }
     }
 
     void OnHighCubeToggled(object sender, ToggledEventArgs e)
     {
-        LowCube.IsToggled = true;
-        MidCube.IsToggled = true;
+        if (HighCube.IsToggled)
+        {
+            LowCube.IsToggled = true;
+            MidCube.IsToggled = true;
+            highestCube= "high cube";
+        }
+        else
+        {
+            LowCube.IsToggled = false;
+            MidCube.IsToggled = false;
+            highestCube= null;
+        }
     }
 
     private void OnMidCubeToggled(object sender, ToggledEventArgs e)
     {
-        LowCube.IsToggled = true;
+        if (MidCube.IsToggled)
+        {
+            LowCube.IsToggled = true;
+            highestCube= "mid cube";
+        }
+        else
+        {
+            LowCube.IsToggled = false;
+            highestCube=null;
+        }
     }
 
     protected override void OnAppearing()
@@ -90,6 +136,20 @@ public partial class TeleOperator : ContentPage
         missedScores++;
     }
 
+    void OnStepperValueChangedFouls(object sender, ValueChangedEventArgs e)
+    {
+        double value = e.NewValue;
+        if (value == 1)
+        {
+            _displayFoulLabel.Text = string.Format("{0} foul", value);
+        }
+        else
+        {
+            _displayFoulLabel.Text = string.Format("{0} fouls", value);
+        }
+        fouls++;
+    }
+
     void OnChargeStationStatusChanged(object sender, EventArgs e)
     {
         var picker = (Picker)sender;
@@ -99,5 +159,34 @@ public partial class TeleOperator : ContentPage
         {
             chargeStationStatus = (string)picker.ItemsSource[selectedIndex];
         }
+    }
+
+    void SetVariables()
+    {
+        if (highestCube == null && LowCube.IsToggled)
+        {
+            highestCube = "low cone";
+            
+        }
+        if (highestCone == null && LowCone.IsToggled)
+        {
+            highestCone = "low cone";
+        }
+        if (def.IsToggled)
+        {
+            defense = true;
+        }
+        if (broken.IsToggled)
+        {
+            broke = true;
+        }
+        notes = notesTextBox.Text;
+        
+    }
+
+    private async void OnShowQRCodeClicked(object sender, EventArgs e)
+    {
+        SetVariables();
+        await Navigation.PushAsync(new ShowQRCodePage("https://www.google.com"));
     }
 }
