@@ -59,6 +59,7 @@ public partial class ScoutPage : ContentPage
 
     void OnChargeStationStatusChanged(object sender, EventArgs e)
     {
+
         chargeStationIndex = chargeStationPicker.SelectedIndex;
     }
 
@@ -66,6 +67,7 @@ public partial class ScoutPage : ContentPage
     {
         await Navigation.PushAsync(new TeleOperator(cubesScored, conesScored, functioningAuto, moveOutOfZone, chargeStationIndex));
     }
+
     
 }
 

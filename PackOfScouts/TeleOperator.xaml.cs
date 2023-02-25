@@ -36,6 +36,7 @@ public partial class TeleOperator : ContentPage
 
     }
 
+
     public TeleOperator()
 	{
 		InitializeComponent();
@@ -261,5 +262,34 @@ public partial class TeleOperator : ContentPage
 
         var json = System.Text.Json.JsonSerializer.Serialize(m);
         await Navigation.PushAsync(new ShowQRCodePage(json));
+    }
+
+    void SetVariables()
+    {
+        if (highestCube == null && LowCube.IsToggled)
+        {
+            highestCube = "low cone";
+            
+        }
+        if (highestCone == null && LowCone.IsToggled)
+        {
+            highestCone = "low cone";
+        }
+        if (def.IsToggled)
+        {
+            defense = true;
+        }
+        if (broken.IsToggled)
+        {
+            broke = true;
+        }
+        notes = notesTextBox.Text;
+        
+    }
+
+    private async void OnShowQRCodeClicked(object sender, EventArgs e)
+    {
+        SetVariables();
+        await Navigation.PushAsync(new ShowQRCodePage("https://www.google.com"));
     }
 }
