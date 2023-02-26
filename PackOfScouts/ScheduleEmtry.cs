@@ -1,6 +1,6 @@
 ﻿namespace PackOfScouts;
 
-internal sealed class ScheduleEntry
+public sealed class ScheduleEntry
 {
     public int MatchNumber { get; set; }
     public int RedRobot1 { get; set; }

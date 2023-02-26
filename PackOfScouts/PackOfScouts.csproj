@@ -48,12 +48,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="MatchSchedule.xaml">
+	  <MauiXaml Update="MatchSchedulePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="TeleOperator.xaml" />
 
 	  <ProjectReference Include="..\PackOfScouts.QrCode\PackOfScouts.QrCode.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="MatchSchedulePage.xaml.cs">
+	    <DependentUpon>MatchSchedulePage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
