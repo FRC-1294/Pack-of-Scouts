@@ -1,29 +1,31 @@
 ﻿namespace PackOfScouts;
 
+public enum ChargeStationStatusAuto { NoAttempt, Failed, NotEngaged, Engaged }
+public enum ChargeStationStatusTeleop { NoAttempt, Failed, NotEngaged, Engaged }
+public enum HighestConeScored { High, Mid, Low , None}
+public enum HighestCubeScored { High, Mid, Low , None}
 internal sealed class MatchData
 {
+
     public int MatchNumber { get; set; }
     public int RobotNumber { get; set; }
     public int FunctioningAuto { get; set; }
-    public int ChargeStationPointsAuto { get; set; }
-    public int ChargeStationPointsTeleop { get; set; }
-    public int ConesScoredLowAuto { get; set; }
-    public int ConesScoredMidAuto { get; set; }
-    public int ConesScoredHighAuto { get; set; }
-    public int CubesScoredLowAuto { get; set; }
-    public int CubesScoredMidAuto { get; set; }
-    public int CubesScoredHighAuto { get; set; }
-    public int ConesScoredLowTeleop { get; set; }
-    public int ConesScoredMidTeleop { get; set; }
-    public int ConesScoredHighTeleop { get; set; }
-    public int CubesScoredLowTeleop { get; set; }
-    public int CubesScoredMidTeleop { get; set; }
-    public int CubesScoredHighTeleop { get; set; }
+    public ChargeStationStatusAuto ChargeStationAuto { get; set; }
+    public ChargeStationStatusTeleop ChargeStationTeleop { get; set; }
+    public int ConesScoredAuto { get; set; }
+    public int ConesScoredTeleop { get; set; }
+    public int CubesScoredAuto { get; set; }
+    public int CubesScoredTeleop { get; set; }
+    public HighestConeScored ConeHeight { get; set; }
+    public HighestCubeScored CubeHeight { get; set; }
+    public int MovedOutOfZoneAuto { get; set; }
+    public bool Broke { get; set; }
+    public bool Defense { get; set; }
     public String Notes { get; set; }
     public int Fouls { get; set; }
-    public int TechFouls { get; set; }
+    //public int TechFouls { get; set; }
     // NONE, YELLOW, RED
-    public String Cards { get; set; }
+    //public String Cards { get; set; }
 
     public void CreateFile()
     {
@@ -32,7 +34,7 @@ internal sealed class MatchData
         outputFile.WriteLine(MatchNumber);
         outputFile.WriteLine(RobotNumber);
         outputFile.WriteLine(FunctioningAuto);
-        outputFile.WriteLine(ChargeStationPointsAuto);
-        outputFile.WriteLine(ChargeStationPointsTeleop);
+        outputFile.WriteLine(ChargeStationAuto);
+        outputFile.WriteLine(ChargeStationTeleop);
     }
 }

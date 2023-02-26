@@ -27,10 +27,10 @@
             </Grid.ColumnDefinitions>
             <Label Text="Functioning auto?" Grid.Column="0" Grid.Row="0" TextColor="#0D47A1"/>
             <Switch IsToggled="False" Toggled="OnFunctionAutoToggled" Grid.Column="1" Grid.Row="0"
-                    OnColor="#64FFDA" ThumbColor="#0D47A1"/>
+                    OnColor="#64FFDA" ThumbColor="#0D47A1" x:Name="autoWork"/>
             <Label Text="Move out of Zone?" Grid.Column="0" Grid.Row="1" TextColor="#0D47A1"/>
             <Switch IsToggled="False" Toggled="OnMoveOutOfZoneToggled" Grid.Column="1" Grid.Row="1"
-                    OnColor="#64FFDA" ThumbColor="#0D47A1"/>
+                    OnColor="#64FFDA" ThumbColor="#0D47A1" x:Name="movedZone"/>
         </Grid>
 
         <Image
@@ -80,7 +80,7 @@
 
         </Grid>
 
-        <Picker Title="Charge Station Status"
+        <Picker Title="Charge Station Status" x:Name="chargeStationPicker"
                 TitleColor="#0D47A1" Grid.Row="1" Grid.Column="1"
                 SelectedIndexChanged="OnChargeStationStatusChanged">
             <Picker.Items>

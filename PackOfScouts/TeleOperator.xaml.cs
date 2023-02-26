@@ -1,4 +1,6 @@
 using Microsoft.Maui.Controls;
+using System.Text.Json;
+using static PackOfScouts.MatchData;
 
 namespace PackOfScouts;
 
@@ -8,12 +10,31 @@ public partial class TeleOperator : ContentPage
     int conesScored = 0;
     int cubesScored = 0;
     int missedScores = 0;
-    string chargeStationStatus = null;
-    string highestCube = null;
-    string highestCone = null;
+    int chargeStationIndex = -1;
+    int highestCube = -1;
+    int highestCone = -1;
     bool defense = false;
     bool broke = false;
     int fouls = 0;
+    int autoConesScored = 0;
+    int autoCubesScored = 0;
+    int functioningAuto = 0;
+    int movedOutOfZone = 0;
+    int autoChargeStation = -1;
+
+    private MatchData matchData = new MatchData();
+
+    public TeleOperator(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation)
+        : this()
+    {
+        // use cubesScored and conesScored
+        cubesScored = autoCubesScored;
+        conesScored = autoConesScored;
+        functioningAuto = this.functioningAuto;
+        moveOutOfZone = movedOutOfZone;
+        autoChargeStation = this.autoChargeStation;
+
+    }
 
     public TeleOperator()
 	{
@@ -26,14 +47,14 @@ public partial class TeleOperator : ContentPage
         {
             LowCone.IsToggled = true;
             MidCone.IsToggled = true;
-            highestCone = "high cone";
+            highestCone = 2;
 
         }
         else
         {
             LowCone.IsToggled = false;
             MidCone.IsToggled = false;
-            highestCone = null;
+            highestCone = -1;
 
         }
     }
@@ -43,12 +64,12 @@ public partial class TeleOperator : ContentPage
         if (MidCone.IsToggled) 
         {
             LowCone.IsToggled = true;
-            highestCone = "mid cone";
+            highestCone = 1;
         }
         else
         {
             LowCone.IsToggled = false;
-            highestCone= null;
+            highestCone= -1;
         }
     }
 
@@ -58,13 +79,13 @@ public partial class TeleOperator : ContentPage
         {
             LowCube.IsToggled = true;
             MidCube.IsToggled = true;
-            highestCube= "high cube";
+            highestCube = 2;
         }
         else
         {
             LowCube.IsToggled = false;
             MidCube.IsToggled = false;
-            highestCube= null;
+            highestCube= -1;
         }
     }
 
@@ -73,12 +94,12 @@ public partial class TeleOperator : ContentPage
         if (MidCube.IsToggled)
         {
             LowCube.IsToggled = true;
-            highestCube= "mid cube";
+            highestCube= 1;
         }
         else
         {
             LowCube.IsToggled = false;
-            highestCube=null;
+            highestCube=-1;
         }
     }
 
@@ -152,25 +173,19 @@ public partial class TeleOperator : ContentPage
 
     void OnChargeStationStatusChanged(object sender, EventArgs e)
     {
-        var picker = (Picker)sender;
-        int selectedIndex = picker.SelectedIndex;
-
-        if (selectedIndex != -1)
-        {
-            chargeStationStatus = (string)picker.ItemsSource[selectedIndex];
-        }
+        chargeStationIndex = chargeStationPicker.SelectedIndex;
     }
 
     void SetVariables()
     {
-        if (highestCube == null && LowCube.IsToggled)
+        if (highestCube == -1 && LowCube.IsToggled)
         {
-            highestCube = "low cone";
+            highestCube = 0;
             
         }
-        if (highestCone == null && LowCone.IsToggled)
+        if (highestCone == -1 && LowCone.IsToggled)
         {
-            highestCone = "low cone";
+            highestCone = 0;
         }
         if (def.IsToggled)
         {
@@ -186,7 +201,65 @@ public partial class TeleOperator : ContentPage
 
     private async void OnShowQRCodeClicked(object sender, EventArgs e)
     {
+        var teleopChargeStaion = chargeStationIndex switch
+        {
+            -1 => ChargeStationStatusTeleop.NoAttempt,
+            0 => ChargeStationStatusTeleop.NoAttempt,
+            1 => ChargeStationStatusTeleop.Failed,
+            2 => ChargeStationStatusTeleop.NotEngaged,
+            3 => ChargeStationStatusTeleop.Engaged
+        };
+
+        var autoChargeStaion = chargeStationIndex switch
+        {
+            -1 => ChargeStationStatusAuto.NoAttempt,
+            0 => ChargeStationStatusAuto.NoAttempt,
+            1 => ChargeStationStatusAuto.Failed,
+            2 => ChargeStationStatusAuto.NotEngaged,
+            3 => ChargeStationStatusAuto.Engaged
+        };
+
+        var highCone = highestCone switch
+        {
+            -1 => HighestConeScored.None,
+            0 => HighestConeScored.Low,
+            1 => HighestConeScored.Mid,
+            2 => HighestConeScored.High
+        };
+
+        var highCube = highestCube switch
+        {
+            -1 => HighestCubeScored.None,
+            0 => HighestCubeScored.Low,
+            1 => HighestCubeScored.Mid,
+            2 => HighestCubeScored.High
+        };
+
         SetVariables();
-        await Navigation.PushAsync(new ShowQRCodePage("https://www.google.com"));
+        var m = new MatchData
+        {
+            MatchNumber = 15,
+            RobotNumber = 1294,
+            FunctioningAuto = functioningAuto,
+            ConesScoredAuto = autoConesScored,
+            ConesScoredTeleop = conesScored,
+            CubesScoredAuto = autoCubesScored,
+            CubesScoredTeleop = cubesScored,
+            MovedOutOfZoneAuto = movedOutOfZone,
+            Broke = broke,
+            Defense = defense,
+            Fouls = fouls,
+            Notes = notes,
+            ChargeStationTeleop = teleopChargeStaion,
+            ChargeStationAuto = autoChargeStaion,
+            ConeHeight = highCone,
+            CubeHeight = highCube,
+        };
+
+        
+        
+
+        var json = System.Text.Json.JsonSerializer.Serialize(m);
+        await Navigation.PushAsync(new ShowQRCodePage(json));
     }
 }

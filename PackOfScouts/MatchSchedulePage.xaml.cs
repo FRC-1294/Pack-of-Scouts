@@ -4,17 +4,13 @@ namespace PackOfScouts;
 
 public partial class MatchSchedulePage : ContentPage
 {
-	private readonly List<ScheduleEntry> _entries;
-
     public MatchSchedulePage(List<ScheduleEntry> entries)
     {
         InitializeComponent();
 
-        _entries = entries;
-
         AddHeader();
 
-        foreach (var entry in _entries)
+        foreach (var entry in entries)
         {
             var g = new Grid
             {
@@ -73,59 +69,44 @@ public partial class MatchSchedulePage : ContentPage
                 FontSize = 15,
             });
 
-            g.Add(new Button
-            {
-                Text = entry.RedRobot1.ToString(),
-                BackgroundColor = Colors.Red,
-                TextColor = Colors.White,
-                FontSize = 20,
-            }, 1);
-
-            g.Add(new Button
-            {
-                Text = entry.RedRobot2.ToString(),
-                BackgroundColor = Colors.Red,
-                TextColor = Colors.White,
-                FontSize = 20,
-            }, 2);
-
-            g.Add(new Button
-            {
-                Text = entry.RedRobot3.ToString(),
-                BackgroundColor = Colors.Red,
-                TextColor = Colors.White,
-                FontSize = 20,
-            }, 3);
-
-            g.Add(new Button
-            {
-                Text = entry.BlueRobot1.ToString(),
-                BackgroundColor = Colors.Blue,
-                TextColor = Colors.White,
-                FontSize = 20,
-            }, 4);
-
-            g.Add(new Button
-            {
-                Text = entry.BlueRobot2.ToString(),
-                BackgroundColor = Colors.Blue,
-                TextColor = Colors.White,
-                FontSize = 20,
-            }, 5);
-
-            g.Add(new Button
-            {
-                Text = entry.BlueRobot3.ToString(),
-                BackgroundColor = Colors.Blue,
-                TextColor = Colors.White,
-                FontSize = 20,
-            }, 6);
+            AddRobotButton(g, 1, Colors.Red, entry.MatchNumber, entry.RedRobot1);
+            AddRobotButton(g, 2, Colors.Red, entry.MatchNumber, entry.RedRobot2);
+            AddRobotButton(g, 3, Colors.Red, entry.MatchNumber, entry.RedRobot3);
+            AddRobotButton(g, 4, Colors.Blue, entry.MatchNumber, entry.BlueRobot1);
+            AddRobotButton(g, 5, Colors.Blue, entry.MatchNumber, entry.BlueRobot2);
+            AddRobotButton(g, 6, Colors.Blue, entry.MatchNumber, entry.BlueRobot3);
 
             _tableView.Root[0].Add(new ViewCell
             {
                 View = g,
             });
         }
+    }
+
+    private void AddRobotButton(Grid g, int column, Color color, int matchNum, int robotNum)
+    {
+        var b = new Button
+        {
+            Text = robotNum.ToString(),
+            BackgroundColor = color,
+            TextColor = Colors.White,
+            FontSize = 20,
+            CommandParameter = new ButtonInfo
+            {
+                MatchNum = matchNum,
+                RobotNum = robotNum,
+            },
+        };
+
+        b.Clicked += TeamClicked;
+        g.Add(b, column);
+    }
+
+    private async void TeamClicked(object sender, EventArgs e)
+    {
+        var b = (Button)sender;
+        var bi = (ButtonInfo)b.CommandParameter;
+        await Navigation.PushAsync(new ScoutPage(bi.MatchNum, bi.RobotNum));
     }
 
     private void AddHeader()
@@ -175,5 +156,11 @@ public partial class MatchSchedulePage : ContentPage
         {
             View = g,
         });
+    }
+
+    private sealed class ButtonInfo
+    {
+        public int MatchNum;
+        public int RobotNum;
     }
 }

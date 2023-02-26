@@ -9,23 +9,18 @@ public partial class StartPage : ContentPage
 
 	private async void OnScoutClicked(object sender, EventArgs e)
 	{
-		await Navigation.PushAsync(new ScoutPage());
-	}
-
-	private async void OnScoutLeadClicked(object sender, EventArgs e)
-	{
-		var s = new List<ScheduleEntry>
-		{
-			new ScheduleEntry
-			{
-				MatchNumber = 123,
-				RedRobot1 = 1,
-				RedRobot2 = 2,
-				RedRobot3 = 3,
-				BlueRobot1 = 4,
-				BlueRobot2 = 5,
-				BlueRobot3 = 6,
-			},
+        var s = new List<ScheduleEntry>
+        {
+            new ScheduleEntry
+            {
+                MatchNumber = 123,
+                RedRobot1 = 1,
+                RedRobot2 = 2,
+                RedRobot3 = 3,
+                BlueRobot1 = 4,
+                BlueRobot2 = 5,
+                BlueRobot3 = 6,
+            },
 
             new ScheduleEntry
             {
@@ -50,7 +45,12 @@ public partial class StartPage : ContentPage
             }
         };
 
-		await Navigation.PushAsync(new MatchSchedulePage(s));
+        await Navigation.PushAsync(new MatchSchedulePage(s));
+	}
+
+	private async void OnScoutLeadClicked(object sender, EventArgs e)
+	{
+		await Navigation.PushAsync(new ScoutLeadPage());
     }
 }
 
