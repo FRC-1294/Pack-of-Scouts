@@ -294,7 +294,6 @@ public partial class TeleOperator : ContentPage
         var json = System.Text.Json.JsonSerializer.Serialize(m);
         await Navigation.PushAsync(new ShowQRCodePage(json));
 
-        var json = System.Text.Json.JsonSerializer.Serialize(m);
-        await Navigation.PushAsync(new ShowQRCodePage(json));
+       
     }
 }
