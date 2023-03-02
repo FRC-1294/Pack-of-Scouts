@@ -4,7 +4,7 @@
              x:Class="PackOfScouts.ScoutPage"
              Title="Scout Dashboard">
 
-    <Grid BackgroundColor="#448AFF">
+    <Grid BackgroundColor="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -25,12 +25,12 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Text="Functioning auto?" Grid.Column="0" Grid.Row="0" TextColor="#0D47A1" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label Text="Functioning auto?" Grid.Column="0" Grid.Row="0" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
             <Switch IsToggled="False" Toggled="OnFunctionAutoToggled" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"
-                    OnColor="#64FFDA" ThumbColor="#0D47A1" x:Name="autoWork"/>
-            <Label Text="Move out of Zone?" Grid.Column="0" Grid.Row="1" TextColor="#0D47A1" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    OnColor="White" ThumbColor="#72C3F1" x:Name="autoWork"/>
+            <Label Text="Move out of Zone?" Grid.Column="0" Grid.Row="1" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
             <Switch IsToggled="False" Toggled="OnMoveOutOfZoneToggled" Grid.Column="1" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center"
-                    OnColor="#64FFDA" ThumbColor="#0D47A1" x:Name="movedZone"/>
+                    OnColor="#70D3EE" ThumbColor="#0D47A1" x:Name="movedZone"/>
         </Grid>
 
         <Image
@@ -45,8 +45,8 @@
             Grid.Column="2"
             x:Name="Finish"
             Text="Done with Auto"
-            TextColor="#0D47A1"
-            BackgroundColor="#1976D2"
+            TextColor="Black"
+            BackgroundColor="#72C3F1"
             BorderColor="Black"
             Clicked="OnDoneWithAutoClicked"
             Margin="10"
@@ -64,25 +64,25 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Label Text="Cones Scored: " Grid.Column="0" Grid.Row="0" TextColor="#0D47A1"/>
+            <Label Text="CONES SCORED: " Grid.Column="0" Grid.Row="0" TextColor="White"/>
             <Stepper Grid.Column="0" Grid.Row="1"
-                    Minimum="0" Increment="1" 
+                    Minimum="0" Increment="1" BackgroundColor="#72C3F1"
                     ValueChanged="OnStepperValueChangedCone" />
             <Label x:Name="_displayConeLabel"  Text="0 cones scored"
-                   Grid.Column="0" Grid.Row="2" TextColor="#0D47A1"/>
+                   Grid.Column="0" Grid.Row="2" TextColor="White"/>
 
-            <Label Text="Cubes Scored:" Grid.Column="1" Grid.Row="0" TextColor="#0D47A1"/>
+            <Label Text="Cubes Scored:" Grid.Column="1" Grid.Row="0" TextColor="White"/>
             <Stepper Grid.Column="1" Grid.Row="1"
-                    Minimum="0" Increment="1" 
+                    Minimum="0" Increment="1" BackgroundColor="#72C3F1"
                     ValueChanged="OnStepperValueChangedCube" />
             <Label x:Name="_displayCubeLabel"  Text="0 cubes scored"
-                   Grid.Column="1" Grid.Row="2" TextColor="#0D47A1"/>
+                   Grid.Column="1" Grid.Row="2" TextColor="White"/>
 
         </Grid>
 
         <Picker Title="Charge Station Status" x:Name="chargeStationPicker"
 
-                TitleColor="#0D47A1" Grid.Row="1" Grid.Column="1"
+                TitleColor="White" Grid.Row="1" Grid.Column="1" BackgroundColor="#72C3F1"
                 SelectedIndexChanged="OnChargeStationStatusChanged">
             <Picker.Items>
                 <x:String>No Attempt</x:String>
