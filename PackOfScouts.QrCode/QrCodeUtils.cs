@@ -1,6 +1,7 @@
 ﻿using Genesis.QRCodeLib;
 using Net.Codecrete.QrCodeGenerator;
 using OpenCvSharp;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -34,7 +35,7 @@ public static class QrCodeUtils
     /// </summary>
     /// <param name="filenameWithCode">The image file to read from. This is typically a PNG file.</param>
     /// <returns>The string represented by the QR code.</returns>
-    public static string LoadQrCode(string filenameWithCode)
+    private static string LoadQrCode(string filenameWithCode)
     {
         var bm = Image.FromFile(filenameWithCode);
         var d = new QRDecoder();
@@ -43,30 +44,26 @@ public static class QrCodeUtils
     }
 
     /// <summary>
-    /// Takes a picture using the computer's primary webcam.
+    /// Repeatedly takes pictures using the computer's camera until it can find and decode a QR code in the picture.
     /// </summary>
-    /// <returns>The name of the file where the picture was saved.</returns>
-    /// <remarks>
-    /// This opens a preview window on the screen, letting you
-    /// </remarks>
-    public static string CapturePicture()
+    /// <returns>The text from the QR code or null if the operation was cancelled by the user.</returns>
+    public static string? CaptureQrCode()
     {
-        var filename = Path.ChangeExtension(Path.GetTempFileName(), "png");
-
         if (_capture == null)
         {
             using Mat m = new(1080, 1920, MatType.CV_16S);
             using Window tmp = new("Initializing camera, this might take a minute or two...");
             tmp.ShowImage(m);
 
-            _capture = new(1);
+            _capture = new(0);
             _ = _capture.Set(VideoCaptureProperties.FrameWidth, 1920);
             _ = _capture.Set(VideoCaptureProperties.FrameHeight, 1080);
         }
 
-        using Window window = new("Press a key to take a picture");
+        using Window window = new("Point the camera to a QR code or hit any key to abort");
         using Mat image = new();
 
+        string? result = null;
         while (true)
         {
             _ = _capture.Read(image);
@@ -77,14 +74,32 @@ public static class QrCodeUtils
 
             window.ShowImage(image);
 
+            var filename = Path.ChangeExtension(Path.GetTempFileName(), "png");
+            _ = image.SaveImage(filename);
+            result = LoadQrCode(filename);
+
+            try
+            {
+                File.Delete(filename);
+            }
+            catch
+            {
+
+            }
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                break;
+            }
+
             var x = Cv2.WaitKey(30);
             if (x >= 0)
             {
-                _ = image.SaveImage(filename);
+                result = null;
                 break;
             }
         }
 
-        return filename;
+        return result;
     }
 }

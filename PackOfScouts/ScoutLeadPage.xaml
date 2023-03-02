@@ -5,54 +5,29 @@
              Title="Scout Lead Dashboard"
              x:Name="LeadPage">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="200" />
-        </Grid.ColumnDefinitions>
-
-        <Editor
-            Grid.Column="0"
-            MinimumWidthRequest="250"
-            Margin="5"/>
-
-        <Picker x:Name="Stats"
-            Title="Select a stat"
-            HorizontalOptions="End"
-            TranslationX="-20"
-            TranslationY="20">
-        </Picker>
-
-
-        <TableView x:Name="Selection"
-            TranslationX="20"
-            TranslationY="50"
-         />
-
+    <ScrollView>
         <VerticalStackLayout
-            Grid.Column="1"
-            Margin="5"
-            WidthRequest="150"
-            HorizontalOptions="Center">
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
 
             <Image
                 Source="pack_of_parts.png"
                 SemanticProperties.Description="POP Logo"
-                HeightRequest="100"
-                Margin="5"/>
+                HeightRequest="200"
+                HorizontalOptions="Center" />
 
-            <Button 
-                Text="Open Lead File" 
-                Clicked="OnOpenScoutLeadFileClicked" />
+            <HorizontalStackLayout
+                HorizontalOptions="Center">
 
-            <Button
-                Text="Save Lead File"
-                Clicked="OnSaveScoutLeadFileClicked" />
+                <Button
+                    Text="Scan QR Code"
+                    WidthRequest="150"
+                    SemanticProperties.Hint="Scan a QR code that has some scout data"
+                    Clicked="OnScanScoutQRCodeClicked" />
 
-            <Button 
-                Text="Scan QR Code"
-                Clicked="OnScanScoutQRCodeClicked" />
-
+            </HorizontalStackLayout>
         </VerticalStackLayout>
-    </Grid>
+    </ScrollView>
+
 </ContentPage>
