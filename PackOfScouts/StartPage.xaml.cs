@@ -36,6 +36,7 @@ public partial class StartPage : ContentPage
 
 
         await Navigation.PushAsync(new MatchSchedulePage(s));
+
 	}
 
 	private async void OnScoutLeadClicked(object sender, EventArgs e)

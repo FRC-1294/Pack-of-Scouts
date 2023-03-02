@@ -21,18 +21,22 @@ public partial class TeleOperator : ContentPage
     int functioningAuto = 0;
     int movedOutOfZone = 0;
     int autoChargeStation = -1;
+    int matchNum = 0;
+    int roboNum = 1294;
 
     private MatchData matchData = new MatchData();
 
-    public TeleOperator(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation)
+    public TeleOperator(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation, int matchNumber, int roboNumber)
         : this()
     {
         // use cubesScored and conesScored
-        cubesScored = autoCubesScored;
-        conesScored = autoConesScored;
-        functioningAuto = this.functioningAuto;
-        moveOutOfZone = movedOutOfZone;
-        autoChargeStation = this.autoChargeStation;
+        this.autoCubesScored = cubesScored;
+        this.autoConesScored = conesScored;
+        this.functioningAuto = functioningAuto;
+        this.movedOutOfZone = moveOutOfZone;
+        this.autoChargeStation = autoChargeStation;
+        this.matchNum = matchNumber;
+        this.roboNum = roboNumber;
 
     }
 
@@ -126,7 +130,14 @@ public partial class TeleOperator : ContentPage
         {
             _displayConeLabel.Text = string.Format("{0} cones scored", value);
         }
-        conesScored++;
+        if (value > conesScored)
+        {
+            conesScored++;
+        }
+        else
+        {
+            conesScored--;
+        }
 
     }
 
@@ -141,7 +152,14 @@ public partial class TeleOperator : ContentPage
         {
             _displayCubeLabel.Text = string.Format("{0} cubes scored", value);
         }
-        cubesScored++;
+        if (value > cubesScored)
+        {
+            cubesScored++;
+        }
+        else
+        {
+            cubesScored--;
+        }
     }
 
     void OnStepperValueChangedMisses(object sender, ValueChangedEventArgs e)
@@ -149,13 +167,20 @@ public partial class TeleOperator : ContentPage
         double value = e.NewValue;
         if (value == 1)
         {
-            _displayMistakesLabel.Text = string.Format("{0} cube scored", value);
+            _displayMistakesLabel.Text = string.Format("{0} miss", value);
         }
         else
         {
-            _displayMistakesLabel.Text = string.Format("{0} cubes scored", value);
+            _displayMistakesLabel.Text = string.Format("{0} misses", value);
         }
-        missedScores++;
+        if (value > missedScores)
+        {
+            missedScores++;
+        }
+        else
+        {
+            missedScores--;
+        }
     }
 
     void OnStepperValueChangedFouls(object sender, ValueChangedEventArgs e)
@@ -169,7 +194,13 @@ public partial class TeleOperator : ContentPage
         {
             _displayFoulLabel.Text = string.Format("{0} fouls", value);
         }
-        fouls++;
+        if(value > fouls)
+        {
+            fouls++;
+        } else
+        {
+            fouls--;
+        }
     }
 
     void OnChargeStationStatusChanged(object sender, EventArgs e)
@@ -202,6 +233,7 @@ public partial class TeleOperator : ContentPage
 
     private async void OnShowQRCodeClicked(object sender, EventArgs e)
     {
+        SetVariables();
         var teleopChargeStaion = chargeStationIndex switch
         {
             -1 => ChargeStationStatusTeleop.NoAttempt,
@@ -211,7 +243,7 @@ public partial class TeleOperator : ContentPage
             3 => ChargeStationStatusTeleop.Engaged
         };
 
-        var autoChargeStaion = chargeStationIndex switch
+        var autoChargeStaion = autoChargeStation switch
         {
             -1 => ChargeStationStatusAuto.NoAttempt,
             0 => ChargeStationStatusAuto.NoAttempt,
@@ -236,16 +268,15 @@ public partial class TeleOperator : ContentPage
             2 => HighestCubeScored.High
         };
 
-        SetVariables();
         var m = new MatchData
         {
-            MatchNumber = 15,
-            RobotNumber = 1294,
+            MatchNumber = matchNum,
+            RobotNumber = roboNum,
             FunctioningAuto = functioningAuto,
             ConesScoredAuto = autoConesScored,
             ConesScoredTeleop = conesScored,
-            CubesScoredAuto = autoCubesScored,
-            CubesScoredTeleop = cubesScored,
+            CubesScoredAuto = autoCubesScored,//
+            CubesScoredTeleop = cubesScored,//
             MovedOutOfZoneAuto = movedOutOfZone,
             Broke = broke,
             Defense = defense,

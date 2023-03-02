@@ -11,11 +11,15 @@ public partial class ScoutPage : ContentPage
     int functioningAuto = 0;
     int moveOutOfZone = 0;
     int chargeStationIndex = -1;
-    public ScoutPage(int matchNum, int robotNum)
+
+    int robotNum = 1294;
+    int matchNumber = 0;
+    public ScoutPage(int match, int robot)
 
     {
         InitializeComponent();
-
+        robotNum= robot;
+        matchNumber=match;
 
     }
 
@@ -30,7 +34,13 @@ public partial class ScoutPage : ContentPage
         {
             _displayConeLabel.Text = string.Format("{0} cones scored", value);
         }
-        conesScored++;
+        if (value > conesScored)
+        {
+            conesScored++;
+        } else
+        {
+            conesScored--;
+        }
 
     }
 
@@ -45,7 +55,13 @@ public partial class ScoutPage : ContentPage
         {
             _displayCubeLabel.Text = string.Format("{0} cubes scored", value);
         }
-        cubesScored++;
+        if (value > cubesScored)
+        {
+            cubesScored++;
+        } else
+        {
+            cubesScored--;
+        }
     }
 
     void OnFunctionAutoToggled(object sender, ToggledEventArgs e)
@@ -67,7 +83,7 @@ public partial class ScoutPage : ContentPage
 
     private async void OnDoneWithAutoClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new TeleOperator(cubesScored, conesScored, functioningAuto, moveOutOfZone, chargeStationIndex));
+        await Navigation.PushAsync(new TeleOperator(cubesScored, conesScored, functioningAuto, moveOutOfZone, chargeStationIndex, matchNumber, robotNum));
     }
 }
 
