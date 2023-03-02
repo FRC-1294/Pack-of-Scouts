@@ -59,7 +59,7 @@ public static class QrCodeUtils
             using Window tmp = new("Initializing camera, this might take a minute or two...");
             tmp.ShowImage(m);
 
-            _capture = new(1);
+            _capture = new(0);
             _ = _capture.Set(VideoCaptureProperties.FrameWidth, 1920);
             _ = _capture.Set(VideoCaptureProperties.FrameHeight, 1080);
         }
