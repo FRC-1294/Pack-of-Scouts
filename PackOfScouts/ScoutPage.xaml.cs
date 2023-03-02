@@ -77,7 +77,6 @@ public partial class ScoutPage : ContentPage
     void OnChargeStationStatusChanged(object sender, EventArgs e)
     {
 
-	cf31f71 (Scout UI almost done)
         chargeStationIndex = chargeStationPicker.SelectedIndex;
     }
 
