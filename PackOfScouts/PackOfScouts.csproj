@@ -48,7 +48,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+<<<<<<< HEAD
 	  <MauiXaml Update="MatchSchedulePage.xaml">
+=======
+	  <MauiXaml Update="MatchSchedule.xaml">
+>>>>>>> 475115c (New UI changes)
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="TeleOperator.xaml" />
