@@ -11,10 +11,14 @@ public partial class ScoutLeadPage : ContentPage
 
     private void OnScanScoutQRCodeClicked(object sender, EventArgs e)
     {
-        string filename = QrCode.QrCodeUtils.CapturePicture();
-        Debug.WriteLine($"Saving picture to {filename}");
-
-        string text = QrCode.QrCodeUtils.LoadQrCode(filename);
-        Debug.WriteLine($"Code was {text}");
+        string? text = QrCode.QrCodeUtils.CaptureQrCode();
+        if (text != null)
+        {
+            Debug.WriteLine($"Got {text}");
+        }
+        else
+        {
+            Debug.WriteLine("Didn't get any text");
+        }
     }
 }
