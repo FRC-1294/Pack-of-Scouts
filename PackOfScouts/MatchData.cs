@@ -6,7 +6,6 @@ public enum HighestConeScored { None, Low, Mid, High }
 public enum HighestCubeScored { None, Low, Mid, High }
 internal sealed class MatchData
 {
-
     public int MatchNumber { get; set; }
     public int RobotNumber { get; set; }
     public int FunctioningAuto { get; set; }
@@ -21,20 +20,9 @@ internal sealed class MatchData
     public int MovedOutOfZoneAuto { get; set; }
     public bool Broke { get; set; }
     public bool Defense { get; set; }
-    public String Notes { get; set; }
+    public String? Notes { get; set; }
     public int Fouls { get; set; }
     //public int TechFouls { get; set; }
     // NONE, YELLOW, RED
     //public String Cards { get; set; }
-
-    public void CreateFile()
-    {
-        string path = @"C:\Users\user\randomData";
-        using StreamWriter outputFile = new(path + RobotNumber + "_" + MatchNumber);
-        outputFile.WriteLine(MatchNumber);
-        outputFile.WriteLine(RobotNumber);
-        outputFile.WriteLine(FunctioningAuto);
-        outputFile.WriteLine(ChargeStationAuto);
-        outputFile.WriteLine(ChargeStationTeleop);
-    }
 }
