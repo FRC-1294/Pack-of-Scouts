@@ -25,12 +25,14 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Text="Functioning auto?" Grid.Column="0" Grid.Row="0" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label Text="Functioning auto?" Grid.Column="0" Grid.Row="0" TextColor="White" 
+                   FontSize="20" HorizontalOptions="Center" VerticalOptions="Center"/>
             <Switch IsToggled="False" Toggled="OnFunctionAutoToggled" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"
                     OnColor="White" ThumbColor="#72C3F1" x:Name="autoWork"/>
-            <Label Text="Move out of Zone?" Grid.Column="0" Grid.Row="1" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label Text="Move out of Zone?" Grid.Column="0" Grid.Row="1" TextColor="White"
+                   FontSize="20" HorizontalOptions="Center" VerticalOptions="Center"/>
             <Switch IsToggled="False" Toggled="OnMoveOutOfZoneToggled" Grid.Column="1" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center"
-                    OnColor="#70D3EE" ThumbColor="#0D47A1" x:Name="movedZone"/>
+                    OnColor="White" ThumbColor="#72C3F1" x:Name="movedZone"/>
         </Grid>
 
         <Image
@@ -46,7 +48,7 @@
             x:Name="Finish"
             Text="Done with Auto"
             TextColor="Black"
-            BackgroundColor="#72C3F1"
+            BackgroundColor="#72C3F1" 
             BorderColor="Black"
             Clicked="OnDoneWithAutoClicked"
             Margin="10"
@@ -64,24 +66,27 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Label Text="CONES SCORED: " Grid.Column="0" Grid.Row="0" TextColor="White"/>
+            <Label Text="Cones Scored: " Grid.Column="0" Grid.Row="0" FontSize="20"
+                   HorizontalOptions="Center" VerticalOptions="Center" TextColor="White"/>
             <Stepper Grid.Column="0" Grid.Row="1"
-                    Minimum="0" Increment="1" BackgroundColor="#72C3F1"
+                    Minimum="0" Increment="1" BackgroundColor="#72C3F1" HorizontalOptions="Center" VerticalOptions="Center"
                     ValueChanged="OnStepperValueChangedCone" />
-            <Label x:Name="_displayConeLabel"  Text="0 cones scored"
+            <Label x:Name="_displayConeLabel"  Text="0 cones scored" FontSize="20"
+                   HorizontalOptions="Center" VerticalOptions="Center"
                    Grid.Column="0" Grid.Row="2" TextColor="White"/>
 
-            <Label Text="Cubes Scored:" Grid.Column="1" Grid.Row="0" TextColor="White"/>
-            <Stepper Grid.Column="1" Grid.Row="1"
+            <Label Text="Cubes Scored:" Grid.Column="1" Grid.Row="0" FontSize="20" 
+                   HorizontalOptions="Center" VerticalOptions="Center" TextColor="White"/>
+            <Stepper Grid.Column="1" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center"
                     Minimum="0" Increment="1" BackgroundColor="#72C3F1"
                     ValueChanged="OnStepperValueChangedCube" />
-            <Label x:Name="_displayCubeLabel"  Text="0 cubes scored"
+            <Label x:Name="_displayCubeLabel"  Text="0 cubes scored" FontSize="20"
+                   HorizontalOptions="Center" VerticalOptions="Center"
                    Grid.Column="1" Grid.Row="2" TextColor="White"/>
 
         </Grid>
 
-        <Picker Title="Charge Station Status" x:Name="chargeStationPicker"
-
+        <Picker Title="Charge Station Status" FontSize="20" x:Name="chargeStationPicker" HorizontalOptions="Center" VerticalOptions="Center"
                 TitleColor="White" Grid.Row="1" Grid.Column="1" BackgroundColor="#72C3F1"
                 SelectedIndexChanged="OnChargeStationStatusChanged">
             <Picker.Items>
