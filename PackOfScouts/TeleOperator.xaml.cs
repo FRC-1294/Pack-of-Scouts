@@ -24,6 +24,13 @@ public partial class TeleOperator : ContentPage
     int matchNum = 0;
     int roboNum = 1294;
 
+    int highCones = 0;
+    int midCones = 0;
+    int lowCones = 0;
+    int highCubes = 0;
+    int midCubes = 0;
+    int lowCubes = 0;
+
     private MatchData matchData = new MatchData();
 
     public TeleOperator(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation, int matchNumber, int roboNumber)
@@ -46,67 +53,108 @@ public partial class TeleOperator : ContentPage
 		InitializeComponent();
 	}
 
-    void OnHighConeToggled(object sender, ToggledEventArgs e)
-	{
-		if (HighCone.IsToggled)
-        {
-            LowCone.IsToggled = true;
-            MidCone.IsToggled = true;
-            highestCone = 2;
-
-        }
-        else
-        {
-            LowCone.IsToggled = false;
-            MidCone.IsToggled = false;
-            highestCone = -1;
-
-        }
-    }
-
-    private void OnMidConeToggled(object sender, ToggledEventArgs e)
+    void OnStepperValueChangedHighCone(object sender, ValueChangedEventArgs e)
     {
-        if (MidCone.IsToggled) 
+        double value = e.NewValue;
+        if (value == 1)
         {
-            LowCone.IsToggled = true;
-            highestCone = 1;
+            HighCone.Text = string.Format("{0}", value);
         }
         else
         {
-            LowCone.IsToggled = false;
-            highestCone= -1;
+            HighCone.Text = string.Format("{0}", value);
+        }
+        if (value > highCones)
+        {
+            highCones++;
+        }
+        else
+        {
+            highCones--;
         }
     }
 
-    void OnHighCubeToggled(object sender, ToggledEventArgs e)
+    void OnStepperValueChangedMidCone(object sender, ValueChangedEventArgs e)
     {
-        if (HighCube.IsToggled)
+        double value = e.NewValue;
+        MidCone.Text = string.Format("{0}", value);
+        
+        if (value > midCones)
         {
-            LowCube.IsToggled = true;
-            MidCube.IsToggled = true;
-            highestCube = 2;
+            midCones++;
         }
         else
         {
-            LowCube.IsToggled = false;
-            MidCube.IsToggled = false;
-            highestCube= -1;
+            midCones--;
         }
     }
 
-    private void OnMidCubeToggled(object sender, ToggledEventArgs e)
+    void OnStepperValueChangedLowCone(object sender, ValueChangedEventArgs e)
     {
-        if (MidCube.IsToggled)
+        double value = e.NewValue;
+        LowCone.Text = string.Format("{0}", value);
+        
+        if (value > lowCones)
         {
-            LowCube.IsToggled = true;
-            highestCube= 1;
+            lowCones++;
         }
         else
         {
-            LowCube.IsToggled = false;
-            highestCube=-1;
+            lowCones--;
         }
     }
+
+    void OnStepperValueChangedHighCube(object sender, ValueChangedEventArgs e)
+    {
+        double value = e.NewValue;
+        if (value == 1)
+        {
+            HighCube.Text = string.Format("{0}", value);
+        }
+        else
+        {
+            HighCube.Text = string.Format("{0}", value);
+        }
+        if (value > highCubes)
+        {
+            highCubes++;
+        }
+        else
+        {
+            highCubes--;
+        }
+    }
+
+    void OnStepperValueChangedMidCube(object sender, ValueChangedEventArgs e)
+    {
+        double value = e.NewValue;
+        MidCube.Text = string.Format("{0}", value);
+
+        if (value > midCubes)
+        {
+            midCubes++;
+        }
+        else
+        {
+            midCubes--;
+        }
+    }
+
+    void OnStepperValueChangedLowCube(object sender, ValueChangedEventArgs e)
+    {
+        double value = e.NewValue;
+        LowCube.Text = string.Format("{0}", value);
+
+        if (value > lowCubes)
+        {
+            lowCubes++;
+        }
+        else
+        {
+            lowCubes--;
+        }
+    }
+
 
     protected override void OnAppearing()
 	{
@@ -210,15 +258,15 @@ public partial class TeleOperator : ContentPage
 
     void SetVariables()
     {
-        if (highestCube == -1 && LowCube.IsToggled)
-        {
-            highestCube = 0;
+        //if (highestCube == -1 && LowCube.IsToggled)
+        //{
+        //    highestCube = 0;
             
-        }
-        if (highestCone == -1 && LowCone.IsToggled)
-        {
-            highestCone = 0;
-        }
+        //}
+        //if (highestCone == -1 && LowCone.IsToggled)
+        //{
+        //    highestCone = 0;
+        //}
         if (def.IsToggled)
         {
             defense = true;
