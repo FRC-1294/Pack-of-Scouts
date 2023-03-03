@@ -35,12 +35,25 @@
                     OnColor="White" ThumbColor="#72C3F1" x:Name="movedZone"/>
         </Grid>
 
-        <Image
-            Grid.Column="1"
+        <Grid Grid.Column="1" Grid.Row="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="18"/>
+                <ColumnDefinition Width="25"/>
+            </Grid.ColumnDefinitions>
+            <Image
+            Grid.Column="0"
             Grid.Row="0"
             Source="pack_of_parts.png"
             SemanticProperties.Description="POP Logo"
             Margin="5"/>
+
+            <Label x:Name="ScoutingTeamLabel" FontSize="20" TextColor="Purple" FontAttributes="Bold"
+                   HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"/>
+        </Grid>
 
         <Button
             Grid.Row="2"

@@ -31,6 +31,7 @@ public partial class TeleOperator : ContentPage
     int midCubes = 0;
     int lowCubes = 0;
 
+#if false
     private MatchData matchData = new MatchData();
     readonly int autoConesScored = 0;
     readonly int autoCubesScored = 0;
@@ -39,6 +40,7 @@ public partial class TeleOperator : ContentPage
     readonly int autoChargeStation = -1;
     readonly int matchNum = 0;
     readonly int roboNum = 1294;
+#endif
 
     public TeleOperator(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation, int matchNumber, int roboNumber)
         : this()
@@ -51,8 +53,21 @@ public partial class TeleOperator : ContentPage
         this.autoChargeStation = autoChargeStation;
         this.matchNum = matchNumber;
         this.roboNum = roboNumber;
+        ScoutingTeamLabel.Text = "Team " + Convert.ToString(this.roboNum);
 
     }
+
+    //private void rotationText()
+    //{
+    //    var text = ScoutingTeamLabel.Text;
+    //    int length = ScoutingTeamLabel.Text.Length;
+    //    var newText = "";
+    //    for (int i = 0; i < length; i++)
+    //    {
+    //        newText += text[i] + "\n";
+    //    }
+    //    ScoutingTeamLabel.Text = newText;
+    //}
 
     public TeleOperator()
 	{
@@ -242,15 +257,8 @@ public partial class TeleOperator : ContentPage
     void OnStepperValueChangedFouls(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
-        if (value == 1)
-        {
-            _displayFoulLabel.Text = string.Format("{0} foul", value);
-        }
-        else
-        {
-            _displayFoulLabel.Text = string.Format("{0} fouls", value);
-        }
-
+        
+         _displayFoulLabel.Text = string.Format("{0}", value);
         if(value > fouls)
         {
             fouls++;
