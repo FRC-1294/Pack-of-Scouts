@@ -19,6 +19,7 @@ public partial class ScoutPage : ContentPage
         InitializeComponent();
         robotNum= robot;
         matchNumber=match;
+        ScoutingTeamLabel.Text = "Team " + Convert.ToString(this.robotNum);
 
     }
 
