@@ -3,8 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PackOfScouts.TeleOperator"
              Title="TeleOperator"
-
-
 			 BackgroundColor="Black">
 	        
     <Grid>
@@ -78,12 +76,26 @@
 
 
         </Grid>
-        <Image
-            Grid.Column="1"
+        
+        <Grid Grid.Column="1" Grid.Row="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="18"/>
+                <ColumnDefinition Width="25"/>
+            </Grid.ColumnDefinitions>
+            <Image
+            Grid.Column="0"
             Grid.Row="0"
             Source="pack_of_parts.png"
             SemanticProperties.Description="POP Logo"
             Margin="5"/>
+
+            <Label x:Name="ScoutingTeamLabel" FontSize="20" TextColor="Purple" FontAttributes="Bold"
+                   HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"/>
+        </Grid>
 
         <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" >
             <Grid.RowDefinitions>
@@ -121,18 +133,18 @@
                     OnColor="White" ThumbColor="#72C3F1"/>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Label Text="Fouls" Grid.Row="0" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="75"/>
+                        <ColumnDefinition Width="40"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Fouls" Grid.Column="0" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
                     <Stepper 
                     Minimum="0" Increment="1" BackgroundColor="#72C3F1"
                     ValueChanged="OnStepperValueChangedFouls" HorizontalOptions="Center" VerticalOptions="Center"
-                    Grid.Row="1"/>
-                    <Label x:Name="_displayFoulLabel"  Text="0 fouls"
-                       Grid.Row="2" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    Grid.Column="1"/>
+                    <Label x:Name="_displayFoulLabel"  Text="0"
+                       Grid.Column="2" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
                 </Grid>
             </Grid>
 
