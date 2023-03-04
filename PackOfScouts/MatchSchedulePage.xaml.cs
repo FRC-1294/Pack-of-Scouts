@@ -102,9 +102,9 @@ public partial class MatchSchedulePage : ContentPage
         g.Add(b, column);
     }
 
-    private async void TeamClicked(object sender, EventArgs e)
+    private async void TeamClicked(object? sender, EventArgs e)
     {
-        var b = (Button)sender;
+        var b = (Button)sender!;
         var bi = (ButtonInfo)b.CommandParameter;
         await Navigation.PushAsync(new ScoutPage(bi.MatchNum, bi.RobotNum));
     }

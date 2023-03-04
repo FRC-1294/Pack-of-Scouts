@@ -11,11 +11,10 @@ public partial class ScoutPage : ContentPage
     int functioningAuto = 0;
     int moveOutOfZone = 0;
     int chargeStationIndex = -1;
+    readonly int robotNum = 1294;
+    readonly int matchNumber = 0;
 
-    int robotNum = 1294;
-    int matchNumber = 0;
     public ScoutPage(int match, int robot)
-
     {
         InitializeComponent();
         robotNum= robot;
@@ -34,14 +33,15 @@ public partial class ScoutPage : ContentPage
         {
             _displayConeLabel.Text = string.Format("{0} cones scored", value);
         }
+
         if (value > conesScored)
         {
             conesScored++;
-        } else
+        }
+        else
         {
             conesScored--;
         }
-
     }
 
     void OnStepperValueChangedCube(object sender, ValueChangedEventArgs e)
@@ -55,10 +55,12 @@ public partial class ScoutPage : ContentPage
         {
             _displayCubeLabel.Text = string.Format("{0} cubes scored", value);
         }
+
         if (value > cubesScored)
         {
             cubesScored++;
-        } else
+        }
+        else
         {
             cubesScored--;
         }
@@ -76,7 +78,6 @@ public partial class ScoutPage : ContentPage
 
     void OnChargeStationStatusChanged(object sender, EventArgs e)
     {
-
         chargeStationIndex = chargeStationPicker.SelectedIndex;
     }
 
