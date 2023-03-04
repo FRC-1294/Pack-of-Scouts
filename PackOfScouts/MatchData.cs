@@ -4,6 +4,7 @@ public enum ChargeStationStatusAuto { NoAttempt, Failed, NotEngaged, Engaged }
 public enum ChargeStationStatusTeleop { NoAttempt, Failed, NotEngaged, Engaged }
 public enum HighestConeScored { None, Low, Mid, High }
 public enum HighestCubeScored { None, Low, Mid, High }
+
 internal sealed class MatchData
 {
     public int MatchNumber { get; set; }
