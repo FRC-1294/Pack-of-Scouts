@@ -112,7 +112,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <!--<ColumnDefinition Width="*"/>-->
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"
@@ -124,7 +124,7 @@
                     <Switch IsToggled="False" Grid.Row="1" Grid.Column="1" x:Name="broken" HorizontalOptions="Center" VerticalOptions="Center"
                     OnColor="White" ThumbColor="#72C3F1"/>
                 </Grid>
-                <Grid Grid.Column="1">
+                <!--<Grid Grid.Column="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -137,7 +137,7 @@
                     Grid.Column="1"/>
                     <Label x:Name="_displayFoulLabel"  Text="0" FontSize="20"
                        Grid.Column="2" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center"/>
-                </Grid>
+                </Grid>-->
             </Grid>
 
 
