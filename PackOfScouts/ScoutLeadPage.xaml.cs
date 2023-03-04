@@ -12,20 +12,24 @@ public partial class ScoutLeadPage : ContentPage
         InitializeComponent();
     }
 
-    private void OnScanScoutQRCodeClicked(object sender, EventArgs e)
+    private async void OnScanScoutQRCodeClicked(object sender, EventArgs e)
     {
+        var matchData = new MatchData();
+        await RecordMatchData(matchData);
+#if false
         string? text = QrCode.QrCodeUtils.CaptureQrCode();
         if (text != null)
         {
             var matchData = JsonSerializer.Deserialize<MatchData>(text);
             if (matchData != null)
             {
-                RecordMatchData(matchData);
+                await RecordMatchData(matchData);
             }
         }
+#endif
     }
 
-    private void RecordMatchData(MatchData matchData)
+    private async Task RecordMatchData(MatchData matchData)
     {
         MatchDataSet? set = null;
 
@@ -39,8 +43,10 @@ public partial class ScoutLeadPage : ContentPage
         set ??= new();
         _ = set.Natches.Add(matchData);
 
-        Debug.WriteLine($"Added match #{matchData.MatchNumber} for robot #{matchData.RobotNumber} to file `{path}");
+        Debug.WriteLine($"Added match #{matchData.MatchNumber} for robot #{matchData.RobotNumber} to\n{path}");
         Debug.WriteLine($"{set.Natches.Count} total matches recorded");
         File.WriteAllText(path, JsonSerializer.Serialize(set));
+
+        await DisplayAlert("Match added!", $"Match #{matchData.MatchNumber} for robot #{matchData.RobotNumber} was added to\n{path}", "OK");
     }
 }
