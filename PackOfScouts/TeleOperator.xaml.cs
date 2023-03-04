@@ -19,6 +19,7 @@ public partial class TeleOperator : ContentPage
     int autoChargeStation = -1;
     int matchNum = 0;
     int roboNum = 1294;
+    List<ScheduleEntry> entries = new List<ScheduleEntry>();
 
     int highCones = 0;
     int midCones = 0;
@@ -38,7 +39,7 @@ public partial class TeleOperator : ContentPage
     readonly int roboNum = 1294;
 #endif
 
-    public TeleOperator(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation, int matchNumber, int roboNumber)
+    public TeleOperator(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation, int matchNumber, int roboNumber, List<ScheduleEntry> entries)
         : this()
     {
         // use cubesScored and conesScored
@@ -49,6 +50,7 @@ public partial class TeleOperator : ContentPage
         this.autoChargeStation = autoChargeStation;
         this.matchNum = matchNumber;
         this.roboNum = roboNumber;
+        this.entries = entries;
         ScoutingTeamLabel.Text = "TEAM " + Convert.ToString(this.roboNum);
 
     }
@@ -277,6 +279,6 @@ public partial class TeleOperator : ContentPage
         };
 
         var json = System.Text.Json.JsonSerializer.Serialize(m);
-        await Navigation.PushAsync(new ShowQRCodePage(json));
+        await Navigation.PushAsync(new ShowQRCodePage(json, entries));
     }
 }
