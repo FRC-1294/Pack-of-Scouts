@@ -4,9 +4,13 @@ namespace PackOfScouts;
 
 public partial class MatchSchedulePage : ContentPage
 {
+    List<ScheduleEntry> Entries= new List<ScheduleEntry>();
+
     public MatchSchedulePage(List<ScheduleEntry> entries)
     {
         InitializeComponent();
+        this.Entries= entries;
+        
 
         AddHeader();
 
@@ -95,6 +99,7 @@ public partial class MatchSchedulePage : ContentPage
             {
                 MatchNum = matchNum,
                 RobotNum = robotNum,
+                
             },
         };
 
@@ -106,7 +111,7 @@ public partial class MatchSchedulePage : ContentPage
     {
         var b = (Button)sender!;
         var bi = (ButtonInfo)b.CommandParameter;
-        await Navigation.PushAsync(new ScoutPage(bi.MatchNum, bi.RobotNum));
+        await Navigation.PushAsync(new ScoutPage(bi.MatchNum, bi.RobotNum, this.Entries));
     }
 
     private void AddHeader()
