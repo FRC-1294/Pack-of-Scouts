@@ -11,18 +11,8 @@ public partial class TeleOperator : ContentPage
     int chargeStationIndex = -1;
     bool defense = false;
     bool broke = false;
-    int fouls = 0;
-
-    int autoConesScored = 0;
-    int autoCubesScored = 0;
-    int functioningAuto = 0;
-    int movedOutOfZone = 0;
-    int autoChargeStation = -1;
-    int matchNum = 0;
-    int roboNum = 1294;
     //int fouls = 0; 
     readonly List<ScheduleEntry> entries = new List<ScheduleEntry>();
-
 
     int highCones = 0;
     int midCones = 0;
@@ -40,7 +30,6 @@ public partial class TeleOperator : ContentPage
     readonly int autoChargeStation = -1;
     readonly int matchNum = 0;
     readonly int roboNum = 1294;
-
 
 
     public TeleOperator(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation, int matchNumber, int roboNumber, List<ScheduleEntry> entries)
