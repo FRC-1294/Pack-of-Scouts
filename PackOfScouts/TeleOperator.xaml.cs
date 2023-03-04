@@ -13,6 +13,16 @@ public partial class TeleOperator : ContentPage
     bool broke = false;
     int fouls = 0;
 
+    int autoConesScored = 0;
+    int autoCubesScored = 0;
+    int functioningAuto = 0;
+    int movedOutOfZone = 0;
+    int autoChargeStation = -1;
+    int matchNum = 0;
+    int roboNum = 1294;
+    List<ScheduleEntry> entries = new List<ScheduleEntry>();
+
+
     int highCones = 0;
     int midCones = 0;
     int lowCones = 0;
@@ -32,7 +42,8 @@ public partial class TeleOperator : ContentPage
 #endif
 
 
-    public TeleOperator(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation, int matchNumber, int roboNumber)
+    public TeleOperator(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation, int matchNumber, int roboNumber, List<ScheduleEntry> entries)
+
         : this()
     {
         // use cubesScored and conesScored
@@ -43,6 +54,7 @@ public partial class TeleOperator : ContentPage
         this.autoChargeStation = autoChargeStation;
         this.matchNum = matchNumber;
         this.roboNum = roboNumber;
+        this.entries = entries;
         ScoutingTeamLabel.Text = "TEAM " + Convert.ToString(this.roboNum);
 
     }
@@ -271,6 +283,6 @@ public partial class TeleOperator : ContentPage
         };
 
         var json = System.Text.Json.JsonSerializer.Serialize(m);
-        await Navigation.PushAsync(new ShowQRCodePage(json));
+        await Navigation.PushAsync(new ShowQRCodePage(json, entries));
     }
 }
