@@ -146,7 +146,7 @@
             <Editor x:Name="notesTextBox" MaxLength="800"
             Placeholder="Enter match notes here" 
             Grid.Row="2" Grid.ColumnSpan="2"
-            BackgroundColor="White"
+            BackgroundColor="White" TextColor="Black"
             TextChanged="OnNotesTextChanged"/>
             <!--Completed="OnEditorCompleted"-->
             <Button
