@@ -7,12 +7,8 @@ namespace PackOfScouts;
 public partial class TeleOperator : ContentPage
 {
 	string? notes = null;
-    int conesScored = 0;
-    int cubesScored = 0;
     int missedScores = 0;
     int chargeStationIndex = -1;
-    int highestCube = -1;
-    int highestCone = -1;
     bool defense = false;
     bool broke = false;
     int fouls = 0;
@@ -53,21 +49,9 @@ public partial class TeleOperator : ContentPage
         this.autoChargeStation = autoChargeStation;
         this.matchNum = matchNumber;
         this.roboNum = roboNumber;
-        ScoutingTeamLabel.Text = "Team " + Convert.ToString(this.roboNum);
+        ScoutingTeamLabel.Text = "TEAM " + Convert.ToString(this.roboNum);
 
     }
-
-    //private void rotationText()
-    //{
-    //    var text = ScoutingTeamLabel.Text;
-    //    int length = ScoutingTeamLabel.Text.Length;
-    //    var newText = "";
-    //    for (int i = 0; i < length; i++)
-    //    {
-    //        newText += text[i] + "\n";
-    //    }
-    //    ScoutingTeamLabel.Text = newText;
-    //}
 
     public TeleOperator()
 	{
@@ -188,60 +172,18 @@ public partial class TeleOperator : ContentPage
         notes = e.NewTextValue;
     }
 
-    void OnStepperValueChangedCone(object sender, ValueChangedEventArgs e)
-    {
-        double value = e.NewValue;
-        if (value == 1)
-        {
-            _displayConeLabel.Text = string.Format("{0} cone scored", value);
-        }
-        else
-        {
-            _displayConeLabel.Text = string.Format("{0} cones scored", value);
-        }
-
-        if (value > conesScored)
-        {
-            conesScored++;
-        }
-        else
-        {
-            conesScored--;
-        }
-    }
-
-    void OnStepperValueChangedCube(object sender, ValueChangedEventArgs e)
-    {
-        double value = e.NewValue;
-        if (value == 1)
-        {
-            _displayCubeLabel.Text = string.Format("{0} cube scored", value);
-        }
-        else
-        {
-            _displayCubeLabel.Text = string.Format("{0} cubes scored", value);
-        }
-
-        if (value > cubesScored)
-        {
-            cubesScored++;
-        }
-        else
-        {
-            cubesScored--;
-        }
-    }
+    
 
     void OnStepperValueChangedMisses(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
         if (value == 1)
         {
-            _displayMistakesLabel.Text = string.Format("{0} miss", value);
+            _displayMistakesLabel.Text = string.Format("{0}", value);
         }
         else
         {
-            _displayMistakesLabel.Text = string.Format("{0} misses", value);
+            _displayMistakesLabel.Text = string.Format("{0}", value);
         }
 
         if (value > missedScores)
@@ -275,14 +217,6 @@ public partial class TeleOperator : ContentPage
 
     void SetVariables()
     {
-        //if (highestCube == -1 && LowCube.IsToggled)
-        //{
-        //    highestCube = 0;
-        //}
-        //if (highestCone == -1 && LowCone.IsToggled)
-        //{
-        //    highestCone = 0;
-        //}
 
         if (def.IsToggled)
         {
@@ -319,21 +253,6 @@ public partial class TeleOperator : ContentPage
             _ => ChargeStationStatusAuto.NoAttempt,
         };
 
-        var highCone = highestCone switch
-        {
-            0 => HighestConeScored.Low,
-            1 => HighestConeScored.Mid,
-            2 => HighestConeScored.High,
-            _ => HighestConeScored.None,
-        };
-
-        var highCube = highestCube switch
-        {
-            0 => HighestCubeScored.Low,
-            1 => HighestCubeScored.Mid,
-            2 => HighestCubeScored.High,
-            _ => HighestCubeScored.None,
-        };
 
         var m = new MatchData
         {
@@ -341,9 +260,7 @@ public partial class TeleOperator : ContentPage
             RobotNumber = roboNum,
             FunctioningAuto = functioningAuto,
             ConesScoredAuto = autoConesScored,
-            ConesScoredTeleop = conesScored,
-            CubesScoredAuto = autoCubesScored,//
-            CubesScoredTeleop = cubesScored,//
+            CubesScoredAuto = autoCubesScored,
             MovedOutOfZoneAuto = movedOutOfZone,
             Broke = broke,
             Defense = defense,
@@ -351,8 +268,12 @@ public partial class TeleOperator : ContentPage
             Notes = notes,
             ChargeStationTeleop = teleopChargeStaion,
             ChargeStationAuto = autoChargeStaion,
-            ConeHeight = highCone,
-            CubeHeight = highCube,
+            HighConesScored = highCones,
+            MidConesScored = midCones,
+            LowConesScored = lowCones,
+            HighCubesScored= highCubes,
+            MidCubesScored= midCubes,
+            LowCubesScored= lowCubes
         };
 
         var json = System.Text.Json.JsonSerializer.Serialize(m);
