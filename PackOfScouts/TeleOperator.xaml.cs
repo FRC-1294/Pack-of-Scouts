@@ -13,7 +13,7 @@ public partial class TeleOperator : ContentPage
     bool broke = false;
     //int fouls = 0;
     
-    readonly List<ScheduleEntry> entries = new List<ScheduleEntry>();
+    readonly List<ScheduleEntry> entries = new();
 
     int highCones = 0;
     int midCones = 0;
@@ -22,8 +22,6 @@ public partial class TeleOperator : ContentPage
     int midCubes = 0;
     int lowCubes = 0;
 
-
-    private MatchData matchData = new MatchData();
     readonly int autoConesScored = 0;
     readonly int autoCubesScored = 0;
     readonly int functioningAuto = 0;
@@ -31,7 +29,6 @@ public partial class TeleOperator : ContentPage
     readonly int autoChargeStation = -1;
     readonly int matchNum = 0;
     readonly int roboNum = 1294;
-
 
     public TeleOperator(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation, int matchNumber, int roboNumber, List<ScheduleEntry> entries)
         : this()
@@ -65,6 +62,7 @@ public partial class TeleOperator : ContentPage
         {
             HighCone.Text = string.Format("{0}", value);
         }
+
         if (value > highCones)
         {
             highCones++;
@@ -116,6 +114,7 @@ public partial class TeleOperator : ContentPage
         {
             HighCube.Text = string.Format("{0}", value);
         }
+
         if (value > highCubes)
         {
             highCubes++;
@@ -155,7 +154,6 @@ public partial class TeleOperator : ContentPage
             lowCubes--;
         }
     }
-
 
     protected override void OnAppearing()
 	{
@@ -248,7 +246,6 @@ public partial class TeleOperator : ContentPage
             3 => ChargeStationStatusAuto.Engaged,
             _ => ChargeStationStatusAuto.NoAttempt,
         };
-
 
         var m = new MatchData
         {

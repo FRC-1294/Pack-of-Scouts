@@ -14,9 +14,6 @@ public partial class ScoutLeadPage : ContentPage
 
     private async void OnScanScoutQRCodeClicked(object sender, EventArgs e)
     {
-        var matchData = new MatchData();
-        await RecordMatchData(matchData);
-#if false
         string? text = QrCode.QrCodeUtils.CaptureQrCode();
         if (text != null)
         {
@@ -26,7 +23,6 @@ public partial class ScoutLeadPage : ContentPage
                 await RecordMatchData(matchData);
             }
         }
-#endif
     }
 
     private async Task RecordMatchData(MatchData matchData)

@@ -13,7 +13,7 @@ public partial class ScoutPage : ContentPage
     int chargeStationIndex = -1;
     readonly int robotNum = 1294;
     readonly int matchNumber = 0;
-    readonly List<ScheduleEntry> entries = new List<ScheduleEntry>();
+    readonly List<ScheduleEntry> entries = new();
 
     public ScoutPage(int match, int robot, List<ScheduleEntry> entries)
     {
