@@ -20,7 +20,8 @@ public partial class TeleOperator : ContentPage
     int autoChargeStation = -1;
     int matchNum = 0;
     int roboNum = 1294;
-    List<ScheduleEntry> entries = new List<ScheduleEntry>();
+    //int fouls = 0; 
+    readonly List<ScheduleEntry> entries = new List<ScheduleEntry>();
 
 
     int highCones = 0;
@@ -30,7 +31,7 @@ public partial class TeleOperator : ContentPage
     int midCubes = 0;
     int lowCubes = 0;
 
-#if false
+
     private MatchData matchData = new MatchData();
     readonly int autoConesScored = 0;
     readonly int autoCubesScored = 0;
@@ -39,7 +40,7 @@ public partial class TeleOperator : ContentPage
     readonly int autoChargeStation = -1;
     readonly int matchNum = 0;
     readonly int roboNum = 1294;
-#endif
+
 
 
     public TeleOperator(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation, int matchNumber, int roboNumber, List<ScheduleEntry> entries)
@@ -202,19 +203,19 @@ public partial class TeleOperator : ContentPage
         }
     }
 
-    void OnStepperValueChangedFouls(object sender, ValueChangedEventArgs e)
-    {
-        double value = e.NewValue;
+    //void OnStepperValueChangedFouls(object sender, ValueChangedEventArgs e)
+    //{
+    //    double value = e.NewValue;
         
-         _displayFoulLabel.Text = string.Format("{0}", value);
-        if(value > fouls)
-        {
-            fouls++;
-        } else
-        {
-            fouls--;
-        }
-    }
+    //     _displayFoulLabel.Text = string.Format("{0}", value);
+    //    if(value > fouls)
+    //    {
+    //        fouls++;
+    //    } else
+    //    {
+    //        fouls--;
+    //    }
+    //}
 
     void OnChargeStationStatusChanged(object sender, EventArgs e)
     {
@@ -270,7 +271,7 @@ public partial class TeleOperator : ContentPage
             MovedOutOfZoneAuto = movedOutOfZone,
             Broke = broke,
             Defense = defense,
-            Fouls = fouls,
+            //Fouls = fouls,
             Notes = notes,
             ChargeStationTeleop = teleopChargeStaion,
             ChargeStationAuto = autoChargeStaion,
