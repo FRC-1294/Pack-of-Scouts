@@ -13,11 +13,13 @@ internal sealed class MatchData
     public ChargeStationStatusAuto ChargeStationAuto { get; set; }
     public ChargeStationStatusTeleop ChargeStationTeleop { get; set; }
     public int ConesScoredAuto { get; set; }
-    public int ConesScoredTeleop { get; set; }
     public int CubesScoredAuto { get; set; }
-    public int CubesScoredTeleop { get; set; }
-    public HighestConeScored ConeHeight { get; set; }
-    public HighestCubeScored CubeHeight { get; set; }
+    public int HighCubesScored { get; set; }
+    public int MidCubesScored { get; set; } 
+    public int LowCubesScored { get; set; }
+    public int HighConesScored { get; set; }
+    public int MidConesScored { get; set; }
+    public int LowConesScored { get; set; }
     public int MovedOutOfZoneAuto { get; set; }
     public bool Broke { get; set; }
     public bool Defense { get; set; }
