@@ -23,10 +23,5 @@ internal sealed class MatchData
     public int MovedOutOfZoneAuto { get; set; }
     public bool Broke { get; set; }
     public bool Defense { get; set; }
-    public String? Notes { get; set; }
-    //public int Fouls { get; set; }
-
-    //public int TechFouls { get; set; }
-    // NONE, YELLOW, RED
-    //public String Cards { get; set; }
+    public string? Notes { get; set; }
 }

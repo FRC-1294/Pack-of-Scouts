@@ -9,7 +9,6 @@ public partial class StartPage : ContentPage
 
 	private async void OnScoutClicked(object sender, EventArgs e)
 	{
-
         var s = new List<ScheduleEntry>
         {
             new ScheduleEntry

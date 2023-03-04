@@ -4,7 +4,7 @@ namespace PackOfScouts;
 
 public partial class ShowQRCodePage : ContentPage
 {
-    private readonly List<ScheduleEntry> entries=new();
+    private readonly List<ScheduleEntry> entries;
 
     public ShowQRCodePage(string text, List<ScheduleEntry> entries)
 	{

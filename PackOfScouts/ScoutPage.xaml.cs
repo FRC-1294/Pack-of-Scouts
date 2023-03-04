@@ -1,25 +1,21 @@
-using Microsoft.Maui.ApplicationModel.DataTransfer;
-using Microsoft.Maui.Layouts;
-using Windows.ApplicationModel.Activation;
-
 namespace PackOfScouts;
 
 public partial class ScoutPage : ContentPage
 {
-    int conesScored = 0;
-    int cubesScored = 0;
-    int functioningAuto = 0;
-    int moveOutOfZone = 0;
+    int conesScored;
+    int cubesScored;
+    int functioningAuto;
+    int moveOutOfZone;
     int chargeStationIndex = -1;
-    readonly int robotNum = 1294;
-    readonly int matchNumber = 0;
-    readonly List<ScheduleEntry> entries = new();
+    readonly int robotNum;
+    readonly int matchNumber;
+    readonly List<ScheduleEntry> entries;
 
     public ScoutPage(int match, int robot, List<ScheduleEntry> entries)
     {
         InitializeComponent();
-        robotNum= robot;
-        matchNumber=match;
+        robotNum = robot;
+        matchNumber = match;
         this.entries = entries;
         ScoutingTeamLabel.Text = "TEAM " + Convert.ToString(this.robotNum);
 
@@ -89,4 +85,3 @@ public partial class ScoutPage : ContentPage
         await Navigation.PushAsync(new TeleOperator(cubesScored, conesScored, functioningAuto, moveOutOfZone, chargeStationIndex, matchNumber, robotNum, entries));
     }
 }
-
