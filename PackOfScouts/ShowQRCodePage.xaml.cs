@@ -20,7 +20,7 @@ public partial class ShowQRCodePage : ContentPage
 		_qrImage.Source = qrCode;
     }
 
-    private async void OnDoneWithAutoClicked(object sender, EventArgs e)
+    private async void OnReturnToStartPressed(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new MatchSchedulePage(entries));
     }
