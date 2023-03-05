@@ -22,6 +22,6 @@ public partial class ShowQRCodePage : ContentPage
 
     private async void OnReturnToStartPressed(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new MatchSchedulePage(appState.Entries!, appState));
+        await Navigation.PushAsync(new MatchSchedulePage(appState.Entries, appState));
     }
 }

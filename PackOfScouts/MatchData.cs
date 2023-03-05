@@ -24,9 +24,4 @@ internal sealed class MatchData
     internal bool Broke { get; set; }
     internal bool Defense { get; set; }
     internal String? Notes { get; set; }
-    //internal int Fouls { get; set; }
-
-    //internal int TechFouls { get; set; }
-    // NONE, YELLOW, RED
-    //internal String Cards { get; set; }
 }

@@ -1,6 +1,6 @@
 namespace PackOfScouts;
 
-public partial class TeleOperator : ContentPage
+public partial class TeleOperatorPage : ContentPage
 {
 	string? notes;
     int missedScores;
@@ -8,7 +8,7 @@ public partial class TeleOperator : ContentPage
     bool defense;
     bool broke;
 
-    private ApplicationState appState;
+    private readonly ApplicationState appState = new();
     readonly int autoConesScored = 0;
     readonly int autoCubesScored = 0;
     readonly int functioningAuto = 0;
@@ -24,17 +24,10 @@ public partial class TeleOperator : ContentPage
     int midCubes;
     int lowCubes;
 
-    readonly int autoConesScored;
-    readonly int autoCubesScored;
-    readonly int functioningAuto;
-    readonly int movedOutOfZone;
-    readonly int autoChargeStation;
-    readonly int matchNum;
-    readonly int roboNum;
-
-    internal TeleOperator(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation, int matchNumber, int roboNumber, ApplicationState applicationState)
-        : this()
+    internal TeleOperatorPage(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation, int matchNumber, int roboNumber, ApplicationState applicationState)
     {
+        InitializeComponent();
+
         // use cubesScored and conesScored
         this.autoCubesScored = cubesScored;
         this.autoConesScored = conesScored;
@@ -45,15 +38,9 @@ public partial class TeleOperator : ContentPage
         this.roboNum = roboNumber;
         this.appState = applicationState;
         ScoutingTeamLabel.Text = "TEAM " + Convert.ToString(this.roboNum);
-
     }
 
-    internal TeleOperator()
-	{
-		InitializeComponent();
-	}
-
-    void OnStepperValueChangedHighCone(object sender, ValueChangedEventArgs e)
+    private void OnStepperValueChangedHighCone(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
         if (value == 1)
@@ -75,7 +62,7 @@ public partial class TeleOperator : ContentPage
         }
     }
 
-    void OnStepperValueChangedMidCone(object sender, ValueChangedEventArgs e)
+    private void OnStepperValueChangedMidCone(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
         MidCone.Text = string.Format("{0}", value);
@@ -90,7 +77,7 @@ public partial class TeleOperator : ContentPage
         }
     }
 
-    void OnStepperValueChangedLowCone(object sender, ValueChangedEventArgs e)
+    private void OnStepperValueChangedLowCone(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
         LowCone.Text = string.Format("{0}", value);
@@ -105,7 +92,7 @@ public partial class TeleOperator : ContentPage
         }
     }
 
-    void OnStepperValueChangedHighCube(object sender, ValueChangedEventArgs e)
+    private void OnStepperValueChangedHighCube(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
         if (value == 1)
@@ -127,7 +114,7 @@ public partial class TeleOperator : ContentPage
         }
     }
 
-    void OnStepperValueChangedMidCube(object sender, ValueChangedEventArgs e)
+    private void OnStepperValueChangedMidCube(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
         MidCube.Text = string.Format("{0}", value);
@@ -142,7 +129,7 @@ public partial class TeleOperator : ContentPage
         }
     }
 
-    void OnStepperValueChangedLowCube(object sender, ValueChangedEventArgs e)
+    private void OnStepperValueChangedLowCube(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
         LowCube.Text = string.Format("{0}", value);
@@ -157,20 +144,12 @@ public partial class TeleOperator : ContentPage
         }
     }
 
-    protected override void OnAppearing()
-	{
-		base.OnAppearing();
-		System.Diagnostics.Debug.WriteLine("Hello");
-	}
-
-    void OnNotesTextChanged(object sender, TextChangedEventArgs e)
+    private void OnNotesTextChanged(object sender, TextChangedEventArgs e)
     {
         notes = e.NewTextValue;
-    }
+    }    
 
-    
-
-    void OnStepperValueChangedMisses(object sender, ValueChangedEventArgs e)
+    private void OnStepperValueChangedMisses(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
         if (value == 1)
@@ -192,26 +171,12 @@ public partial class TeleOperator : ContentPage
         }
     }
 
-    //void OnStepperValueChangedFouls(object sender, ValueChangedEventArgs e)
-    //{
-    //    double value = e.NewValue;
-        
-    //     _displayFoulLabel.Text = string.Format("{0}", value);
-    //    if(value > fouls)
-    //    {
-    //        fouls++;
-    //    } else
-    //    {
-    //        fouls--;
-    //    }
-    //}
-
-    void OnChargeStationStatusChanged(object sender, EventArgs e)
+    private void OnChargeStationStatusChanged(object sender, EventArgs e)
     {
         chargeStationIndex = chargeStationPicker.SelectedIndex;
     }
 
-    void SetVariables()
+    private void SetVariables()
     {
 
         if (def.IsToggled)
@@ -270,12 +235,8 @@ public partial class TeleOperator : ContentPage
             MidCubesScored= midCubes,
             LowCubesScored= lowCubes
         };
-        if (appState.Data == null) {
-            appState.Data = new List<MatchData> { m };
-        } else
-        {
-            appState.Data.Add(m);
-        }
+
+        appState.Data.Add(m);
 
         var json = System.Text.Json.JsonSerializer.Serialize(m);
         await Navigation.PushAsync(new ShowQRCodePage(json, appState));

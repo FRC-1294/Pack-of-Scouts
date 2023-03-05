@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-windows10.0.22621.0</TargetFrameworks>
+		<TargetFrameworks></TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>PackOfScouts</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -41,7 +41,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="TeleOperator.xaml.cs" />
+	  <Content Include="TeleOperatorPage.xaml.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -80,7 +80,19 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <PackageCertificateThumbprint>D1B1FD134A8810EA44AE5A70312946E7D5F5ABEC</PackageCertificateThumbprint>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppInstallerUri>c:\src\</AppInstallerUri>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.22621.0</TargetFrameworks>
   </PropertyGroup>
 
 </Project>

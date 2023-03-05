@@ -14,6 +14,7 @@ public partial class ScoutPage : ContentPage
     internal ScoutPage(int match, int robot, ApplicationState applicationState)
     {
         InitializeComponent();
+
         robotNum= robot;
         matchNumber=match;
         appState = applicationState;
@@ -21,7 +22,7 @@ public partial class ScoutPage : ContentPage
 
     }
 
-    void OnStepperValueChangedCone(object sender, ValueChangedEventArgs e)
+    private void OnStepperValueChangedCone(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
         if (value == 1)
@@ -43,7 +44,7 @@ public partial class ScoutPage : ContentPage
         }
     }
 
-    void OnStepperValueChangedCube(object sender, ValueChangedEventArgs e)
+    private void OnStepperValueChangedCube(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
         if (value == 1)
@@ -65,23 +66,23 @@ public partial class ScoutPage : ContentPage
         }
     }
 
-    void OnFunctionAutoToggled(object sender, ToggledEventArgs e)
+    private void OnFunctionAutoToggled(object sender, ToggledEventArgs e)
     {
         functioningAuto = 1;
     }
 
-    void OnMoveOutOfZoneToggled(object sender, ToggledEventArgs e)
+    private void OnMoveOutOfZoneToggled(object sender, ToggledEventArgs e)
     {
         moveOutOfZone = 1;
     }
 
-    void OnChargeStationStatusChanged(object sender, EventArgs e)
+    private void OnChargeStationStatusChanged(object sender, EventArgs e)
     {
         chargeStationIndex = chargeStationPicker.SelectedIndex;
     }
 
     private async void OnDoneWithAutoClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new TeleOperator(cubesScored, conesScored, functioningAuto, moveOutOfZone, chargeStationIndex, matchNumber, robotNum, appState));
+        await Navigation.PushAsync(new TeleOperatorPage(cubesScored, conesScored, functioningAuto, moveOutOfZone, chargeStationIndex, matchNumber, robotNum, appState));
     }
 }

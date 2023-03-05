@@ -1,20 +1,15 @@
-using OpenCvSharp;
-
 namespace PackOfScouts;
 
 public partial class MatchSchedulePage : ContentPage
 {
-    private readonly List<ScheduleEntry> _entries;
-    readonly ApplicationState appState = new ApplicationState();
+    readonly ApplicationState appState;
 
     internal MatchSchedulePage(List<ScheduleEntry> entries, ApplicationState applicationState)
     {
         InitializeComponent();
-        
-        this._entries= entries;
+
         this.appState = applicationState;
-        this.appState.Entries = entries;
-        
+        this.appState.Entries.AddRange(entries);
 
         AddHeader();
 
