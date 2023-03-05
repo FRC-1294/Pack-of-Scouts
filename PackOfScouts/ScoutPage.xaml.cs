@@ -2,24 +2,23 @@ namespace PackOfScouts;
 
 public partial class ScoutPage : ContentPage
 {
-    int conesScored;
-    int cubesScored;
-    int functioningAuto;
-    int moveOutOfZone;
-    int chargeStationIndex = -1;
-    readonly int robotNum = 1294;
-    readonly int matchNumber = 0;
-    readonly ApplicationState appState;
+    private readonly int robotNum;
+    private readonly int matchNumber;
+    private readonly ApplicationState appState;
+    private int conesScored;
+    private int cubesScored;
+    private int functioningAuto;
+    private int moveOutOfZone;
+    private int chargeStationIndex = -1;
 
     internal ScoutPage(int match, int robot, ApplicationState applicationState)
     {
         InitializeComponent();
 
-        robotNum= robot;
-        matchNumber=match;
+        robotNum = robot;
+        matchNumber = match;
         appState = applicationState;
-        ScoutingTeamLabel.Text = "TEAM " + Convert.ToString(this.robotNum);
-
+        ScoutingTeamLabel.Text = $"TEAM {this.robotNum}";
     }
 
     private void OnStepperValueChangedCone(object sender, ValueChangedEventArgs e)
@@ -27,11 +26,11 @@ public partial class ScoutPage : ContentPage
         double value = e.NewValue;
         if (value == 1)
         {
-            _displayConeLabel.Text = string.Format("{0} cone scored", value);
+            _displayConeLabel.Text = "1 cone scored";
         }
         else
         {
-            _displayConeLabel.Text = string.Format("{0} cones scored", value);
+            _displayConeLabel.Text = $"{value} cones scored";
         }
 
         if (value > conesScored)
@@ -49,11 +48,11 @@ public partial class ScoutPage : ContentPage
         double value = e.NewValue;
         if (value == 1)
         {
-            _displayCubeLabel.Text = string.Format("{0} cube scored", value);
+            _displayCubeLabel.Text = "1 cube scored";
         }
         else
         {
-            _displayCubeLabel.Text = string.Format("{0} cubes scored", value);
+            _displayCubeLabel.Text = $"{value} cubes scored";
         }
 
         if (value > cubesScored)

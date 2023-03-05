@@ -2,27 +2,26 @@ namespace PackOfScouts;
 
 public partial class TeleOperatorPage : ContentPage
 {
-	string? notes;
-    int missedScores;
-    int chargeStationIndex = -1;
-    bool defense;
-    bool broke;
+    private readonly ApplicationState appState;
+    private readonly int autoConesScored;
+    private readonly int autoCubesScored;
+    private readonly int functioningAuto;
+    private readonly int movedOutOfZone;
+    private readonly int autoChargeStation;
+    private readonly int matchNum;
+    private readonly int roboNum;
 
-    private readonly ApplicationState appState = new();
-    readonly int autoConesScored = 0;
-    readonly int autoCubesScored = 0;
-    readonly int functioningAuto = 0;
-    readonly int movedOutOfZone = 0;
-    readonly int autoChargeStation = -1;
-    readonly int matchNum = 0;
-    readonly int roboNum = 1294;
-
-    int highCones;
-    int midCones;
-    int lowCones;
-    int highCubes;
-    int midCubes;
-    int lowCubes;
+    private string? notes;
+    private int missedScores;
+    private int chargeStationIndex = -1;
+    private bool defense;
+    private bool broke;
+    private int highCones;
+    private int midCones;
+    private int lowCones;
+    private int highCubes;
+    private int midCubes;
+    private int lowCubes;
 
     internal TeleOperatorPage(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation, int matchNumber, int roboNumber, ApplicationState applicationState)
     {
@@ -43,14 +42,7 @@ public partial class TeleOperatorPage : ContentPage
     private void OnStepperValueChangedHighCone(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
-        if (value == 1)
-        {
-            HighCone.Text = string.Format("{0}", value);
-        }
-        else
-        {
-            HighCone.Text = string.Format("{0}", value);
-        }
+        HighCone.Text = value.ToString();
 
         if (value > highCones)
         {
@@ -65,7 +57,7 @@ public partial class TeleOperatorPage : ContentPage
     private void OnStepperValueChangedMidCone(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
-        MidCone.Text = string.Format("{0}", value);
+        MidCone.Text = value.ToString();
         
         if (value > midCones)
         {
@@ -80,7 +72,7 @@ public partial class TeleOperatorPage : ContentPage
     private void OnStepperValueChangedLowCone(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
-        LowCone.Text = string.Format("{0}", value);
+        LowCone.Text = value.ToString();
         
         if (value > lowCones)
         {
@@ -95,14 +87,7 @@ public partial class TeleOperatorPage : ContentPage
     private void OnStepperValueChangedHighCube(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
-        if (value == 1)
-        {
-            HighCube.Text = string.Format("{0}", value);
-        }
-        else
-        {
-            HighCube.Text = string.Format("{0}", value);
-        }
+        HighCube.Text = value.ToString();
 
         if (value > highCubes)
         {
@@ -117,7 +102,7 @@ public partial class TeleOperatorPage : ContentPage
     private void OnStepperValueChangedMidCube(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
-        MidCube.Text = string.Format("{0}", value);
+        MidCube.Text = value.ToString();
 
         if (value > midCubes)
         {
@@ -132,7 +117,7 @@ public partial class TeleOperatorPage : ContentPage
     private void OnStepperValueChangedLowCube(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
-        LowCube.Text = string.Format("{0}", value);
+        LowCube.Text = value.ToString();
 
         if (value > lowCubes)
         {
@@ -152,14 +137,7 @@ public partial class TeleOperatorPage : ContentPage
     private void OnStepperValueChangedMisses(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
-        if (value == 1)
-        {
-            _displayMistakesLabel.Text = string.Format("{0}", value);
-        }
-        else
-        {
-            _displayMistakesLabel.Text = string.Format("{0}", value);
-        }
+        _displayMistakesLabel.Text = value.ToString();
 
         if (value > missedScores)
         {
