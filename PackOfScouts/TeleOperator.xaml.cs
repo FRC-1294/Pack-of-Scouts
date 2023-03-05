@@ -1,29 +1,13 @@
-using Microsoft.Maui.Controls;
-using System.Text.Json;
-using static PackOfScouts.MatchData;
-
 namespace PackOfScouts;
 
 public partial class TeleOperator : ContentPage
 {
-	string? notes = null;
-    int missedScores = 0;
+	string? notes;
+    int missedScores;
     int chargeStationIndex = -1;
-    bool defense = false;
-    bool broke = false;
-    //int fouls = 0;
-    
-    readonly List<ScheduleEntry> entries = new List<ScheduleEntry>();
+    bool defense;
+    bool broke;
 
-    int highCones = 0;
-    int midCones = 0;
-    int lowCones = 0;
-    int highCubes = 0;
-    int midCubes = 0;
-    int lowCubes = 0;
-
-
-    private MatchData matchData = new MatchData();
     private ApplicationState appState;
     readonly int autoConesScored = 0;
     readonly int autoCubesScored = 0;
@@ -32,8 +16,21 @@ public partial class TeleOperator : ContentPage
     readonly int autoChargeStation = -1;
     readonly int matchNum = 0;
     readonly int roboNum = 1294;
-    
 
+    int highCones;
+    int midCones;
+    int lowCones;
+    int highCubes;
+    int midCubes;
+    int lowCubes;
+
+    readonly int autoConesScored;
+    readonly int autoCubesScored;
+    readonly int functioningAuto;
+    readonly int movedOutOfZone;
+    readonly int autoChargeStation;
+    readonly int matchNum;
+    readonly int roboNum;
 
     internal TeleOperator(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation, int matchNumber, int roboNumber, ApplicationState applicationState)
         : this()
@@ -67,6 +64,7 @@ public partial class TeleOperator : ContentPage
         {
             HighCone.Text = string.Format("{0}", value);
         }
+
         if (value > highCones)
         {
             highCones++;
@@ -118,6 +116,7 @@ public partial class TeleOperator : ContentPage
         {
             HighCube.Text = string.Format("{0}", value);
         }
+
         if (value > highCubes)
         {
             highCubes++;
@@ -157,7 +156,6 @@ public partial class TeleOperator : ContentPage
             lowCubes--;
         }
     }
-
 
     protected override void OnAppearing()
 	{
@@ -250,7 +248,6 @@ public partial class TeleOperator : ContentPage
             3 => ChargeStationStatusAuto.Engaged,
             _ => ChargeStationStatusAuto.NoAttempt,
         };
-
 
         var m = new MatchData
         {
