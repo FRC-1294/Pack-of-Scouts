@@ -1,6 +1,6 @@
 ﻿namespace PackOfScouts;
 
-internal sealed class MatchDataSet
+public sealed class MatchDataSet
 {
-    public HashSet<MatchData> Natches { get; set; } = new();
+    internal HashSet<MatchData> Natches { get; set; } = new();
 }

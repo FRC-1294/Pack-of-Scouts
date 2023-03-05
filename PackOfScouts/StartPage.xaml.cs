@@ -67,7 +67,8 @@ public partial class StartPage : ContentPage
         }
 
 #endif
-        await Navigation.PushAsync(new MatchSchedulePage(s));
+        var a = new ApplicationState();
+        await Navigation.PushAsync(new MatchSchedulePage(s, a));
 
 	}
 

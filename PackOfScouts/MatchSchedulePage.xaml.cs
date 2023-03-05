@@ -5,12 +5,16 @@ namespace PackOfScouts;
 public partial class MatchSchedulePage : ContentPage
 {
     private readonly List<ScheduleEntry> _entries;
+    readonly ApplicationState appState = new ApplicationState();
 
-    public MatchSchedulePage(List<ScheduleEntry> entries)
+    internal MatchSchedulePage(List<ScheduleEntry> entries, ApplicationState applicationState)
     {
         InitializeComponent();
         
-        _entries= entries;
+        this._entries= entries;
+        this.appState = applicationState;
+        this.appState.Entries = entries;
+        
 
         AddHeader();
 
@@ -111,7 +115,7 @@ public partial class MatchSchedulePage : ContentPage
     {
         var b = (Button)sender!;
         var bi = (ButtonInfo)b.CommandParameter;
-        await Navigation.PushAsync(new ScoutPage(bi.MatchNum, bi.RobotNum, this._entries));
+        await Navigation.PushAsync(new ScoutPage(bi.MatchNum, bi.RobotNum, this.appState));
     }
 
     private void AddHeader()
@@ -165,7 +169,7 @@ public partial class MatchSchedulePage : ContentPage
 
     private sealed class ButtonInfo
     {
-        public int MatchNum;
-        public int RobotNum;
+        internal int MatchNum;
+        internal int RobotNum;
     }
 }

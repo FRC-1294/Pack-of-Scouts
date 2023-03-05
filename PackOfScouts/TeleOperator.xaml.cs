@@ -24,6 +24,7 @@ public partial class TeleOperator : ContentPage
 
 
     private MatchData matchData = new MatchData();
+    private ApplicationState appState;
     readonly int autoConesScored = 0;
     readonly int autoCubesScored = 0;
     readonly int functioningAuto = 0;
@@ -31,9 +32,10 @@ public partial class TeleOperator : ContentPage
     readonly int autoChargeStation = -1;
     readonly int matchNum = 0;
     readonly int roboNum = 1294;
+    
 
 
-    public TeleOperator(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation, int matchNumber, int roboNumber, List<ScheduleEntry> entries)
+    internal TeleOperator(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation, int matchNumber, int roboNumber, ApplicationState applicationState)
         : this()
     {
         // use cubesScored and conesScored
@@ -44,12 +46,12 @@ public partial class TeleOperator : ContentPage
         this.autoChargeStation = autoChargeStation;
         this.matchNum = matchNumber;
         this.roboNum = roboNumber;
-        this.entries = entries;
+        this.appState = applicationState;
         ScoutingTeamLabel.Text = "TEAM " + Convert.ToString(this.roboNum);
 
     }
 
-    public TeleOperator()
+    internal TeleOperator()
 	{
 		InitializeComponent();
 	}
@@ -271,8 +273,14 @@ public partial class TeleOperator : ContentPage
             MidCubesScored= midCubes,
             LowCubesScored= lowCubes
         };
+        if (appState.Data == null) {
+            appState.Data = new List<MatchData> { m };
+        } else
+        {
+            appState.Data.Add(m);
+        }
 
         var json = System.Text.Json.JsonSerializer.Serialize(m);
-        await Navigation.PushAsync(new ShowQRCodePage(json, entries));
+        await Navigation.PushAsync(new ShowQRCodePage(json, appState));
     }
 }

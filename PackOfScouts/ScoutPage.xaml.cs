@@ -13,14 +13,14 @@ public partial class ScoutPage : ContentPage
     int chargeStationIndex = -1;
     readonly int robotNum = 1294;
     readonly int matchNumber = 0;
-    readonly List<ScheduleEntry> entries = new List<ScheduleEntry>();
+    readonly ApplicationState appState;
 
-    public ScoutPage(int match, int robot, List<ScheduleEntry> entries)
+    internal ScoutPage(int match, int robot, ApplicationState applicationState)
     {
         InitializeComponent();
         robotNum= robot;
         matchNumber=match;
-        this.entries = entries;
+        appState = applicationState;
         ScoutingTeamLabel.Text = "TEAM " + Convert.ToString(this.robotNum);
 
     }
@@ -86,7 +86,7 @@ public partial class ScoutPage : ContentPage
 
     private async void OnDoneWithAutoClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new TeleOperator(cubesScored, conesScored, functioningAuto, moveOutOfZone, chargeStationIndex, matchNumber, robotNum, entries));
+        await Navigation.PushAsync(new TeleOperator(cubesScored, conesScored, functioningAuto, moveOutOfZone, chargeStationIndex, matchNumber, robotNum, appState));
     }
 }
 

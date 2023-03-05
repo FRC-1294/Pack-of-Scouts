@@ -4,12 +4,12 @@ namespace PackOfScouts;
 
 public partial class ShowQRCodePage : ContentPage
 {
-    List<ScheduleEntry> entries=new List<ScheduleEntry>();
+    readonly ApplicationState appState;
 
-    public ShowQRCodePage(string text, List<ScheduleEntry> entries)
+    internal ShowQRCodePage(string text, ApplicationState applicationState)
 	{
 		InitializeComponent();
-        this.entries= entries;
+        this.appState = applicationState;
 
 		var filename = QrCode.QrCodeUtils.SaveQrCode(text);
 		Debug.WriteLine($"QR Code for {text} saved to {filename}");
@@ -22,6 +22,6 @@ public partial class ShowQRCodePage : ContentPage
 
     private async void OnReturnToStartPressed(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new MatchSchedulePage(entries));
+        await Navigation.PushAsync(new MatchSchedulePage(appState.Entries!, appState));
     }
 }

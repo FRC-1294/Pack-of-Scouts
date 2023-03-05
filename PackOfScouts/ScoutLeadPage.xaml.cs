@@ -7,7 +7,7 @@ namespace PackOfScouts;
 
 public partial class ScoutLeadPage : ContentPage
 {
-    public ScoutLeadPage()
+    internal ScoutLeadPage()
     {
         InitializeComponent();
     }
