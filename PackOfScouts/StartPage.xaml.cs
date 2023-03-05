@@ -67,8 +67,9 @@ public partial class StartPage : ContentPage
 
 #endif
         var a = new ApplicationState();
-        await Navigation.PushAsync(new MatchSchedulePage(s, a));
+        a.ScheduleEntries.AddRange(s);
 
+        await Navigation.PushAsync(new MatchSchedulePage(a));
 	}
 
 	private async void OnScoutLeadClicked(object sender, EventArgs e)

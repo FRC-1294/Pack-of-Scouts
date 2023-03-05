@@ -15,32 +15,30 @@ public partial class ScoutLeadPage : ContentPage
         string? text = QrCode.QrCodeUtils.CaptureQrCode();
         if (text != null)
         {
-            var matchData = JsonSerializer.Deserialize<MatchData>(text);
-            if (matchData != null)
+            var matches = JsonSerializer.Deserialize<List<MatchData>>(text);
+            if (matches != null)
             {
-                await RecordMatchData(matchData);
+                await RecordMatchData(matches);
             }
         }
     }
 
-    private async Task RecordMatchData(MatchData matchData)
+    private async Task RecordMatchData(List<MatchData> incoming)
     {
-        MatchDataSet? set = null;
+        List<MatchData>? matches = null;
 
         var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PackOfScouts_MatchData.json");
         if (File.Exists(path))
         {
             var text = File.ReadAllText(path);
-            set = JsonSerializer.Deserialize<MatchDataSet>(text);
+            matches = JsonSerializer.Deserialize<List<MatchData>>(text);
         }
 
-        set ??= new();
-        _ = set.Natches.Add(matchData);
+        matches ??= new();
+        matches.AddRange(incoming);
 
-        Debug.WriteLine($"Added match #{matchData.MatchNumber} for robot #{matchData.RobotNumber} to\n{path}");
-        Debug.WriteLine($"{set.Natches.Count} total matches recorded");
-        File.WriteAllText(path, JsonSerializer.Serialize(set));
+        File.WriteAllText(path, JsonSerializer.Serialize(matches));
 
-        await DisplayAlert("Match added!", $"Match #{matchData.MatchNumber} for robot #{matchData.RobotNumber} was added to\n{path}", "OK");
+        await DisplayAlert("Matches added!", $"{incoming.Count} matches were added to\n{path}", "OK");
     }
 }

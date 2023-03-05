@@ -2,6 +2,6 @@
 
 internal class ApplicationState
 {
-    internal List<MatchData> Data { get; } = new();
-    internal List<ScheduleEntry> Entries { get; } = new();
+    internal List<MatchData> Matches { get; } = new();
+    internal List<ScheduleEntry> ScheduleEntries { get; } = new();
 }

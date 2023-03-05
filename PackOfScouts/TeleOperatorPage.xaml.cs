@@ -224,7 +224,6 @@ public partial class TeleOperatorPage : ContentPage
             MovedOutOfZoneAuto = movedOutOfZone,
             Broke = broke,
             Defense = defense,
-            //Fouls = fouls,
             Notes = notes,
             ChargeStationTeleop = teleopChargeStaion,
             ChargeStationAuto = autoChargeStaion,
@@ -236,9 +235,8 @@ public partial class TeleOperatorPage : ContentPage
             LowCubesScored= lowCubes
         };
 
-        appState.Data.Add(m);
+        appState.Matches.Add(m);
 
-        var json = System.Text.Json.JsonSerializer.Serialize(m);
-        await Navigation.PushAsync(new ShowQRCodePage(json, appState));
+        await Navigation.PushAsync(new ShowQRCodePage(appState));
     }
 }

@@ -4,16 +4,15 @@ public partial class MatchSchedulePage : ContentPage
 {
     readonly ApplicationState appState;
 
-    internal MatchSchedulePage(List<ScheduleEntry> entries, ApplicationState applicationState)
+    internal MatchSchedulePage(ApplicationState applicationState)
     {
         InitializeComponent();
 
         this.appState = applicationState;
-        this.appState.Entries.AddRange(entries);
 
         AddHeader();
 
-        foreach (var entry in entries)
+        foreach (var entry in appState.ScheduleEntries)
         {
             var g = new Grid
             {
