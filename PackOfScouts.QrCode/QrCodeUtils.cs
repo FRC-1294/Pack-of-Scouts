@@ -1,11 +1,9 @@
-﻿using Genesis.QRCodeLib;
-using Net.Codecrete.QrCodeGenerator;
-using OpenCvSharp;
-using System.Diagnostics;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using QrGen = Net.Codecrete.QrCodeGenerator.QrCode;
+using System.Text;
+using Net.Codecrete.QrCodeGenerator;
+using QRCodeDecoderLibrary;
 
 namespace PackOfScouts.QrCode;
 
@@ -14,92 +12,83 @@ namespace PackOfScouts.QrCode;
 /// </summary>
 public static class QrCodeUtils
 {
-    private static VideoCapture? _capture;
-
     /// <summary>
-    /// Encodes a string as a QR Code in a PNG file.
+    /// Encodes a string into a QR Code saved as a PNG file.
     /// </summary>
     /// <param name="textToEncode">The text to encode. This must be limited to a few Ks in size.</param>
-    /// <returns>The name of the file where the QR was saved.</returns>
-    public static string SaveQrCode(string textToEncode)
+    /// <returns>The stream containing the PNG data.</returns>
+    public static Stream MakeQrCode(string textToEncode)
     {
-        var filename = Path.ChangeExtension(Path.GetTempFileName(), "png");
-        var qr = QrGen.EncodeText(textToEncode, QrGen.Ecc.Medium);
+        var ms = new MemoryStream();
+        var qr = Net.Codecrete.QrCodeGenerator.QrCode.EncodeText(textToEncode, Net.Codecrete.QrCodeGenerator.QrCode.Ecc.Medium);
         var bm = qr.ToBitmap(scale: 10, border: 4);
-        bm.Save(filename, ImageFormat.Png);
-        return filename;
+        bm.Save(ms, ImageFormat.Png);
+        ms.Position = 0;
+        return ms;
     }
 
-    /// <summary>
-    /// Read and decode a QR code from a file.
-    /// </summary>
-    /// <param name="filenameWithCode">The image file to read from. This is typically a PNG file.</param>
-    /// <returns>The string represented by the QR code.</returns>
-    private static string LoadQrCode(string filenameWithCode)
+    public static string? DecodeQrCode(Bitmap bm)
     {
-        var bm = Image.FromFile(filenameWithCode);
+        string? text = null;
+
         var d = new QRDecoder();
-        var b = d.ImageDecoder((Bitmap)bm);
-        return QRDecoder.QRCodeResult(b);
+        var r = d.ImageDecoder((Bitmap)bm);
+        if (r != null)
+        {
+            text = SingleQRCodeResult(QRDecoder.ByteArrayToStr(r[0].DataArray));
+        }
+
+        return text;
     }
 
     /// <summary>
-    /// Repeatedly takes pictures using the computer's camera until it can find and decode a QR code in the picture.
+    /// Single QR Code result
     /// </summary>
-    /// <returns>The text from the QR code or null if the operation was cancelled by the user.</returns>
-    public static string? CaptureQrCode()
+    /// <param name="result">Input string</param>
+    /// <returns>Output display string</returns>
+    private static string SingleQRCodeResult(string result)
     {
-        if (_capture == null)
+        int index;
+        for (index = 0; index < result.Length && (result[index] >= ' ' && result[index] <= '~' || result[index] >= 160); index++)
         {
-            using Mat m = new(1080, 1920, MatType.CV_16S);
-            using Window tmp = new("Initializing camera, this might take a minute or two...");
-            tmp.ShowImage(m);
-
-            _capture = new(0);
-            _ = _capture.Set(VideoCaptureProperties.FrameWidth, 1920);
-            _ = _capture.Set(VideoCaptureProperties.FrameHeight, 1080);
+            ;
         }
 
-        using Window window = new("Point the camera to a QR code or hit any key to abort");
-        using Mat image = new();
-
-        string? result = null;
-        while (true)
+        if (index == result.Length)
         {
-            _ = _capture.Read(image);
-            if (image.Empty())
-            {
-                break;
-            }
-
-            window.ShowImage(image);
-
-            var filename = Path.ChangeExtension(Path.GetTempFileName(), "png");
-            _ = image.SaveImage(filename);
-            result = LoadQrCode(filename);
-
-            try
-            {
-                File.Delete(filename);
-            }
-            catch
-            {
-
-            }
-
-            if (!string.IsNullOrEmpty(result))
-            {
-                break;
-            }
-
-            var x = Cv2.WaitKey(30);
-            if (x >= 0)
-            {
-                result = null;
-                break;
-            }
+            return result;
         }
 
-        return result;
+        StringBuilder sb = new(result[..index]);
+        for (; index < result.Length; index++)
+        {
+            char ch = result[index];
+            if (ch >= ' ' && ch <= '~' || ch >= 160)
+            {
+                _ = sb.Append(ch);
+                continue;
+            }
+
+            if (ch == '\r')
+            {
+                _ = sb.Append("\r\n");
+                if (index + 1 < result.Length && result[index + 1] == '\n')
+                {
+                    index++;
+                }
+
+                continue;
+            }
+
+            if (ch == '\n')
+            {
+                _ = sb.Append("\r\n");
+                continue;
+            }
+
+            _ = sb.Append('¿');
+        }
+
+        return sb.ToString();
     }
 }

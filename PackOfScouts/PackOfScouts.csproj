@@ -8,6 +8,7 @@
 		<Nullable>enable</Nullable>
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<NoWarn>$(NoWarn);IDE0045</NoWarn>
 
 		<!-- Display name -->
 		<ApplicationTitle>PackOfScouts</ApplicationTitle>
@@ -53,14 +54,21 @@
 
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="ScanQRCodePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="TeleOperator.xaml" />
 
 	  <ProjectReference Include="..\PackOfScouts.QrCode\PackOfScouts.QrCode.csproj" />
+	  <ProjectReference Include="..\QRCodeDecoderLibraryCore\QRCodeDecoderLibraryCore.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Compile Update="MatchSchedulePage.xaml.cs">
 	    <DependentUpon>MatchSchedulePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Camera.cs">
+	    <DependentUpon>%(Filename)</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
