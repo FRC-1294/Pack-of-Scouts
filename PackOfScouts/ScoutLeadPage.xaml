@@ -11,6 +11,12 @@
             Padding="30,0"
             VerticalOptions="Center">
 
+            <Label Text="Welcome Scout Lead!" Grid.Row="1" Grid.ColumnSpan="2" FontSize="Header"
+                   HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" Margin="10"/>
+
+            <Label Text="Select a button below" Grid.Row="1" Grid.ColumnSpan="2" FontSize="20"
+                   HorizontalOptions="Center" VerticalOptions="Center" TextColor="White"/>
+            
             <Image
                 Source="pack_of_parts.png"
                 SemanticProperties.Description="POP Logo"

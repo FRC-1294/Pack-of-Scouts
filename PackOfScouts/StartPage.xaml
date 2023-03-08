@@ -4,10 +4,15 @@
              x:Class="PackOfScouts.StartPage">
 
     <ScrollView BackgroundColor="Black">
+        
+        
         <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
+
+            <Label Text="Welcome to the Team 1294 Scouting App!" Grid.Row="1" Grid.ColumnSpan="2" FontSize="Header"
+                   HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" Margin="10"/>
 
             <Image
                 Source="pack_of_parts.png"
@@ -18,7 +23,7 @@
             <Label
                 Text="Are you a Scout or a Scout Lead?"
                 SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
+                FontSize="Medium"
                 TextColor="White"
                 HorizontalOptions="Center" />
 
