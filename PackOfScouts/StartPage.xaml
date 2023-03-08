@@ -19,6 +19,7 @@
                 Text="Are you a Scout or a Scout Lead?"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
+                TextColor="White"
                 HorizontalOptions="Center" />
 
             <HorizontalStackLayout

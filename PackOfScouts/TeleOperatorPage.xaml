@@ -116,11 +116,11 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"
-                       Text="Defense?" TextColor="White" FontSize="20"/>
+                       Text="Defense?" TextColor="White" FontSize="15"/>
                     <Switch IsToggled="False" Grid.Row="0" Grid.Column="1" x:Name="def" HorizontalOptions="Center" VerticalOptions="Center"
                     OnColor="White" ThumbColor="#72C3F1"/>
                     <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"
-                       Text="Broke?" TextColor="White" FontSize="20"/>
+                       Text="Broke?" TextColor="White" FontSize="15"/>
                     <Switch IsToggled="False" Grid.Row="1" Grid.Column="1" x:Name="broken" HorizontalOptions="Center" VerticalOptions="Center"
                     OnColor="White" ThumbColor="#72C3F1"/>
                 </Grid>

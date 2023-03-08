@@ -1,3 +1,5 @@
+using Microsoft.Maui.Graphics.Text;
+
 namespace PackOfScouts;
 
 public partial class MatchSchedulePage : ContentPage
@@ -145,6 +147,7 @@ public partial class MatchSchedulePage : ContentPage
             HorizontalOptions = LayoutOptions.Center,
             VerticalOptions = LayoutOptions.Center,
             FontSize = 15,
+            TextColor = new Color(255, 255, 255)
         });
 
         g.Add(new Label
@@ -153,6 +156,7 @@ public partial class MatchSchedulePage : ContentPage
             HorizontalOptions = LayoutOptions.Center,
             VerticalOptions = LayoutOptions.Center,
             FontSize = 15,
+            TextColor = new Color(255, 255, 255)
         }, 1);
 
         _tableView.Root[0].Add(new ViewCell

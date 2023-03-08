@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PackOfScouts.ScoutLeadPage"
              Title="Scout Lead Dashboard"
-             x:Name="LeadPage">
+             x:Name="LeadPage" BackgroundColor="Black">
 
     <ScrollView>
         <VerticalStackLayout
@@ -25,6 +25,12 @@
                     WidthRequest="150"
                     SemanticProperties.Hint="Scan a QR code that has some scout data"
                     Clicked="OnScanScoutQRCodeClicked" />
+
+                <Button
+                    Text="Import Data"
+                    WidthRequest="150"
+                    Clicked="OnImportDataButtonClicked" />
+
 
             </HorizontalStackLayout>
         </VerticalStackLayout>

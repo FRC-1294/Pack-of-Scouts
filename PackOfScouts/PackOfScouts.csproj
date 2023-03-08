@@ -20,6 +20,8 @@
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.18362.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.18362.0</TargetPlatformMinVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -47,11 +49,15 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Update="MatchSchedulePage.xaml">
 
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ImportDataPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ScanQRCodePage.xaml">
@@ -69,6 +75,9 @@
 	  </Compile>
 	  <Compile Update="Camera.cs">
 	    <DependentUpon>%(Filename)</DependentUpon>
+	  </Compile>
+	  <Compile Update="ImportDataPage.xaml.cs">
+	    <DependentUpon>ImportDataPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
