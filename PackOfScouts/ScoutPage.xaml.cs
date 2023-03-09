@@ -17,21 +17,23 @@ public partial class ScoutPage : ContentPage
         robotNum= robot;
         matchNumber=match;
         appState = applicationState;
-        ScoutingTeamLabel.Text = "TEAM " + Convert.ToString(this.robotNum);
+        ScoutingTeamLabel.Text = "SCOUTING TEAM " + Convert.ToString(this.robotNum);
+        if (appState.Data != null )
+        {
+            numOfMatches.Text = string.Format("Matches scouted: {0}", appState.Data.Count);
+        } else
+        {
+            numOfMatches.Text = "Matches scouted: 0";
+        }
+        
 
     }
 
     void OnStepperValueChangedCone(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
-        if (value == 1)
-        {
-            _displayConeLabel.Text = string.Format("{0} cone scored", value);
-        }
-        else
-        {
-            _displayConeLabel.Text = string.Format("{0} cones scored", value);
-        }
+        _displayConeLabel.Text = string.Format("{0}", value);
+
 
         if (value > conesScored)
         {
@@ -46,14 +48,7 @@ public partial class ScoutPage : ContentPage
     void OnStepperValueChangedCube(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
-        if (value == 1)
-        {
-            _displayCubeLabel.Text = string.Format("{0} cube scored", value);
-        }
-        else
-        {
-            _displayCubeLabel.Text = string.Format("{0} cubes scored", value);
-        }
+        _displayCubeLabel.Text = string.Format("{0} cube scored", value);
 
         if (value > cubesScored)
         {

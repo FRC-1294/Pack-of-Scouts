@@ -37,10 +37,10 @@ public partial class ScoutLeadPage : ContentPage
         set ??= new();
         _ = set.Natches.Add(matchData);
 
-        Debug.WriteLine($"Added match #{matchData.MatchNumber} for robot #{matchData.RobotNumber} to\n{path}");
+        Debug.WriteLine($"Added match #{matchData.MatchNum} for robot #{matchData.RobotNum} to\n{path}");
         Debug.WriteLine($"{set.Natches.Count} total matches recorded");
         File.WriteAllText(path, JsonSerializer.Serialize(set));
 
-        await DisplayAlert("Match added!", $"Match #{matchData.MatchNumber} for robot #{matchData.RobotNumber} was added to\n{path}", "OK");
+        await DisplayAlert("Match added!", $"Match #{matchData.MatchNum} for robot #{matchData.RobotNum} was added to\n{path}", "OK");
     }
 }

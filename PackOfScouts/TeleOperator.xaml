@@ -91,9 +91,10 @@
 
         <Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height= "30"/>
                 <RowDefinition Height= "*"/>
+                <RowDefinition Height= "30"/>
                 <RowDefinition Height= "100"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -103,7 +104,6 @@
             <Grid Grid.Row="0" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
@@ -112,7 +112,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <!--<ColumnDefinition Width="*"/>-->
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"
@@ -143,16 +143,21 @@
 
             <Label Text="Notes" Grid.Row="1" Grid.ColumnSpan="2" FontSize="20"
                    HorizontalOptions="Center" VerticalOptions="Center" TextColor="White"/>
-            <Editor x:Name="notesTextBox" MaxLength="800"
-            Placeholder="Enter match notes here" 
-            Grid.Row="2" Grid.ColumnSpan="2"
+            <Editor x:Name="notesTextBox" MaxLength="200"
+            Placeholder="Enter match notes here. Keep it short." 
+            Grid.Row="2" Grid.ColumnSpan="2" 
             BackgroundColor="White" TextColor="Black"
             TextChanged="OnNotesTextChanged"/>
             <!--Completed="OnEditorCompleted"-->
+            <Label Text="Characters remaining: 200" TextColor="White" FontSize="15"
+                   HorizontalOptions="End" VerticalOptions="Center" Grid.Row="3" Grid.ColumnSpan="2"
+                   x:Name="CharacterCount"/>
+            <Button Grid.Row="4" Grid.Column="1" x:Name="SaveFileButton" Text="Save File"
+                   TextColor="Black" BackgroundColor="#72C3F1" Clicked="OnSaveFileClicked" Margin="10"/>
             <Button
-			Grid.Row="3"
-			Grid.ColumnSpan="2" 
-			x:Name="ShowQRCode"
+			Grid.Row="4"
+			Grid.Column="0" 
+			x:Name="Next"
 			Text="Show QR Code"
 			TextColor="Black"
             BorderColor="Black"
@@ -165,6 +170,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height= "*"/>
                 <RowDefinition Height= "*"/>
+                <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -202,6 +208,8 @@
                     <x:String>Engaged</x:String>
                 </Picker.Items>
             </Picker>
+            <Label x:Name="numOfMatches" Text="Matches Scouted: " TextColor="White" FontSize="18"
+                           Grid.Column="0" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center"/>
 
         </Grid>
     </Grid>

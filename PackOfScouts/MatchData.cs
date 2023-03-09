@@ -1,32 +1,32 @@
 ﻿namespace PackOfScouts;
 
-internal enum ChargeStationStatusAuto { NoAttempt, Failed, NotEngaged, Engaged }
-internal enum ChargeStationStatusTeleop { NoAttempt, Failed, NotEngaged, Engaged }
-internal enum HighestConeScored { None, Low, Mid, High }
-internal enum HighestCubeScored { None, Low, Mid, High }
+public enum ChargeStationStatusAuto { NoAttempt, Failed, NotEngaged, Engaged }
+public enum ChargeStationStatusTeleop { NoAttempt, Failed, NotEngaged, Engaged }
+public enum HighestConeScored { None, Low, Mid, High }
+public enum HighestCubeScored { None, Low, Mid, High }
 
-internal sealed class MatchData
+public sealed class MatchData
 {
-    internal int MatchNumber { get; set; }
-    internal int RobotNumber { get; set; }
-    internal int FunctioningAuto { get; set; }
-    internal ChargeStationStatusAuto ChargeStationAuto { get; set; }
-    internal ChargeStationStatusTeleop ChargeStationTeleop { get; set; }
-    internal int ConesScoredAuto { get; set; }
-    internal int CubesScoredAuto { get; set; }
-    internal int HighCubesScored { get; set; }
-    internal int MidCubesScored { get; set; } 
-    internal int LowCubesScored { get; set; }
-    internal int HighConesScored { get; set; }
-    internal int MidConesScored { get; set; }
-    internal int LowConesScored { get; set; }
-    internal int MovedOutOfZoneAuto { get; set; }
-    internal bool Broke { get; set; }
-    internal bool Defense { get; set; }
-    internal String? Notes { get; set; }
-    //internal int Fouls { get; set; }
+    public int MatchNum { get; set; }
+    public int RobotNum { get; set; }
+    public int AutoWork { get; set; } //functioning auto
+    public ChargeStationStatusAuto ChargeA { get; set; } //Charge station auto
+    public ChargeStationStatusTeleop ChargeT { get; set; } //charge station teleop
+    public int CoScoredA { get; set; } //cones scored auto
+    public int CuScoredA { get; set; } //cubes scored auto
+    public int HCuScored { get; set; }//high subes scored
+    public int MCuScored { get; set; } //mid cubes scored
+    public int LCuScored { get; set; }//low cubes scoted
+    public int HCoScored { get; set; }//high cones scored
+    public int MCoScored { get; set; }//mid cones scored
+    public int LCoScored { get; set; }//low cones scored
+    public int MoveOutA { get; set; } //move out of zone auto
+    public bool Broke { get; set; }
+    public bool Def { get; set; } //defense
+    public String? Notes { get; set; }
+    //public int Fouls { get; set; }
 
-    //internal int TechFouls { get; set; }
+    //public int TechFouls { get; set; }
     // NONE, YELLOW, RED
-    //internal String Cards { get; set; }
+    //public String Cards { get; set; }
 }

@@ -1,3 +1,6 @@
+using System.Runtime.Serialization.Json;
+using System.Text.Json;
+
 namespace PackOfScouts;
 
 public partial class TeleOperator : ContentPage
@@ -9,14 +12,6 @@ public partial class TeleOperator : ContentPage
     bool broke;
 
     private ApplicationState appState;
-    readonly int autoConesScored = 0;
-    readonly int autoCubesScored = 0;
-    readonly int functioningAuto = 0;
-    readonly int movedOutOfZone = 0;
-    readonly int autoChargeStation = -1;
-    readonly int matchNum = 0;
-    readonly int roboNum = 1294;
-
     int highCones;
     int midCones;
     int lowCones;
@@ -44,7 +39,15 @@ public partial class TeleOperator : ContentPage
         this.matchNum = matchNumber;
         this.roboNum = roboNumber;
         this.appState = applicationState;
-        ScoutingTeamLabel.Text = "TEAM " + Convert.ToString(this.roboNum);
+        ScoutingTeamLabel.Text = "SCOUTING TEAM " + Convert.ToString(this.roboNum);
+        if (appState.Data != null)
+        {
+            numOfMatches.Text = string.Format("Matches scouted: {0}", appState.Data.Count);
+        }
+        else
+        {
+            numOfMatches.Text = "Matches scouted: 0";
+        }
 
     }
 
@@ -166,6 +169,7 @@ public partial class TeleOperator : ContentPage
     void OnNotesTextChanged(object sender, TextChangedEventArgs e)
     {
         notes = e.NewTextValue;
+        CharacterCount.Text = string.Format("Characters remaining: {0}", (200 - notes.Length));
     }
 
     
@@ -228,6 +232,11 @@ public partial class TeleOperator : ContentPage
         
     }
 
+    private async void OnSaveFileClicked(object sender, EventArgs e)
+    {
+        return;
+    }
+
     private async void OnShowQRCodeClicked(object sender, EventArgs e)
     {
         SetVariables();
@@ -251,24 +260,24 @@ public partial class TeleOperator : ContentPage
 
         var m = new MatchData
         {
-            MatchNumber = matchNum,
-            RobotNumber = roboNum,
-            FunctioningAuto = functioningAuto,
-            ConesScoredAuto = autoConesScored,
-            CubesScoredAuto = autoCubesScored,
-            MovedOutOfZoneAuto = movedOutOfZone,
+            MatchNum = matchNum,
+            RobotNum = roboNum,
+            AutoWork = functioningAuto,
+            CoScoredA = autoConesScored,
+            CuScoredA = autoCubesScored,
+            MoveOutA = movedOutOfZone,
             Broke = broke,
-            Defense = defense,
+            Def = defense,
             //Fouls = fouls,
             Notes = notes,
-            ChargeStationTeleop = teleopChargeStaion,
-            ChargeStationAuto = autoChargeStaion,
-            HighConesScored = highCones,
-            MidConesScored = midCones,
-            LowConesScored = lowCones,
-            HighCubesScored= highCubes,
-            MidCubesScored= midCubes,
-            LowCubesScored= lowCubes
+            ChargeT = teleopChargeStaion,
+            ChargeA = autoChargeStaion,
+            HCoScored = highCones,
+            MCoScored = midCones,
+            LCoScored = lowCones,
+            HCuScored= highCubes,
+            MCuScored= midCubes,
+            LCuScored= lowCubes
         };
         if (appState.Data == null) {
             appState.Data = new List<MatchData> { m };
@@ -277,7 +286,7 @@ public partial class TeleOperator : ContentPage
             appState.Data.Add(m);
         }
 
-        var json = System.Text.Json.JsonSerializer.Serialize(m);
+        var json = System.Text.Json.JsonSerializer.Serialize(appState.Data);
         await Navigation.PushAsync(new ShowQRCodePage(json, appState));
     }
 }

@@ -24,7 +24,7 @@ public static class QrCodeUtils
     public static string SaveQrCode(string textToEncode)
     {
         var filename = Path.ChangeExtension(Path.GetTempFileName(), "png");
-        var qr = QrGen.EncodeText(textToEncode, QrGen.Ecc.Medium);
+        var qr = QrGen.EncodeText(textToEncode, QrGen.Ecc.High);
         var bm = qr.ToBitmap(scale: 10, border: 4);
         bm.Save(filename, ImageFormat.Png);
         return filename;
