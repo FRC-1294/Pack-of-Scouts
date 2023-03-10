@@ -68,7 +68,7 @@ public partial class ScanQRCodePage : ContentPage
             bool append = true;
             for (int i = 0; i < matches.Count; i++)
             {
-                if (matches[i].MatchNumber == inc.MatchNumber && matches[i].RobotNumber == inc.RobotNumber)
+                if (matches[i].MatchNum == inc.MatchNum && matches[i].RobotNum == inc.RobotNum)
                 {
                     // just replace the previous data.
                     matches[i] = inc;

@@ -40,9 +40,9 @@ public partial class TeleOperatorPage : ContentPage
         this.roboNum = roboNumber;
         this.appState = applicationState;
         ScoutingTeamLabel.Text = "SCOUTING TEAM " + Convert.ToString(this.roboNum);
-        if (appState.Data != null)
+        if (appState.Matches != null)
         {
-            numOfMatches.Text = string.Format("Matches scouted: {0}", appState.Data.Count);
+            numOfMatches.Text = string.Format("Matches scouted: {0}", appState.Matches.Count);
         }
         else
         {
@@ -218,7 +218,7 @@ public partial class TeleOperatorPage : ContentPage
             CuScoredA = autoCubesScored,
             MoveOutA = movedOutOfZone,
             Broke = broke,
-            Defense = defense,
+            Def = defense,
             Notes = notes,
             ChargeT = teleopChargeStaion,
             ChargeA = autoChargeStaion,
