@@ -2,14 +2,14 @@ namespace PackOfScouts;
 
 public partial class ScoutPage : ContentPage
 {
-    int conesScored;
-    int cubesScored;
-    int functioningAuto;
-    int moveOutOfZone;
-    int chargeStationIndex = -1;
-    readonly int robotNum = 1294;
-    readonly int matchNumber = 0;
-    readonly ApplicationState appState;
+    private readonly int robotNum;
+    private readonly int matchNumber;
+    private readonly ApplicationState appState;
+    private int conesScored;
+    private int cubesScored;
+    private int functioningAuto;
+    private int moveOutOfZone;
+    private int chargeStationIndex = -1;
 
     internal ScoutPage(int match, int robot, ApplicationState applicationState)
     {
@@ -25,15 +25,18 @@ public partial class ScoutPage : ContentPage
         {
             numOfMatches.Text = "Matches scouted: 0";
         }
-        
 
+
+        robotNum = robot;
+        matchNumber = match;
+        appState = applicationState;
+        ScoutingTeamLabel.Text = $"TEAM {this.robotNum}";
     }
 
-    void OnStepperValueChangedCone(object sender, ValueChangedEventArgs e)
+    private void OnStepperValueChangedCone(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
         _displayConeLabel.Text = string.Format("{0}", value);
-
 
         if (value > conesScored)
         {
@@ -45,7 +48,7 @@ public partial class ScoutPage : ContentPage
         }
     }
 
-    void OnStepperValueChangedCube(object sender, ValueChangedEventArgs e)
+    private void OnStepperValueChangedCube(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
         _displayCubeLabel.Text = string.Format("{0} cube scored", value);
@@ -60,23 +63,23 @@ public partial class ScoutPage : ContentPage
         }
     }
 
-    void OnFunctionAutoToggled(object sender, ToggledEventArgs e)
+    private void OnFunctionAutoToggled(object sender, ToggledEventArgs e)
     {
         functioningAuto = 1;
     }
 
-    void OnMoveOutOfZoneToggled(object sender, ToggledEventArgs e)
+    private void OnMoveOutOfZoneToggled(object sender, ToggledEventArgs e)
     {
         moveOutOfZone = 1;
     }
 
-    void OnChargeStationStatusChanged(object sender, EventArgs e)
+    private void OnChargeStationStatusChanged(object sender, EventArgs e)
     {
         chargeStationIndex = chargeStationPicker.SelectedIndex;
     }
 
     private async void OnDoneWithAutoClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new TeleOperator(cubesScored, conesScored, functioningAuto, moveOutOfZone, chargeStationIndex, matchNumber, robotNum, appState));
+        await Navigation.PushAsync(new TeleOperatorPage(cubesScored, conesScored, functioningAuto, moveOutOfZone, chargeStationIndex, matchNumber, robotNum, appState));
     }
 }

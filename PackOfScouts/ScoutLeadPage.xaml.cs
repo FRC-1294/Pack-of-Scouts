@@ -1,6 +1,6 @@
 using System.Diagnostics;
-using System.Text.Json;
-
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
 namespace PackOfScouts;
 
 public partial class ScoutLeadPage : ContentPage
@@ -12,35 +12,16 @@ public partial class ScoutLeadPage : ContentPage
 
     private async void OnScanScoutQRCodeClicked(object sender, EventArgs e)
     {
-        string? text = QrCode.QrCodeUtils.CaptureQrCode();
-        if (text != null)
-        {
-            var matchData = JsonSerializer.Deserialize<MatchData>(text);
-            if (matchData != null)
-            {
-                await RecordMatchData(matchData);
-            }
-        }
+        await Navigation.PushAsync(new ScanQRCodePage());
     }
 
-    private async Task RecordMatchData(MatchData matchData)
+    private async void OnImportDataButtonClicked(object sender, EventArgs e)
     {
-        MatchDataSet? set = null;
-
-        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PackOfScouts_MatchData.json");
-        if (File.Exists(path))
-        {
-            var text = File.ReadAllText(path);
-            set = JsonSerializer.Deserialize<MatchDataSet>(text);
-        }
-
-        set ??= new();
-        _ = set.Natches.Add(matchData);
-
-        Debug.WriteLine($"Added match #{matchData.MatchNum} for robot #{matchData.RobotNum} to\n{path}");
-        Debug.WriteLine($"{set.Natches.Count} total matches recorded");
-        File.WriteAllText(path, JsonSerializer.Serialize(set));
-
-        await DisplayAlert("Match added!", $"Match #{matchData.MatchNum} for robot #{matchData.RobotNum} was added to\n{path}", "OK");
+        await Navigation.PushAsync(new ImportDataPage());
     }
+
+
+
+
+
 }

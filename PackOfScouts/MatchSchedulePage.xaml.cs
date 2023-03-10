@@ -1,24 +1,20 @@
-using OpenCvSharp;
+using Microsoft.Maui.Graphics.Text;
 
 namespace PackOfScouts;
 
 public partial class MatchSchedulePage : ContentPage
 {
-    private readonly List<ScheduleEntry> _entries;
-    readonly ApplicationState appState = new ApplicationState();
+    readonly ApplicationState appState;
 
-    internal MatchSchedulePage(List<ScheduleEntry> entries, ApplicationState applicationState)
+    internal MatchSchedulePage(ApplicationState applicationState)
     {
         InitializeComponent();
-        
-        this._entries= entries;
+
         this.appState = applicationState;
-        this.appState.Entries = entries;
-        
 
         AddHeader();
 
-        foreach (var entry in entries)
+        foreach (var entry in appState.ScheduleEntries)
         {
             var g = new Grid
             {
@@ -151,6 +147,7 @@ public partial class MatchSchedulePage : ContentPage
             HorizontalOptions = LayoutOptions.Center,
             VerticalOptions = LayoutOptions.Center,
             FontSize = 15,
+            TextColor = new Color(255, 255, 255)
         });
 
         g.Add(new Label
@@ -159,6 +156,7 @@ public partial class MatchSchedulePage : ContentPage
             HorizontalOptions = LayoutOptions.Center,
             VerticalOptions = LayoutOptions.Center,
             FontSize = 15,
+            TextColor = new Color(255, 255, 255)
         }, 1);
 
         _tableView.Root[0].Add(new ViewCell

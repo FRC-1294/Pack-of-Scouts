@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-windows10.0.22621.0</TargetFrameworks>
+		<TargetFrameworks></TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>PackOfScouts</RootNamespace>
 		<UseMaui>true</UseMaui>
 		<Nullable>enable</Nullable>
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<NoWarn>$(NoWarn);IDE0045</NoWarn>
 
 		<!-- Display name -->
 		<ApplicationTitle>PackOfScouts</ApplicationTitle>
@@ -19,6 +20,8 @@
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.18362.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.18362.0</TargetPlatformMinVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -41,11 +44,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="TeleOperator.xaml.cs" />
+	  <Content Include="TeleOperatorPage.xaml.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -53,14 +57,27 @@
 
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="ImportDataPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ScanQRCodePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="TeleOperator.xaml" />
 
 	  <ProjectReference Include="..\PackOfScouts.QrCode\PackOfScouts.QrCode.csproj" />
+	  <ProjectReference Include="..\QRCodeDecoderLibraryCore\QRCodeDecoderLibraryCore.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Compile Update="MatchSchedulePage.xaml.cs">
 	    <DependentUpon>MatchSchedulePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Camera.cs">
+	    <DependentUpon>%(Filename)</DependentUpon>
+	  </Compile>
+	  <Compile Update="ImportDataPage.xaml.cs">
+	    <DependentUpon>ImportDataPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -80,7 +97,19 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <PackageCertificateThumbprint>D1B1FD134A8810EA44AE5A70312946E7D5F5ABEC</PackageCertificateThumbprint>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppInstallerUri>c:\src\</AppInstallerUri>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.22621.0</TargetFrameworks>
   </PropertyGroup>
 
 </Project>

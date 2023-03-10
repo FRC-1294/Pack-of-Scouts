@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace PackOfScouts;
 
-namespace PackOfScouts
+internal class ApplicationState
 {
-    internal class ApplicationState
-    {
-        internal List<MatchData>? Data { get; set; }
-        internal List<ScheduleEntry>? Entries { get; set; }
-    }
+    internal List<MatchData> Matches { get; } = new();
+    internal List<ScheduleEntry> ScheduleEntries { get; } = new();
 }

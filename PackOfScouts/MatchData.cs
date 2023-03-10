@@ -25,8 +25,4 @@ public sealed class MatchData
     public bool Def { get; set; } //defense
     public String? Notes { get; set; }
     //public int Fouls { get; set; }
-
-    //public int TechFouls { get; set; }
-    // NONE, YELLOW, RED
-    //public String Cards { get; set; }
 }

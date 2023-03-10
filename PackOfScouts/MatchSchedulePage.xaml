@@ -2,14 +2,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PackOfScouts.MatchSchedulePage"
-             Title="Match and Robot Picker"
+             Title="Match and Robot Picker" BackgroundColor="Black"
              >
 
     <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" >
         <Label
             HorizontalOptions="Center"
             Text="Pick a match and robot to start scouting"
-            FontSize="Title" />
+            FontSize="Title" 
+            TextColor="White"/>
 
         <HorizontalStackLayout HorizontalOptions="Center">
             <TableView HorizontalOptions="Center" Intent="Menu" x:Name="_tableView">
