@@ -62,6 +62,9 @@
 	  <MauiXaml Update="ScanQRCodePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="ScheduleSelectionPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="TeleOperator.xaml" />
 
 	  <ProjectReference Include="..\PackOfScouts.QrCode\PackOfScouts.QrCode.csproj" />
@@ -73,6 +76,9 @@
 	  </Compile>
 	  <Compile Update="ImportShedulePage.xaml.cs">
 	    <DependentUpon>ImportShedulePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="ScheduleSelectionPage.xaml.cs">
+	    <DependentUpon>ScheduleSelectionPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 

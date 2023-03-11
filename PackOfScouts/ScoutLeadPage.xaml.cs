@@ -11,9 +11,4 @@ public partial class ScoutLeadPage : ContentPage
     {
         await Navigation.PushAsync(new ScanQRCodePage());
     }
-
-    private async void OnImportDataButtonClicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new ImportSchedulePage());
-    }
 }
