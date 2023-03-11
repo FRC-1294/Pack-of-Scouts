@@ -27,7 +27,7 @@ public partial class ImportSchedulePage : ContentPage
         var schedule = ProcessDownloadedData(downloadedData);
         var text = JsonSerializer.Serialize(schedule);
 
-        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), $"PackOfScouts_MatchSchedule_{compid}.json");
+        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PackOfScouts_MatchSchedule.json");
         File.WriteAllText(path, text);
 
         Debug.WriteLine($"Data saved to '{path}' successfully!");
