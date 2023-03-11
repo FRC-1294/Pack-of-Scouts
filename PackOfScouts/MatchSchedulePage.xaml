@@ -4,23 +4,27 @@
              x:Class="PackOfScouts.MatchSchedulePage"
              Title="" BackgroundColor="Black"
              >
-
-    <ScrollView>
-        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" >
-            <Label
-            HorizontalOptions="Center"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label
+            HorizontalOptions="Center" VerticalOptions="Center"
             Text="Pick a match and robot to start scouting"
-            FontSize="Title" 
+            FontSize="Title" Grid.Row="0"
             TextColor="White"/>
 
+        <ScrollView Grid.Row="1" Margin="40">
             <HorizontalStackLayout HorizontalOptions="Center">
-                <TableView HorizontalOptions="Center" Intent="Menu" x:Name="_tableView">
+                <TableView HorizontalOptions="Center" Intent="Menu" x:Name="_tableView" Margin="20">
                     <TableRoot>
                         <TableSection>
                         </TableSection>
                     </TableRoot>
                 </TableView>
             </HorizontalStackLayout>
-        </VerticalStackLayout>
-    </ScrollView>
+        </ScrollView>
+    </Grid>
+
 </ContentPage>
