@@ -13,9 +13,14 @@ public partial class App : Application
     {
         var window = base.CreateWindow(activationState);
 
-        window.Width = 600;
-        window.Height = 500;
         window.Title = "Pack of Scouts";
+        window.Width = 600;
+        window.Height = 600;
+
+        // Center the window
+        var displayInfo = DeviceDisplay.Current.MainDisplayInfo;
+        window.X = (displayInfo.Width / displayInfo.Density - window.Width) / 2;
+        window.Y = (displayInfo.Height / displayInfo.Density - window.Height) / 2;
 
         return window;
     }

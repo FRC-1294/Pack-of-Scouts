@@ -57,7 +57,7 @@
 
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="ImportDataPage.xaml">
+	  <MauiXaml Update="ImportShedulePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ScanQRCodePage.xaml">
@@ -75,8 +75,8 @@
 	  <Compile Update="Camera.cs">
 	    <DependentUpon>%(Filename)</DependentUpon>
 	  </Compile>
-	  <Compile Update="ImportDataPage.xaml.cs">
-	    <DependentUpon>ImportDataPage.xaml</DependentUpon>
+	  <Compile Update="ImportShedulePage.xaml.cs">
+	    <DependentUpon>ImportShedulePage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 

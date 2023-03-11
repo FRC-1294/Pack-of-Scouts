@@ -4,16 +4,16 @@ using System.Text.Json;
 
 namespace PackOfScouts;
 
-public partial class ImportDataPage : ContentPage
+public partial class ImportSchedulePage : ContentPage
 {
     private string? compid = "WASNO";
 
-    public ImportDataPage()
+    public ImportSchedulePage()
     {
         InitializeComponent();
     }
 
-    private async void OnImportDataClicked(object sender, EventArgs e)
+    private async void OnImportScheduleClicked(object sender, EventArgs e)
     {
         using var httpClient = new HttpClient();
         httpClient.BaseAddress = new Uri("https://frc-api.firstinspires.org/v3.0/2023/");

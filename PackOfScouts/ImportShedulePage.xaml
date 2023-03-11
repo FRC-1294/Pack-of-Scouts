@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PackOfScouts.ImportDataPage"
-             Title="ImportDataPage" BackgroundColor="Black">
+             x:Class="PackOfScouts.ImportSchedulePage"
+             Title="Import Schedule" BackgroundColor="Black">
 
     <ScrollView>
         
@@ -11,32 +11,33 @@
             Padding="30,0"
             VerticalOptions="Center">
 
-            <Label 
-                Text="Import Data"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" FontSize="Large" TextColor="White" />
-
             <Image
                 Source="pack_of_parts.png"
                 SemanticProperties.Description="POP Logo"
                 HeightRequest="200"
                 HorizontalOptions="Center" />
 
-            <Label Text="Competition ID" Grid.Row="1" Grid.ColumnSpan="2" FontSize="20"
+            <Label Text="Enter the Competition ID" Grid.Row="1" Grid.ColumnSpan="2" FontSize="20"
                    HorizontalOptions="Center" VerticalOptions="Center" TextColor="White"/>
-            <Editor x:Name="compIDTextBox" HeightRequest="50" WidthRequest="300"
-            Placeholder="Enter the competition id here" 
-            Grid.Row="2" Grid.ColumnSpan="2"
-            BackgroundColor="White" TextColor="Black"
-            TextChanged="onCompIDTextChanged"/>
+
+            <Editor
+                x:Name="compIDTextBox"
+                HeightRequest="10"
+                WidthRequest="300"
+                Placeholder="Enter id..." 
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                BackgroundColor="White"
+                TextColor="Black"
+                TextChanged="onCompIDTextChanged"/>
 
             <HorizontalStackLayout
                 HorizontalOptions="Center">
 
                 <Button
-                    Text="Import Data"
+                    Text="Import Schedule"
                     WidthRequest="150"
-                    Clicked="OnImportDataClicked" />
+                    Clicked="OnImportScheduleClicked" />
 
 
             </HorizontalStackLayout>

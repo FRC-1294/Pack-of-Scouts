@@ -17,7 +17,7 @@ public partial class ScoutLeadPage : ContentPage
 
     private async void OnImportDataButtonClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new ImportDataPage());
+        await Navigation.PushAsync(new ImportSchedulePage());
     }
 
 
