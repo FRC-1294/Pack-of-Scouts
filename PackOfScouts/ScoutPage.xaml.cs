@@ -9,20 +9,16 @@ public partial class ScoutPage : ContentPage
     private int cubesScored;
     private int functioningAuto;
     private int moveOutOfZone;
-    private int chargeStationIndex = -1;
+    private int chargeStationIndex = 0;
 
     internal ScoutPage(int match, int robot, ApplicationState applicationState)
     {
         InitializeComponent();
-        robotNum= robot;
-        matchNumber=match;
-        appState = applicationState;
-        ScoutingTeamLabel.Text = "SCOUTING TEAM " + Convert.ToString(this.robotNum);
-
         robotNum = robot;
         matchNumber = match;
         appState = applicationState;
-        ScoutingTeamLabel.Text = $"TEAM {this.robotNum}";
+        ScoutingTeamLabel.Text = $"SCOUTING TEAM {this.robotNum}";
+        chargeStationPicker.SelectedItem = "No Attempt";
     }
 
     private void OnStepperValueChangedCone(object sender, ValueChangedEventArgs e)

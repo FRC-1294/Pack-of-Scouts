@@ -16,7 +16,7 @@ public partial class TeleOperatorPage : ContentPage
 
     private string? notes;
     private int missedScores;
-    private int chargeStationIndex = -1;
+    private int chargeStationIndex = 0;
     private bool defense;
     private bool broke;
     private int highCones;
@@ -41,7 +41,7 @@ public partial class TeleOperatorPage : ContentPage
         this.roboNum = roboNumber;
         this.appState = applicationState;
         ScoutingTeamLabel.Text = "SCOUTING TEAM " + Convert.ToString(this.roboNum);
-        
+        chargeStationPicker.SelectedItem = "No Attempt";
     }
 
     private void OnStepperValueChangedHighCone(object sender, ValueChangedEventArgs e)
@@ -219,7 +219,23 @@ public partial class TeleOperatorPage : ContentPage
 
     private async void OnNextMatchClicked(object sender, EventArgs e)
     {
+
         SetUpMatchData();
+        List<Page> list = new List<Page>();
+
+        foreach(Page page in Navigation.NavigationStack)
+        {
+            if (page is ScoutPage)
+            {
+                list.Add(page);
+            } else if (page is TeleOperatorPage) 
+            {
+                list.Add(page);
+            }
+        }
+        foreach(Page _page in list) {
+            Navigation.RemovePage(_page);
+        }
         await Navigation.PushAsync(new MatchSchedulePage(appState));
     }
 

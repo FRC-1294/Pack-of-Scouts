@@ -61,6 +61,26 @@ public partial class ShowQRCodePage : ContentPage
     private async void OnImSurePressed(object sender, EventArgs e)
     {
         this.appState.Matches.Clear();
+        List<Page> list = new List<Page>();
+        foreach (Page page in Navigation.NavigationStack)
+        {
+            if (page is ScoutPage)
+            {
+                list.Add(page);
+            }
+            else if (page is TeleOperatorPage)
+            {
+                list.Add(page);
+            } else if (page is ShowQRCodePage)
+            {
+                list.Add(page);
+            }
+
+            foreach (Page _page in list)
+            {
+                Navigation.RemovePage(_page);
+            }
+        }
         await Navigation.PushAsync(new MatchSchedulePage(appState));
     }
 
