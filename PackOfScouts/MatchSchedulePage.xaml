@@ -5,20 +5,22 @@
              Title="Match and Robot Picker" BackgroundColor="Black"
              >
 
-    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" >
-        <Label
+    <ScrollView>
+        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" >
+            <Label
             HorizontalOptions="Center"
             Text="Pick a match and robot to start scouting"
             FontSize="Title" 
             TextColor="White"/>
 
-        <HorizontalStackLayout HorizontalOptions="Center">
-            <TableView HorizontalOptions="Center" Intent="Menu" x:Name="_tableView">
-                <TableRoot>
-                    <TableSection>
-                    </TableSection>
-                </TableRoot>
-            </TableView>
-        </HorizontalStackLayout>
-    </VerticalStackLayout>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <TableView HorizontalOptions="Center" Intent="Menu" x:Name="_tableView">
+                    <TableRoot>
+                        <TableSection>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
