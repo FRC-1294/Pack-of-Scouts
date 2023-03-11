@@ -22,9 +22,6 @@ public partial class App : Application
         window.X = (displayInfo.Width / displayInfo.Density - window.Width) / 2;
         window.Y = (displayInfo.Height / displayInfo.Density - window.Height) / 2;
 
-        window.
-
-
         return window;
     }
 }
