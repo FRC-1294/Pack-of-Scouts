@@ -20,7 +20,7 @@ public static class QrCodeUtils
     public static Stream MakeQrCode(string textToEncode)
     {
         var ms = new MemoryStream();
-        var qr = Net.Codecrete.QrCodeGenerator.QrCode.EncodeText(textToEncode, Net.Codecrete.QrCodeGenerator.QrCode.Ecc.Medium);
+        var qr = Net.Codecrete.QrCodeGenerator.QrCode.EncodeText(textToEncode, Net.Codecrete.QrCodeGenerator.QrCode.Ecc.High);
         var bm = qr.ToBitmap(scale: 10, border: 4);
         bm.Save(ms, ImageFormat.Png);
         ms.Position = 0;

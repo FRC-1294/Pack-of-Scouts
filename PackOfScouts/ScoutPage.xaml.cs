@@ -51,7 +51,7 @@ public partial class ScoutPage : ContentPage
     private void OnStepperValueChangedCube(object sender, ValueChangedEventArgs e)
     {
         double value = e.NewValue;
-        _displayCubeLabel.Text = string.Format("{0} cube scored", value);
+        _displayCubeLabel.Text = string.Format("{0}", value);
 
         if (value > cubesScored)
         {

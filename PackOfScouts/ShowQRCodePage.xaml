@@ -5,12 +5,47 @@
              Title="Scan QR Code" BackgroundColor="Black">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
-        <Image x:Name="_qrImage" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="80"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="PreviousQrCode" Grid.Column="0" TextColor="Black" Margin="10"
+                    BackgroundColor="#72C3F1" Text="Back" Pressed="OnPreviousQrCodePressed" IsVisible="false"/>
+            <Image x:Name="_qrImage" Grid.Column="1"/>
+            <Button x:Name="NextQrCode" Grid.Column="2" TextColor="Black" Margin="10"
+                    BackgroundColor="#72C3F1" Text="Next" Pressed="OnNextQrCodePressed"/>
+        </Grid>
+
+        <Label x:Name="YouSure" Text="Are you sure?" TextColor="White" FontSize="18" Margin="5"
+                   HorizontalTextAlignment="Center" IsVisible="false" Grid.Row="3" Grid.Column="0"/>
+        <Grid Grid.Row="4" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="clearData" Text="Clear Data" Pressed="OnClearDataPressed"
+                TextColor="Black" BackgroundColor="#72C3F1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+            <Button x:Name="ImSure" Text="Yes" TextColor="Black" BackgroundColor="#72C3F1"
+                    Grid.Column="0" IsVisible="False" Pressed="OnImSurePressed" Grid.Row="1"/>
+            <Button x:Name="NotSure" Text="No" TextColor="Black" BackgroundColor="#72C3F1"
+                    Grid.Column="1" IsVisible="False" Pressed="OnNotSurePressed" Grid.Row="1"/>
+        </Grid>
+
+        
         <Button x:Name="returnToStart" Text="Scout next team" Pressed="OnReturnToStartPressed" 
-                TextColor="Black" BackgroundColor="#72C3F1" Grid.Row="1"/>
+                TextColor="Black" BackgroundColor="#72C3F1" Grid.Row="4" Grid.Column="1"/>
     </Grid>
     
 </ContentPage>

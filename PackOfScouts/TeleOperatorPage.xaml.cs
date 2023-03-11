@@ -43,11 +43,16 @@ public partial class TeleOperatorPage : ContentPage
         if (appState.Matches != null)
         {
             numOfMatches.Text = string.Format("Matches scouted: {0}", appState.Matches.Count);
+            if (appState.Matches.Count >= 2)
+            {
+                Next.Text = "Save file and go to scout lead";
+            }
         }
         else
         {
             numOfMatches.Text = "Matches scouted: 0";
         }
+        
     }
 
     private void OnStepperValueChangedHighCone(object sender, ValueChangedEventArgs e)
