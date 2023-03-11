@@ -25,6 +25,7 @@ public partial class TeleOperatorPage : ContentPage
     private int highCubes;
     private int midCubes;
     private int lowCubes;
+    private MatchData m = new MatchData();
 
     internal TeleOperatorPage(int cubesScored, int conesScored, int functioningAuto, int moveOutOfZone, int autoChargeStation, int matchNumber, int roboNumber, ApplicationState applicationState)
     {
@@ -175,8 +176,7 @@ public partial class TeleOperatorPage : ContentPage
         notes = notesTextBox.Text;
         
     }
-
-    private async void OnShowQRCodeClicked(object sender, EventArgs e)
+    private void SetUpMatchData()
     {
         SetVariables();
         var teleopChargeStaion = chargeStationIndex switch
@@ -197,29 +197,35 @@ public partial class TeleOperatorPage : ContentPage
             _ => ChargeStationStatusAuto.NoAttempt,
         };
 
-        var m = new MatchData
-        {
-            MatchNum = matchNum,
-            RobotNum = roboNum,
-            AutoWork = functioningAuto,
-            CoScoredA = autoConesScored,
-            CuScoredA = autoCubesScored,
-            MoveOutA = movedOutOfZone,
-            Broke = broke,
-            Def = defense,
-            Notes = notes,
-            ChargeT = teleopChargeStaion,
-            ChargeA = autoChargeStaion,
-            HCoScored = highCones,
-            MCoScored = midCones,
-            LCoScored = lowCones,
-            HCuScored= highCubes,
-            MCuScored= midCubes,
-            LCuScored= lowCubes
-        };
-
+        m.MatchNum = matchNum;
+        m.RobotNum = roboNum;
+        m.AutoWork = functioningAuto;
+        m.CoScoredA = autoConesScored;
+        m.CuScoredA = autoCubesScored;
+        m.MoveOutA = movedOutOfZone;
+        m.Broke = broke;
+        m.Def = defense;
+        m.Notes = notes;
+        m.ChargeT = teleopChargeStaion;
+        m.ChargeA = autoChargeStaion;
+        m.HCoScored = highCones;
+        m.MCoScored = midCones;
+        m.LCoScored = lowCones;
+        m.HCuScored = highCubes;
+        m.MCuScored = midCubes;
+        m.LCuScored = lowCubes;
         appState.Matches.Add(m);
+    }
 
+    private async void OnNextMatchClicked(object sender, EventArgs e)
+    {
+        SetUpMatchData();
+        await Navigation.PushAsync(new MatchSchedulePage(appState));
+    }
+
+    private async void OnShowQRCodeClicked(object sender, EventArgs e)
+    {
+        SetUpMatchData();
         await Navigation.PushAsync(new ShowQRCodePage(appState));
     }
 }

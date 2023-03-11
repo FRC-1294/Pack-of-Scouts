@@ -29,23 +29,13 @@
         </Grid>
 
         <Label x:Name="YouSure" Text="Are you sure?" TextColor="White" FontSize="18" Margin="5"
-                   HorizontalTextAlignment="Center" IsVisible="false" Grid.Row="3" Grid.Column="0"/>
-        <Grid Grid.Row="4" Grid.Column="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="clearData" Text="Clear Data" Pressed="OnClearDataPressed"
-                TextColor="Black" BackgroundColor="#72C3F1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-            <Button x:Name="ImSure" Text="Yes" TextColor="Black" BackgroundColor="#72C3F1"
-                    Grid.Column="0" IsVisible="False" Pressed="OnImSurePressed" Grid.Row="1"/>
-            <Button x:Name="NotSure" Text="No" TextColor="Black" BackgroundColor="#72C3F1"
-                    Grid.Column="1" IsVisible="False" Pressed="OnNotSurePressed" Grid.Row="1"/>
+                   HorizontalTextAlignment="Center" IsVisible="false" Grid.Row="3" Grid.ColumnSpan="2"/>
+        <Button x:Name="clearData" Text="Done" Pressed="OnClearDataPressed"
+                TextColor="Black" BackgroundColor="#72C3F1" Grid.ColumnSpan="2" Grid.Row="4"/>
+        <Button x:Name="ImSure" Text="Yes" TextColor="Black" BackgroundColor="#72C3F1"
+                Grid.Column="0" IsVisible="False" Pressed="OnImSurePressed" Grid.Row="4"/>
+        <Button x:Name="NotSure" Text="No" TextColor="Black" BackgroundColor="#72C3F1"
+                Grid.Column="1" IsVisible="False" Pressed="OnNotSurePressed" Grid.Row="4"/>
         </Grid>
-
-        
-        <Button x:Name="returnToStart" Text="Scout next team" Pressed="OnReturnToStartPressed" 
-                TextColor="Black" BackgroundColor="#72C3F1" Grid.Row="4" Grid.Column="1"/>
-    </Grid>
     
 </ContentPage>

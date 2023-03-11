@@ -60,10 +60,10 @@ public partial class ShowQRCodePage : ContentPage
         NotSure.IsVisible = true;
     }
 
-    private void OnImSurePressed(object sender, EventArgs e)
+    private async void OnImSurePressed(object sender, EventArgs e)
     {
         this.appState.Matches.Clear();
-        OnReturnToStartPressed(sender, e);
+        await Navigation.PushAsync(new MatchSchedulePage(appState));
     }
 
     private void OnNotSurePressed(Object sender, EventArgs e)
@@ -72,10 +72,5 @@ public partial class ShowQRCodePage : ContentPage
         YouSure.IsVisible = false;
         ImSure.IsVisible = false;
         NotSure.IsVisible = false;
-    }
-
-    private async void OnReturnToStartPressed(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new MatchSchedulePage(appState));
     }
 }

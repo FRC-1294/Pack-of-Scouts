@@ -138,9 +138,11 @@
             <Label Text="Characters remaining: 200" TextColor="White" FontSize="15"
                    HorizontalOptions="End" VerticalOptions="Center" Grid.Row="3" Grid.ColumnSpan="2"
                    x:Name="CharacterCount"/>
+            <Button Grid.Row="4" Grid.Column="0" Text="Scout Next Match" TextColor="Black" BackgroundColor="#72C3F1"
+                    x:Name="nextMatch" Clicked="OnNextMatchClicked" Margin="10"/>
             <Button
 			Grid.Row="4"
-			Grid.ColumnSpan="2" 
+			Grid.Column="1" 
 			x:Name="Next"
 			Text="Show QR Code"
 			TextColor="Black"
