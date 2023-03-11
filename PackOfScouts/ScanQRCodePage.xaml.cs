@@ -40,11 +40,17 @@ public partial class ScanQRCodePage : ContentPage
 
             if (!string.IsNullOrEmpty(text))
             {
-                var matches = JsonSerializer.Deserialize<List<MatchData>>(text);
-                if (matches != null)
+                try
                 {
-                    Cleanup();
-                    RecordMatchData(matches);
+                    var matches = JsonSerializer.Deserialize<List<MatchData>>(text);
+                    if (matches != null)
+                    {
+                        Cleanup();
+                        RecordMatchData(matches);
+                    }
+                }
+                catch
+                {
                 }
             }
         }
