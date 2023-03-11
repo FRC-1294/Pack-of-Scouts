@@ -2,11 +2,11 @@
 
 internal sealed class ScheduleEntry
 {
-    internal int MatchNumber { get; set; }
-    internal int RedRobot1 { get; set; }
-    internal int RedRobot2 { get; set; }
-    internal int RedRobot3 { get; set; }
-    internal int BlueRobot1 { get; set; }
-    internal int BlueRobot2 { get; set; }
-    internal int BlueRobot3 { get; set; }
+    public int MatchNumber { get; set; }
+    public int RedRobot1 { get; set; }
+    public int RedRobot2 { get; set; }
+    public int RedRobot3 { get; set; }
+    public int BlueRobot1 { get; set; }
+    public int BlueRobot2 { get; set; }
+    public int BlueRobot3 { get; set; }
 }

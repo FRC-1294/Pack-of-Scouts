@@ -1,17 +1,17 @@
 using System.Diagnostics;
 using System.Net.Http.Headers;
-using System.Text;
+using System.Text.Json;
 
 namespace PackOfScouts;
 
-
 public partial class ImportDataPage : ContentPage
 {
-    private string? compid="WASNO";
+    private string? compid = "WASNO";
+
     public ImportDataPage()
-	{
-		InitializeComponent();
-	}
+    {
+        InitializeComponent();
+    }
 
     private async void OnImportDataClicked(object sender, EventArgs e)
     {
@@ -22,11 +22,13 @@ public partial class ImportDataPage : ContentPage
         httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
         httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
             "Basic", Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes("akshaisrinivasan:e1bcd614-4086-4c40-9754-8448161d9f5e")));
-        
-        var matches = await GetJsonAsync(httpClient, "schedule/" + compid + "?tournamentLevel=Qualification");
 
-        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PackOfScouts_MatchSchedule_{compId}.json");
-        await SaveJsonToFileAsync(matches, path);
+        var downloadedData = await GetJsonAsync(httpClient, "schedule/" + compid + "?tournamentLevel=Qualification");
+        var schedule = ProcessDownloadedData(downloadedData);
+        var text = JsonSerializer.Serialize(schedule);
+
+        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), $"PackOfScouts_MatchSchedule_{compid}.json");
+        File.WriteAllText(path, text);
 
         Debug.WriteLine($"Data saved to '{path}' successfully!");
 
@@ -34,23 +36,72 @@ public partial class ImportDataPage : ContentPage
         _ = await Navigation.PopAsync();
     }
 
+    static List<ScheduleEntry> ProcessDownloadedData(string downloadedData)
+    {
+        var options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
+
+        var dd = JsonSerializer.Deserialize<DownloadedData>(downloadedData, options);
+
+        var l = new List<ScheduleEntry>();
+        foreach (var match in dd.Schedule)
+        {
+            var s = new ScheduleEntry();
+            s.MatchNumber = match.MatchNumber;
+
+            foreach (var team in match.Teams)
+            {
+                switch (team.Station)
+                {
+                    case "Red1": s.RedRobot1 = team.TeamNumber; break;
+                    case "Red2": s.RedRobot2 = team.TeamNumber; break;
+                    case "Red3": s.RedRobot3 = team.TeamNumber; break;
+                    case "Blue1": s.BlueRobot1 = team.TeamNumber; break;
+                    case "Blue2": s.BlueRobot2 = team.TeamNumber; break;
+                    case "Blue3": s.BlueRobot3 = team.TeamNumber; break;
+                }
+            }
+
+            l.Add(s);
+        }
+
+        return l;
+    }
+
     static async Task<string> GetJsonAsync(HttpClient httpClient, string path)
     {
         var response = await httpClient.GetAsync(path);
-        response.EnsureSuccessStatusCode();
+        _ = response.EnsureSuccessStatusCode();
         var json = await response.Content.ReadAsStringAsync();
         return json;
-    }
-
-    static async Task SaveJsonToFileAsync(string json, string fileName)
-    {
-        var filePath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
-        using var streamWriter = File.CreateText(filePath);
-        await streamWriter.WriteAsync(json);
     }
 
     private void onCompIDTextChanged(object sender, TextChangedEventArgs e)
     {
         compid = e.NewTextValue;
+    }
+
+    public class DownloadedData
+    {
+        public List<Match> Schedule { get; set; } = new();
+    }
+
+    public class Match
+    {
+        public string Description { get; set; } = string.Empty;
+        public string StartTime { get; set; } = string.Empty;
+        public int MatchNumber { get; set; }
+        public string Field { get; set; } = string.Empty;
+        public string TournamentLevel { get; set; } = string.Empty;
+        public List<Team> Teams { get; set; } = new();
+    }
+
+    public class Team
+    {
+        public int TeamNumber { get; set; }
+        public string Station { get; set; } = string.Empty;
+        public bool Surrogate { get; set; }
     }
 }
