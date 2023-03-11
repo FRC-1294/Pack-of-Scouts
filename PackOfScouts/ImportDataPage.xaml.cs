@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace PackOfScouts;
 
@@ -23,9 +24,14 @@ public partial class ImportDataPage : ContentPage
             "Basic", Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes("akshaisrinivasan:e1bcd614-4086-4c40-9754-8448161d9f5e")));
         
         var matches = await GetJsonAsync(httpClient, "schedule/" + compid + "?tournamentLevel=Qualification");
-        await SaveJsonToFileAsync(matches, "C:\\Users\\aksha\\Documents\\GitHub\\Pack-of-Scouts\\matches.json");
 
-        Debug.WriteLine("Data saved to files successfully!");
+        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PackOfScouts_MatchSchedule_{compId}.json");
+        await SaveJsonToFileAsync(matches, path);
+
+        Debug.WriteLine($"Data saved to '{path}' successfully!");
+
+        await DisplayAlert("Schedule saved!", $"Schedule saved to\n{path}", "OK");
+        _ = await Navigation.PopAsync();
     }
 
     static async Task<string> GetJsonAsync(HttpClient httpClient, string path)
