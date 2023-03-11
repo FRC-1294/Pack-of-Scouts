@@ -29,7 +29,7 @@
                 Grid.ColumnSpan="2"
                 BackgroundColor="White"
                 TextColor="Black"
-                TextChanged="onCompIDTextChanged"/>
+                TextChanged="OnCompIDTextChanged"/>
 
             <HorizontalStackLayout
                 HorizontalOptions="Center">

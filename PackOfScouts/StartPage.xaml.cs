@@ -64,7 +64,7 @@ public partial class StartPage : ContentPage
         await Navigation.PushAsync(new MatchSchedulePage(a));
 	}
 
-    private async Task<String?> PickScheduleFile()
+    private static async Task<String?> PickScheduleFile()
     {
         var options = new PickOptions
         {
