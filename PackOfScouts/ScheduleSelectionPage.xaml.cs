@@ -26,6 +26,7 @@ public partial class ScheduleSelectionPage : ContentPage
             var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PackOfScouts_MatchSchedule.json");
             var text = File.ReadAllText(path);
             s = JsonSerializer.Deserialize<List<ScheduleEntry>>(text!)!;
+            _appState.ScheduleEntries.Clear();
         }
         catch
         {
