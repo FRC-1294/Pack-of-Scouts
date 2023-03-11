@@ -72,9 +72,6 @@
 	  <Compile Update="MatchSchedulePage.xaml.cs">
 	    <DependentUpon>MatchSchedulePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Camera.cs">
-	    <DependentUpon>%(Filename)</DependentUpon>
-	  </Compile>
 	  <Compile Update="ImportShedulePage.xaml.cs">
 	    <DependentUpon>ImportShedulePage.xaml</DependentUpon>
 	  </Compile>
