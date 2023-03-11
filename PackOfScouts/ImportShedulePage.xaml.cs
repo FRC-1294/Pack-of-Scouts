@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Text.Json;
 
@@ -6,7 +6,7 @@ namespace PackOfScouts;
 
 public partial class ImportSchedulePage : ContentPage
 {
-    private string? compid = "WASNO";
+    private string? compid;
 
     public ImportSchedulePage()
     {
@@ -23,7 +23,17 @@ public partial class ImportSchedulePage : ContentPage
         httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
             "Basic", Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes("akshaisrinivasan:e1bcd614-4086-4c40-9754-8448161d9f5e")));
 
-        var downloadedData = await GetJsonAsync(httpClient, "schedule/" + compid + "?tournamentLevel=Qualification");
+        string downloadedData;
+        try
+        {
+            downloadedData = await GetJsonAsync(httpClient, "schedule/" + compid + "?tournamentLevel=Qualification");
+        }
+        catch
+        {
+            await DisplayAlert("😢 Error 😢", $"Could not download the schedule for competition '{compid}'", "OK");
+            return;
+        }
+
         var schedule = ProcessDownloadedData(downloadedData);
         var text = JsonSerializer.Serialize(schedule);
 
