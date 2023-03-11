@@ -1,57 +1,31 @@
-using System.Drawing;
+﻿using System.Drawing;
+using System.Text;
 using System.Text.Json;
-using PackOfScouts.QrCode;
 
 namespace PackOfScouts;
 
 public partial class ScanQRCodePage : ContentPage
 {
-    private readonly IDispatcherTimer _timer;
-    private readonly Camera _camera = new();
-
     public ScanQRCodePage()
     {
         InitializeComponent();
-
-        // this timer is used to update the preview with the latest snapshot
-        _timer = Dispatcher.CreateTimer();
-        _timer.Interval = TimeSpan.FromMilliseconds(20);
-        _timer.Tick += (s, e) => UpdatePreview();
-        _timer.Start();
     }
 
-    private void Cleanup()
+    private void ProcessTest(string text)
     {
-        _previewImage.Source = null;
-        _timer.Stop();
-        _camera.Dispose();
-    }
-
-    private void UpdatePreview()
-    {
-        var photo = _camera.GrabLastPhoto();
-        if (photo != null)
+        if (!string.IsNullOrEmpty(text))
         {
-            using var img = System.Drawing.Image.FromStream(photo);
-            var text = QrCodeUtils.DecodeQrCode((Bitmap)img);
-
-            photo.Position = 0;
-            _previewImage.Source = ImageSource.FromStream(() => photo);
-
-            if (!string.IsNullOrEmpty(text))
+            try
             {
-                try
+                var matches = JsonSerializer.Deserialize<List<MatchData>>(text);
+                if (matches != null)
                 {
-                    var matches = JsonSerializer.Deserialize<List<MatchData>>(text);
-                    if (matches != null)
-                    {
-                        Cleanup();
-                        RecordMatchData(matches);
-                    }
+                    RecordMatchData(matches);
                 }
-                catch
-                {
-                }
+            }
+            catch
+            {
+                DisplayError();
             }
         }
     }
@@ -95,14 +69,13 @@ public partial class ScanQRCodePage : ContentPage
         _ = await Navigation.PopAsync();
     }
 
+    private async void DisplayError()
+    {
+        await DisplayAlert("JSON Error!", $"🙁 Invalid JSON, please try again 🙁", "OK");
+    }
+
     private async void OnCancelClicked(object sender, EventArgs e)
     {
         _ = await Navigation.PopAsync();
-    }
-
-    protected override void OnNavigatedFrom(NavigatedFromEventArgs args)
-    {
-        Cleanup();
-        base.OnNavigatedFrom(args);
     }
 }

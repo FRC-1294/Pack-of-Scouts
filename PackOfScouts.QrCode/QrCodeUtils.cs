@@ -3,7 +3,6 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 using Net.Codecrete.QrCodeGenerator;
-using QRCodeDecoderLibrary;
 
 namespace PackOfScouts.QrCode;
 
@@ -25,70 +24,5 @@ public static class QrCodeUtils
         bm.Save(ms, ImageFormat.Png);
         ms.Position = 0;
         return ms;
-    }
-
-    public static string? DecodeQrCode(Bitmap bm)
-    {
-        string? text = null;
-
-        var d = new QRDecoder();
-        var r = d.ImageDecoder((Bitmap)bm);
-        if (r != null)
-        {
-            text = SingleQRCodeResult(QRDecoder.ByteArrayToStr(r[0].DataArray));
-        }
-
-        return text;
-    }
-
-    /// <summary>
-    /// Single QR Code result
-    /// </summary>
-    /// <param name="result">Input string</param>
-    /// <returns>Output display string</returns>
-    private static string SingleQRCodeResult(string result)
-    {
-        int index;
-        for (index = 0; index < result.Length && (result[index] >= ' ' && result[index] <= '~' || result[index] >= 160); index++)
-        {
-            ;
-        }
-
-        if (index == result.Length)
-        {
-            return result;
-        }
-
-        StringBuilder sb = new(result[..index]);
-        for (; index < result.Length; index++)
-        {
-            char ch = result[index];
-            if (ch >= ' ' && ch <= '~' || ch >= 160)
-            {
-                _ = sb.Append(ch);
-                continue;
-            }
-
-            if (ch == '\r')
-            {
-                _ = sb.Append("\r\n");
-                if (index + 1 < result.Length && result[index + 1] == '\n')
-                {
-                    index++;
-                }
-
-                continue;
-            }
-
-            if (ch == '\n')
-            {
-                _ = sb.Append("\r\n");
-                continue;
-            }
-
-            _ = sb.Append('¿');
-        }
-
-        return sb.ToString();
     }
 }
