@@ -72,7 +72,7 @@ public partial class ScanQRCodePage : ContentPage
 
     private async void DisplayError()
     {
-        await DisplayAlert("JSON Error!", $"🙁 Invalid JSON, please try again 🙁", "OK");
+        await DisplayAlert("😢 Error 😢", "Unable to read JSON, please try again", "OK");
     }
 
     private void OnQrDataTextChanged(object sender, TextChangedEventArgs e)
