@@ -75,11 +75,11 @@ public partial class ShowQRCodePage : ContentPage
             {
                 list.Add(page);
             }
+        }
 
-            foreach (Page _page in list)
-            {
-                Navigation.RemovePage(_page);
-            }
+        foreach (Page _page in list)
+        {
+            Navigation.RemovePage(_page);
         }
         await Navigation.PushAsync(new MatchSchedulePage(appState));
     }
