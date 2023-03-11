@@ -5,9 +5,9 @@
              Title="Scan QR Code" BackgroundColor="Black">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.85*"/>
             <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.85*"/>
             <RowDefinition Height="35"/>
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>

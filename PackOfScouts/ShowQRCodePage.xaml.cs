@@ -6,14 +6,14 @@ namespace PackOfScouts;
 public partial class ShowQRCodePage : ContentPage
 {
     readonly ApplicationState appState;
-    int count = 0;
+    int count = -1;
     internal ShowQRCodePage(ApplicationState applicationState)
 	{
 		InitializeComponent();
         this.appState = applicationState;
+        this.count++;
         var json = JsonSerializer.Serialize(this.appState.Matches[count]);
         _qrImage.Source = ImageSource.FromStream(() => QrCode.QrCodeUtils.MakeQrCode(json));
-        this.count++;
         if (this.appState.Matches.Count == 1)
         {
             NextQrCode.IsVisible = false;
@@ -24,13 +24,13 @@ public partial class ShowQRCodePage : ContentPage
 
     private void OnNextQrCodePressed (object sender, EventArgs e)
     {   
-        if (this.count < this.appState.Matches.Count)
+        if (this.count < this.appState.Matches.Count - 1)
         {
             PreviousQrCode.IsVisible = true;
+            this.count++;
             var json = JsonSerializer.Serialize(this.appState.Matches[count]);
             _qrImage.Source = ImageSource.FromStream(() => QrCode.QrCodeUtils.MakeQrCode(json));
-            this.count++;
-            if (this.count == this.appState.Matches.Count)
+            if (this.count == this.appState.Matches.Count - 1)
             {
                 NextQrCode.IsVisible = false;
             }
@@ -42,6 +42,7 @@ public partial class ShowQRCodePage : ContentPage
         if (this.count > 0)
         {
             this.count--;
+            NextQrCode.IsVisible = true;
             var json = JsonSerializer.Serialize(this.appState.Matches[count]);
             _qrImage.Source = ImageSource.FromStream(() => QrCode.QrCodeUtils.MakeQrCode(json));
             if (this.count == 0)
