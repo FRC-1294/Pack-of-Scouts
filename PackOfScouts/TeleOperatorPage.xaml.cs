@@ -40,18 +40,6 @@ public partial class TeleOperatorPage : ContentPage
         this.roboNum = roboNumber;
         this.appState = applicationState;
         ScoutingTeamLabel.Text = "SCOUTING TEAM " + Convert.ToString(this.roboNum);
-        if (appState.Matches != null)
-        {
-            numOfMatches.Text = string.Format("Matches scouted: {0}", appState.Matches.Count);
-            if (appState.Matches.Count >= 2)
-            {
-                Next.Text = "Save file and go to scout lead";
-            }
-        }
-        else
-        {
-            numOfMatches.Text = "Matches scouted: 0";
-        }
         
     }
 
@@ -186,11 +174,6 @@ public partial class TeleOperatorPage : ContentPage
 
         notes = notesTextBox.Text;
         
-    }
-
-    private async void OnSaveFileClicked(object sender, EventArgs e)
-    {
-        return;
     }
 
     private async void OnShowQRCodeClicked(object sender, EventArgs e)

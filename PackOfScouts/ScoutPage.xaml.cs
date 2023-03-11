@@ -18,14 +18,6 @@ public partial class ScoutPage : ContentPage
         matchNumber=match;
         appState = applicationState;
         ScoutingTeamLabel.Text = "SCOUTING TEAM " + Convert.ToString(this.robotNum);
-        if (appState.Matches != null )
-        {
-            numOfMatches.Text = string.Format("Matches scouted: {0}", appState.Matches.Count);
-        } else
-        {
-            numOfMatches.Text = "Matches scouted: 0";
-        }
-
 
         robotNum = robot;
         matchNumber = match;

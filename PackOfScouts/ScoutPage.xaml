@@ -48,7 +48,6 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -74,10 +73,6 @@
                     <Label x:Name="_displayCubeLabel"  Text="0" FontSize="20"
                    HorizontalOptions="Start" VerticalOptions="Center"
                    Grid.Column="2" Grid.Row="1" TextColor="White"/>
-
-                    <Label x:Name="numOfMatches" Text="Matches Scouted: " TextColor="White" FontSize="18"
-                           Grid.ColumnSpan="2" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center"/>
-
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.Column="1">
