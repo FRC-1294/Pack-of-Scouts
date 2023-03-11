@@ -18,8 +18,6 @@ public partial class ShowQRCodePage : ContentPage
         {
             NextQrCode.IsVisible = false;
         }
-
-        
     }
 
     private void OnNextQrCodePressed (object sender, EventArgs e)

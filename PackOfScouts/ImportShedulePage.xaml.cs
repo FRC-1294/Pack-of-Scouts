@@ -43,13 +43,15 @@ public partial class ImportSchedulePage : ContentPage
             PropertyNameCaseInsensitive = true
         };
 
-        var dd = JsonSerializer.Deserialize<DownloadedData>(downloadedData, options);
+        var dd = JsonSerializer.Deserialize<DownloadedData>(downloadedData, options)!;
 
         var l = new List<ScheduleEntry>();
         foreach (var match in dd.Schedule)
         {
-            var s = new ScheduleEntry();
-            s.MatchNumber = match.MatchNumber;
+            var s = new ScheduleEntry
+            {
+                MatchNumber = match.MatchNumber
+            };
 
             foreach (var team in match.Teams)
             {
@@ -78,7 +80,7 @@ public partial class ImportSchedulePage : ContentPage
         return json;
     }
 
-    private void onCompIDTextChanged(object sender, TextChangedEventArgs e)
+    private void OnCompIDTextChanged(object sender, TextChangedEventArgs e)
     {
         compid = e.NewTextValue;
     }

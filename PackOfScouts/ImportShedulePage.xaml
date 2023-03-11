@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PackOfScouts.ImportSchedulePage"
-             Title="Import Schedule" BackgroundColor="Black">
+             Title="" BackgroundColor="Black">
 
     <ScrollView>
         
@@ -29,7 +29,7 @@
                 Grid.ColumnSpan="2"
                 BackgroundColor="White"
                 TextColor="Black"
-                TextChanged="onCompIDTextChanged"/>
+                TextChanged="OnCompIDTextChanged"/>
 
             <HorizontalStackLayout
                 HorizontalOptions="Center">
