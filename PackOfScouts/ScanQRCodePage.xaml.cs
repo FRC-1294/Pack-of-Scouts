@@ -1,13 +1,9 @@
-﻿using System.Drawing;
-using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace PackOfScouts;
 
 public partial class ScanQRCodePage : ContentPage
 {
-    string QrCode = "";
-
     public ScanQRCodePage()
     {
         InitializeComponent();
@@ -15,7 +11,7 @@ public partial class ScanQRCodePage : ContentPage
         Loaded += (s, e) => QrData.Focus();
     }
 
-    private void ProcessTest(string text)
+    private void ProcessText(string text)
     {
         if (!string.IsNullOrEmpty(text))
         {
@@ -24,14 +20,34 @@ public partial class ScanQRCodePage : ContentPage
                 var match = JsonSerializer.Deserialize<MatchData>(text);
                 if (match != null)
                 {
-                    List<MatchData> matches = new();
-                    matches.Add(match);
+                    List<MatchData> matches = new()
+                    {
+                        match
+                    };
+
                     RecordMatchData(matches);
                 }
             }
             catch
             {
-                DisplayError();
+                try
+                {
+                    List<MatchData> matches = new();
+                    foreach (var line in text.Split('\n'))
+                    {
+                        var match = JsonSerializer.Deserialize<MatchData>(line);
+                        if (match != null)
+                        {
+                            matches.Add(match);
+                        }
+                    }
+
+                    RecordMatchData(matches);
+                }
+                catch
+                {
+                    DisplayError();
+                }
             }
         }
     }
@@ -80,19 +96,14 @@ public partial class ScanQRCodePage : ContentPage
         await DisplayAlert("😢 Error 😢", "Unable to read JSON, please try again", "OK");
     }
 
-    private void OnQrDataTextChanged(object sender, TextChangedEventArgs e)
-    {
-        this.QrCode = QrData.Text;
-    }
-
     private async void OnCancelClicked(object sender, EventArgs e)
     {
         _ = await Navigation.PopAsync();
     }
 
-    private async void OnDoneClicked(object sender, EventArgs e)
+    private async void OnSaveClicked(object sender, EventArgs e)
     {
-        ProcessTest(this.QrCode);
+        ProcessText(this.QrData.Text);
         _ = await Navigation.PopAsync();
     }
 }

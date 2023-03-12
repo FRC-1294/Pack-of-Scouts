@@ -15,7 +15,12 @@ public partial class ImportSchedulePage : ContentPage
         Loaded += (s, e) => compIDTextBox.Focus();
     }
 
-    private async void OnImportScheduleClicked(object sender, EventArgs e)
+    private async void OnCancelClicked(object sender, EventArgs e)
+    {
+        await Navigation.PopAsync();
+    }
+
+    private async void OnDownloadClicked(object sender, EventArgs e)
     {
         using var httpClient = new HttpClient();
         httpClient.BaseAddress = new Uri("https://frc-api.firstinspires.org/v3.0/2023/");

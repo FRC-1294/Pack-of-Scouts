@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PackOfScouts.ScoutLeadPage"
-             Title=""
-             x:Name="LeadPage" BackgroundColor="Black">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PackOfScouts.ScoutLeadPage"
+    Title=""
+    x:Name="LeadPage"
+    BackgroundColor="Black">
 
     <ScrollView>
         <VerticalStackLayout
@@ -11,8 +13,13 @@
             Padding="30,0"
             VerticalOptions="Center">
 
-            <Label Text="Welcome Scout Lead!" Grid.Row="1" Grid.ColumnSpan="2" FontSize="Header"
-                   HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" Margin="10"/>
+            <Label
+                Text="Welcome Scout Lead!"
+                FontSize="Header"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                TextColor="White"
+                Margin="10"/>
 
             <Image
                 Source="pack_of_parts.png"
@@ -30,7 +37,7 @@
                 <Button
                     Text="Import Scout Data"
                     WidthRequest="150"
-                    SemanticProperties.Hint="Scan a QR code that has some scout data"
+                    ToolTipProperties.Text="Scan a QR code that has some scout data"
                     Clicked="OnScanScoutQRCodeClicked" />
 
                 
@@ -38,5 +45,4 @@
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

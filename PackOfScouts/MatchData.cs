@@ -24,5 +24,4 @@ public sealed class MatchData
     public bool Broke { get; set; }
     public bool Def { get; set; } //defense
     public String? Notes { get; set; }
-    //public int Fouls { get; set; }
 }
