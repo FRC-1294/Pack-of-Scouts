@@ -5,31 +5,60 @@
     x:Class="PackOfScouts.MatchSchedulePage"
     Title=""
     BackgroundColor="Black">
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <Label
-            HorizontalOptions="Center" VerticalOptions="Center"
-            Text="Pick a match and robot to start scouting"
-            FontSize="Title" Grid.Row="0"
-            TextColor="White"/>
+    <ScrollView
+        Margin="10">
+        
+        <VerticalStackLayout
+            VerticalOptions="Center">
 
-        <ScrollView
-            Grid.Row="1"
-            Margin="40">
-            
-            <HorizontalStackLayout HorizontalOptions="Center">
-                <TableView HorizontalOptions="Center" Intent="Menu" x:Name="_tableView" Margin="20">
+            <Label
+                HorizontalOptions="Center"
+                Text="Pick a match and robot to start scouting"
+                FontSize="Title"
+                TextColor="White"
+                Grid.Row="0"
+                Margin="10"/>
+
+            <HorizontalStackLayout
+                HorizontalOptions="Center">
+                
+                <TableView
+                    HorizontalOptions="Center"
+                    Intent="Menu"
+                    x:Name="_tableView">
+                    
                     <TableRoot>
-                        <TableSection/>
+                        <TableSection>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80" />
+                                        <ColumnDefinition Width="480" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label
+                                        Text="Match #"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        FontSize="15"
+                                        TextColor="White" />
+
+                                    <Label
+                                        Text="Robots to scout"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        Grid.Column="1"
+                                        FontSize="15"
+                                        TextColor="White" />
+                                </Grid>
+                            </ViewCell>
+                        </TableSection>
                     </TableRoot>
                 </TableView>
             </HorizontalStackLayout>
-        </ScrollView>
-    </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>
+    
