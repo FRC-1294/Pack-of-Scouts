@@ -20,9 +20,8 @@
             <Label Text="Enter the Competition ID" Grid.Row="1" Grid.ColumnSpan="2" FontSize="20"
                    HorizontalOptions="Center" VerticalOptions="Center" TextColor="White"/>
 
-            <Editor
+            <Entry
                 x:Name="compIDTextBox"
-                HeightRequest="10"
                 WidthRequest="300"
                 Placeholder="Enter id..." 
                 Grid.Row="2"

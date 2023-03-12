@@ -1,4 +1,6 @@
-﻿namespace PackOfScouts;
+﻿using Microsoft.Maui.LifecycleEvents;
+
+namespace PackOfScouts;
 
 public partial class App : Application
 {
