@@ -61,6 +61,11 @@ public partial class ShowQRCodePage : ContentPage
     private async void OnImSurePressed(object sender, EventArgs e)
     {
         this.appState.Matches.Clear();
+
+        var text = JsonSerializer.Serialize(appState.Matches);
+        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PackOfScouts_ScoutData.json");
+        File.WriteAllText(path, text);
+
         List<Page> list = new();
         foreach (Page page in Navigation.NavigationStack)
         {
