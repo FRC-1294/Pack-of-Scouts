@@ -32,7 +32,24 @@ public partial class ScanQRCodePage : ContentPage
             }
             catch
             {
-                DisplayError();
+                try
+                {
+                    List<MatchData> matches = new();
+                    foreach (var line in text.Split('\n'))
+                    {
+                        var match = JsonSerializer.Deserialize<MatchData>(line);
+                        if (match != null)
+                        {
+                            matches.Add(match);
+                        }
+                    }
+
+                    RecordMatchData(matches);
+                }
+                catch
+                {
+                    DisplayError();
+                }
             }
         }
     }
