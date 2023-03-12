@@ -21,9 +21,11 @@ public partial class ScanQRCodePage : ContentPage
         {
             try
             {
-                var matches = JsonSerializer.Deserialize<List<MatchData>>(text);
-                if (matches != null)
+                var match = JsonSerializer.Deserialize<MatchData>(text);
+                if (match != null)
                 {
+                    List<MatchData> matches = new();
+                    matches.Add(match);
                     RecordMatchData(matches);
                 }
             }
