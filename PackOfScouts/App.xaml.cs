@@ -14,7 +14,7 @@ public partial class App : Application
         var window = base.CreateWindow(activationState);
 
         window.Title = "Pack of Scouts";
-        window.Width = 900;
+        window.Width = 930;
         window.Height = 600;
 
         // Center the window

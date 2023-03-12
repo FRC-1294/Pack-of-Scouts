@@ -50,9 +50,9 @@ public partial class ShowQRCodePage : ContentPage
         }
     }
 
-    private void OnClearDataPressed(object sender, EventArgs e)
+    private void OnDonePressed(object sender, EventArgs e)
     {
-        clearData.IsVisible = false;
+        Done.IsVisible = false;
         YouSure.IsVisible = true;
         ImSure.IsVisible = true;
         NotSure.IsVisible = true;
@@ -69,14 +69,7 @@ public partial class ShowQRCodePage : ContentPage
         List<Page> list = new();
         foreach (Page page in Navigation.NavigationStack)
         {
-            if (page is ScoutPage)
-            {
-                list.Add(page);
-            }
-            else if (page is TeleOperatorPage)
-            {
-                list.Add(page);
-            } else if (page is ShowQRCodePage)
+            if (page is ScoutPage || page is TeleOperatorPage || page is ShowQRCodePage)
             {
                 list.Add(page);
             }
@@ -92,7 +85,7 @@ public partial class ShowQRCodePage : ContentPage
 
     private void OnNotSurePressed(Object sender, EventArgs e)
     {
-        clearData.IsVisible = true;
+        Done.IsVisible = true;
         YouSure.IsVisible = false;
         ImSure.IsVisible = false;
         NotSure.IsVisible = false;

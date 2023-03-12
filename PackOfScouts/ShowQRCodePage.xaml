@@ -3,7 +3,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PackOfScouts.ShowQRCodePage"
-    Title="" BackgroundColor="Black">
+    Title=""
+    BackgroundColor="Black">
     
     <Grid>
         <Grid.RowDefinitions>
@@ -11,7 +12,7 @@
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="0.85*"/>
             <RowDefinition Height="35"/>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -19,7 +20,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
-        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+        <Grid
+            Grid.Row="1"
+            Grid.ColumnSpan="2">
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="80"/>
                 <ColumnDefinition Width="*"/>
@@ -34,7 +38,9 @@
                 BackgroundColor="#72C3F1"
                 Text="Back"
                 Pressed="OnPreviousQrCodePressed"
-                IsVisible="false"/>
+                IsVisible="false"
+                WidthRequest="70"
+                />
             
             <Image
                 x:Name="_qrImage"
@@ -47,48 +53,48 @@
                 Margin="10"
                 BackgroundColor="#72C3F1"
                 Text="Next"
-                Pressed="OnNextQrCodePressed"/>
+                Pressed="OnNextQrCodePressed"
+                WidthRequest="70"/>
         </Grid>
 
         <Label
             x:Name="YouSure"
-            Text="Are you sure?"
-            TextColor="White"
+            Text="Are you sure you want to clear all data?"
             FontSize="18"
             Margin="5"
             HorizontalTextAlignment="Center"
             IsVisible="false"
             Grid.Row="3"
             Grid.ColumnSpan="2"/>
-        
-        <Button
-            x:Name="clearData"
-            Text="Done"
-            Pressed="OnClearDataPressed"
-            TextColor="Black"
-            BackgroundColor="#72C3F1"
+
+        <HorizontalStackLayout
+            HorizontalOptions="Center"
             Grid.ColumnSpan="2"
-            Grid.Row="4"/>
+            Grid.Row="4"
+            Margin="10">
+           
+            <Button
+                x:Name="Done"
+                Text="Clear Data and Scout Next Match"
+                Pressed="OnDonePressed"
+                WidthRequest="250"/>
         
-        <Button
-            x:Name="ImSure"
-            Text="Yes"
-            TextColor="Black"
-            BackgroundColor="#72C3F1"
-            Grid.Column="0"
-            IsVisible="False"
-            Pressed="OnImSurePressed"
-            Grid.Row="4"/>
+            <Button
+                x:Name="ImSure"
+                Text="Yes"
+                IsVisible="False"
+                Pressed="OnImSurePressed"
+                WidthRequest="120"
+                ToolTipProperties.Text="Clear saved match information and go scout another match"/>
         
-        <Button
-            x:Name="NotSure"
-            Text="No"
-            TextColor="Black"
-            BackgroundColor="#72C3F1"
-            Grid.Column="1"
-            IsVisible="False"
-            Pressed="OnNotSurePressed"
-            Grid.Row="4"/>
+            <Button
+                x:Name="NotSure"
+                Text="No"
+                IsVisible="False"
+                Pressed="OnNotSurePressed"
+                WidthRequest="120"
+                ToolTipProperties.Text="Stay on this screen to continue showing more QR codes"/>
+            
+        </HorizontalStackLayout>
     </Grid>
-   
 </ContentPage>
