@@ -11,6 +11,8 @@ public partial class ImportSchedulePage : ContentPage
     public ImportSchedulePage()
     {
         InitializeComponent();
+
+        Loaded += (s, e) => compIDTextBox.Focus();
     }
 
     private async void OnImportScheduleClicked(object sender, EventArgs e)

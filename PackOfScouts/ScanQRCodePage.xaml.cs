@@ -7,9 +7,12 @@ namespace PackOfScouts;
 public partial class ScanQRCodePage : ContentPage
 {
     string QrCode = "";
+
     public ScanQRCodePage()
     {
         InitializeComponent();
+
+        Loaded += (s, e) => QrData.Focus();
     }
 
     private void ProcessTest(string text)
