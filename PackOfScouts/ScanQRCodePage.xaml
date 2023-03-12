@@ -3,42 +3,41 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PackOfScouts.ScanQRCodePage"
-    Title="" >
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="80"/>
-        </Grid.RowDefinitions>
-    
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        
-        <Editor
-            x:Name="QrData"
-            BackgroundColor="White"
-            TextColor="Black"
-            TextChanged="OnQrDataTextChanged" 
-            Grid.Row="0"
-            Grid.ColumnSpan="2"
-            Margin="20"/>
-        
-        <Button
-            Text="Cancel"
-            WidthRequest="150"
-            Clicked="OnCancelClicked" 
-            Grid.Row="1"
-            Grid.Column="0"
-            HorizontalOptions="End"/>
-        
-        <Button
-            Text="Done"
-            WidthRequest="150"
-            Clicked="OnDoneClicked" 
-            Grid.Row="1"
-            Grid.Column="1"
-            HorizontalOptions="Start"/>
-     </Grid>
+    Title=""
+    Background="Black">
+
+    <ScrollView>
+        <VerticalStackLayout
+            VerticalOptions="Center">
+            
+            <Label
+                Text="Use the QR code scanner to input scout data"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="Medium"
+                TextColor="White"
+                HorizontalOptions="Center" />
+
+            <Editor
+                x:Name="QrData"
+                BackgroundColor="White"
+                TextColor="Black"
+                TextChanged="OnQrDataTextChanged" 
+                Margin="20"
+                HeightRequest="150"/>
+
+            <HorizontalStackLayout
+                HorizontalOptions="Center">
+                
+                <Button
+                    Text="Cancel"
+                    WidthRequest="150"
+                    Clicked="OnCancelClicked"/>
+
+                <Button
+                    Text="Done"
+                    WidthRequest="150"
+                    Clicked="OnDoneClicked" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

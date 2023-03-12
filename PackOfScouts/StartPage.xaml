@@ -13,8 +13,6 @@
 
             <Label
                 Text="Team 1294 Scouting App"
-                Grid.Row="1"
-                Grid.ColumnSpan="2"
                 FontSize="Header"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"

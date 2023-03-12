@@ -15,8 +15,6 @@
 
             <Label
                 Text="Welcome Scout Lead!"
-                Grid.Row="1"
-                Grid.ColumnSpan="2"
                 FontSize="Header"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
@@ -41,5 +39,4 @@
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>
