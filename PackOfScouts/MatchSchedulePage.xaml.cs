@@ -70,8 +70,9 @@ public partial class MatchSchedulePage : ContentPage
                 Text = entry.MatchNumber.ToString(),
                 HorizontalOptions = LayoutOptions.Center,
                 VerticalOptions = LayoutOptions.Center,
+                TextColor = Colors.White,
                 FontSize = 15,
-            });
+            }) ;
 
             AddRobotButton(g, 1, Colors.Red, entry.MatchNumber, entry.RedRobot1);
             AddRobotButton(g, 2, Colors.Red, entry.MatchNumber, entry.RedRobot2);

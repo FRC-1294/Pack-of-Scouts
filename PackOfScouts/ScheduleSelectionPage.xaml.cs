@@ -17,7 +17,7 @@ public partial class ScheduleSelectionPage : ContentPage
         await Navigation.PushAsync(new ImportSchedulePage());
     }
 
-    private async void OnUaeCurrentScheduleButtonClicked(object sender, EventArgs e)
+    private async void OnUseCurrentScheduleButtonClicked(object sender, EventArgs e)
     {
         List<ScheduleEntry> s;
 

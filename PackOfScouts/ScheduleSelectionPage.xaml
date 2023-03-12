@@ -30,14 +30,16 @@
                 HorizontalOptions="Center">
 
                 <Button
-                    Text="Download Match Schedule"
+                    Text="Import Match Schedule"
                     WidthRequest="220"
-                    Clicked="OnDownloadMatchScheduleButtonClicked" />
+                    Clicked="OnDownloadMatchScheduleButtonClicked" 
+                       
+                    />
 
                 <Button
                     Text="Use Current Schedule"
                     WidthRequest="220"
-                    Clicked="OnUaeCurrentScheduleButtonClicked" />
+                    Clicked="OnUseCurrentScheduleButtonClicked" />
 
 
             </HorizontalStackLayout>

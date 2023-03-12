@@ -46,6 +46,7 @@ public partial class ImportSchedulePage : ContentPage
 
         await DisplayAlert("Schedule saved!", $"Schedule saved to\n{path}", "OK");
         _ = await Navigation.PopAsync();
+
     }
 
     static List<ScheduleEntry> ProcessDownloadedData(string downloadedData)
