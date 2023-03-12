@@ -6,9 +6,12 @@
     Title=""
     BackgroundColor="Black">
 
-    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Black">
-        <HorizontalStackLayout HorizontalOptions="Center">
-            <Grid BackgroundColor="Black">
+    <ScrollView>
+        <VerticalStackLayout
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+        
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="35"/>
                     <RowDefinition Height="240" />
@@ -119,7 +122,7 @@
                         TextColor="White"/>
                     
                     <Stepper Grid.Column="1" Grid.Row="0"
-                       Minimum="0" Increment="1" BackgroundColor="#72C3F1" HorizontalOptions="Center" VerticalOptions="Center"
+                        Minimum="0" Increment="1" BackgroundColor="#72C3F1" HorizontalOptions="Center" VerticalOptions="Center"
                         ValueChanged="OnStepperValueChangedCone"/>
         
                     <Label
@@ -147,7 +150,7 @@
                         Minimum="0"
                         Increment="1"
                         BackgroundColor="#72C3F1"
-                       ValueChanged="OnStepperValueChangedCube" />
+                        ValueChanged="OnStepperValueChangedCube" />
     
                     <Label
                         x:Name="_displayCubeLabel"
@@ -166,7 +169,7 @@
                     
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
 
                     <Picker
@@ -192,15 +195,12 @@
                         Grid.Row="1"
                         x:Name="Finish"
                         Text="Next"
-                        TextColor="Black"
-                        BackgroundColor="#72C3F1"
-                        BorderColor="Black"
+                        WidthRequest="150"
                         Clicked="OnDoneWithAutoClicked"
                         Margin="10" />
                 </Grid>
-
             </Grid>
-        </HorizontalStackLayout>
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
    

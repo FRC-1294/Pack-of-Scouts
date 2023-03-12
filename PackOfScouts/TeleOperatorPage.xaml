@@ -253,19 +253,21 @@
             Grid.Row="1"
             Source="pack_of_parts.png"
             SemanticProperties.Description="POP Logo"
+            HeightRequest="200"
             Margin="5"/>
 
         <Grid
             Grid.Row="2"
             Grid.RowSpan="2"
-            Grid.Column="1" >
+            Grid.Column="1" 
+            Margin="10">
             
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height= "30"/>
                 <RowDefinition Height= "*"/>
                 <RowDefinition Height= "30"/>
-                <RowDefinition Height= "100"/>
+                <RowDefinition Height= "60"/>
             </Grid.RowDefinitions>
             
             <Grid.ColumnDefinitions>
@@ -369,10 +371,9 @@
                 Grid.Row="4"
                 Grid.Column="0"
                 Text="Scout Next Match"
-                TextColor="Black"
-                BackgroundColor="#72C3F1"
                 x:Name="nextMatch"
                 Clicked="OnNextMatchClicked"
+                WidthRequest="150"
                 Margin="10"/>
             
             <Button
@@ -380,10 +381,8 @@
 			    Grid.Column="1" 
 			    x:Name="Next"
 			    Text="Show QR Code"
-			    TextColor="Black"
-                BorderColor="Black"
-                BackgroundColor="#72C3F1"
 			    Clicked="OnShowQRCodeClicked"
+                WidthRequest="150"
                 Margin ="10"/>
         </Grid>
 
