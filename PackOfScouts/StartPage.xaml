@@ -39,14 +39,14 @@
                     x:Name="ScoutBtn"
                     Text="Scout" 
                     WidthRequest="150"
-                    SemanticProperties.Hint="Starts the Scout interface"
+                    ToolTipProperties.Text="Starts the Scout interface"
                     Clicked="OnScoutClicked"/>
 
                 <Button
                     x:Name="ScoutLeadBtn"
                     Text="Scout Lead"
                     WidthRequest="150"
-                    SemanticProperties.Hint="Starts the Scout Lead interface"
+                    ToolTipProperties.Text="Starts the Scout Lead interface"
                     Clicked="OnScoutLeadClicked" />
                 
             </HorizontalStackLayout>

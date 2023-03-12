@@ -22,20 +22,25 @@
                 BackgroundColor="White"
                 TextColor="Black"
                 Margin="20"
-                HeightRequest="150" />
+                HeightRequest="150"
+                Placeholder="Scan some QR codes dude..."
+                />
 
             <HorizontalStackLayout
                 HorizontalOptions="Center">
                 
                 <Button
-                    Text="Cancel"
+                    Text="Save"
                     WidthRequest="150"
-                    Clicked="OnCancelClicked"/>
+                    ToolTipProperties.Text="Save the imported data and go back to the previous page"
+                    Clicked="OnSaveClicked" />
 
                 <Button
-                    Text="Done"
+                    Text="Cancel"
                     WidthRequest="150"
-                    Clicked="OnDoneClicked" />
+                    ToolTipProperties.Text="Stop importing data and go back to the previous page"
+                    Clicked="OnCancelClicked"/>
+
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

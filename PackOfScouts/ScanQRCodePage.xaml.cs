@@ -101,7 +101,7 @@ public partial class ScanQRCodePage : ContentPage
         _ = await Navigation.PopAsync();
     }
 
-    private async void OnDoneClicked(object sender, EventArgs e)
+    private async void OnSaveClicked(object sender, EventArgs e)
     {
         ProcessText(this.QrData.Text);
         _ = await Navigation.PopAsync();

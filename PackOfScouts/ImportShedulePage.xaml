@@ -35,15 +35,24 @@
                 Grid.ColumnSpan="2"
                 BackgroundColor="White"
                 TextColor="Black"
-                TextChanged="OnCompIDTextChanged"/>
+                TextChanged="OnCompIDTextChanged"
+                ToolTipProperties.Text="Type in the FRC ID of the competition you wish to scout"
+                />
 
             <HorizontalStackLayout
                 HorizontalOptions="Center">
 
                 <Button
-                    Text="Import Schedule"
+                    Text="Download"
                     WidthRequest="150"
-                    Clicked="OnImportScheduleClicked" />
+                    ToolTipProperties.Text="Click to contact the Blue Alliance and download the schedule for the competition"
+                    Clicked="OnDownloadClicked" />
+
+                <Button
+                    Text="Cancel"
+                    WidthRequest="150"
+                    ToolTipProperties.Text="Click to cancel importing the schedule"
+                    Clicked="OnCancelClicked" />
 
             </HorizontalStackLayout>
         </VerticalStackLayout>

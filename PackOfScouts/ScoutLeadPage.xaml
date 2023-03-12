@@ -33,7 +33,7 @@
                 <Button
                     Text="Import Scout Data"
                     WidthRequest="150"
-                    SemanticProperties.Hint="Scan a QR code that has some scout data"
+                    ToolTipProperties.Text="Scan a QR code that has some scout data"
                     Clicked="OnScanScoutQRCodeClicked" />
 
             </HorizontalStackLayout>
