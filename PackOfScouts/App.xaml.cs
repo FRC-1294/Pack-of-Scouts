@@ -1,6 +1,4 @@
-﻿using Microsoft.Maui.LifecycleEvents;
-
-namespace PackOfScouts;
+﻿namespace PackOfScouts;
 
 public partial class App : Application
 {
@@ -16,7 +14,7 @@ public partial class App : Application
         var window = base.CreateWindow(activationState);
 
         window.Title = "Pack of Scouts";
-        window.Width = 800;
+        window.Width = 900;
         window.Height = 600;
 
         // Center the window

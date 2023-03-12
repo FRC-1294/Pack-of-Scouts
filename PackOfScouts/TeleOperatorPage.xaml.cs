@@ -1,6 +1,3 @@
-using System.Runtime.Serialization.Json;
-using System.Text.Json;
-
 namespace PackOfScouts;
 
 public partial class TeleOperatorPage : ContentPage
@@ -224,21 +221,25 @@ public partial class TeleOperatorPage : ContentPage
     {
 
         SetUpMatchData();
-        List<Page> list = new List<Page>();
+        List<Page> list = new();
 
         foreach(Page page in Navigation.NavigationStack)
         {
             if (page is ScoutPage)
             {
                 list.Add(page);
-            } else if (page is TeleOperatorPage) 
+            }
+            else if (page is TeleOperatorPage) 
             {
                 list.Add(page);
             }
         }
-        foreach(Page _page in list) {
+
+        foreach (Page _page in list)
+        {
             Navigation.RemovePage(_page);
         }
+        
         await Navigation.PushAsync(new MatchSchedulePage(appState));
     }
 

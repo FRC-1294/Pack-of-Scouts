@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PackOfScouts.MatchSchedulePage"
-             Title="" BackgroundColor="Black"
-             >
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PackOfScouts.MatchSchedulePage"
+    Title=""
+    BackgroundColor="Black">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
         <Label
             HorizontalOptions="Center" VerticalOptions="Center"
             Text="Pick a match and robot to start scouting"
             FontSize="Title" Grid.Row="0"
             TextColor="White"/>
 
-        <ScrollView Grid.Row="1" Margin="40">
+        <ScrollView
+            Grid.Row="1"
+            Margin="40">
+            
             <HorizontalStackLayout HorizontalOptions="Center">
                 <TableView HorizontalOptions="Center" Intent="Menu" x:Name="_tableView" Margin="20">
                     <TableRoot>
-                        <TableSection>
-                        </TableSection>
+                        <TableSection/>
                     </TableRoot>
                 </TableView>
             </HorizontalStackLayout>

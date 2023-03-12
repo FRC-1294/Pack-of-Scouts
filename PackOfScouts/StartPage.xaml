@@ -1,18 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PackOfScouts.StartPage">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PackOfScouts.StartPage"
+    BackgroundColor="Black">
 
-    <ScrollView BackgroundColor="Black">
-        
-        
+    <ScrollView>
         <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
 
-            <Label Text="Team 1294 Scouting App" Grid.Row="1" Grid.ColumnSpan="2" FontSize="Header"
-                   HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" Margin="10"/>
+            <Label
+                Text="Team 1294 Scouting App"
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                FontSize="Header"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                TextColor="White"
+                Margin="10"/>
 
             <Image
                 Source="pack_of_parts.png"
@@ -43,6 +50,7 @@
                     WidthRequest="150"
                     SemanticProperties.Hint="Starts the Scout Lead interface"
                     Clicked="OnScoutLeadClicked" />
+                
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

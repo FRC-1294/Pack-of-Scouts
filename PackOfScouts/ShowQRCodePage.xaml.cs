@@ -1,4 +1,3 @@
-using Net.Codecrete.QrCodeGenerator;
 using System.Text.Json;
 
 namespace PackOfScouts;
@@ -7,6 +6,7 @@ public partial class ShowQRCodePage : ContentPage
 {
     readonly ApplicationState appState;
     int count = -1;
+
     internal ShowQRCodePage(ApplicationState applicationState)
 	{
 		InitializeComponent();
@@ -61,7 +61,7 @@ public partial class ShowQRCodePage : ContentPage
     private async void OnImSurePressed(object sender, EventArgs e)
     {
         this.appState.Matches.Clear();
-        List<Page> list = new List<Page>();
+        List<Page> list = new();
         foreach (Page page in Navigation.NavigationStack)
         {
             if (page is ScoutPage)
@@ -81,6 +81,7 @@ public partial class ShowQRCodePage : ContentPage
         {
             Navigation.RemovePage(_page);
         }
+
         await Navigation.PushAsync(new MatchSchedulePage(appState));
     }
 

@@ -1,5 +1,3 @@
-using Microsoft.Maui.Graphics.Text;
-
 namespace PackOfScouts;
 
 public partial class MatchSchedulePage : ContentPage

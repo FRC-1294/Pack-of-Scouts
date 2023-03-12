@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace PackOfScouts;
 
@@ -24,8 +22,11 @@ public partial class ScanQRCodePage : ContentPage
                 var match = JsonSerializer.Deserialize<MatchData>(text);
                 if (match != null)
                 {
-                    List<MatchData> matches = new();
-                    matches.Add(match);
+                    List<MatchData> matches = new()
+                    {
+                        match
+                    };
+
                     RecordMatchData(matches);
                 }
             }
