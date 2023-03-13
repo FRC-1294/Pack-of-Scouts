@@ -3,7 +3,6 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PackOfScouts.ScanQRCodePage"
-    Title=""
     Background="Black">
 
     <ScrollView>
@@ -23,8 +22,7 @@
                 TextColor="Black"
                 Margin="20"
                 HeightRequest="150"
-                Placeholder="Scan some QR codes dude..."
-                />
+                Placeholder="Scan some QR codes dude..." />
 
             <HorizontalStackLayout
                 HorizontalOptions="Center">

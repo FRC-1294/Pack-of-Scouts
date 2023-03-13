@@ -11,6 +11,4 @@ public partial class ScoutLeadPage : ContentPage
     {
         await Navigation.PushAsync(new ScanQRCodePage());
     }
-
-    
 }

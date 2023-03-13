@@ -3,7 +3,6 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PackOfScouts.ScoutLeadPage"
-    Title=""
     x:Name="LeadPage"
     BackgroundColor="Black">
 
@@ -19,7 +18,7 @@
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 TextColor="White"
-                Margin="10"/>
+                Margin="10" />
 
             <Image
                 Source="pack_of_parts.png"
@@ -29,18 +28,12 @@
 
             <HorizontalStackLayout
                 HorizontalOptions="Center">
-            
-                
-                
-
                
                 <Button
                     Text="Import Scout Data"
                     WidthRequest="150"
                     ToolTipProperties.Text="Scan a QR code that has some scout data"
                     Clicked="OnScanScoutQRCodeClicked" />
-
-                
 
             </HorizontalStackLayout>
         </VerticalStackLayout>
