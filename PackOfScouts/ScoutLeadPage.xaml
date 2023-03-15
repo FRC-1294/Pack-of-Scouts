@@ -29,16 +29,21 @@
 
             <HorizontalStackLayout
                 HorizontalOptions="Center">
-            
-                
-                
 
-               
+                <Button
+                    Text="Import Pit Data"
+                    WidthRequest="150"
+                    ToolTipProperties.Text="Scan a QR code that has some pit data"
+                    Clicked="OnScanScoutQRCodePitClicked" />
+
+
+
                 <Button
                     Text="Import Scout Data"
                     WidthRequest="150"
                     ToolTipProperties.Text="Scan a QR code that has some scout data"
                     Clicked="OnScanScoutQRCodeClicked" />
+                
 
                 
 

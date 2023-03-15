@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PackOfScouts.PitScoutingPage"
+             Title=""
+             BackgroundColor="Black">
+
+    <ScrollView>
+        <VerticalStackLayout
+            
+            HorizontalOptions="Center" VerticalOptions="Center">
+            
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="250" />
+                    <RowDefinition Height="270" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="500" />
+                    <ColumnDefinition Width="500" />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    x:Name="ScoutingTeamLabel"
+                    FontSize="23"
+                    TextColor="#70D3EE"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="3"/>
+
+
+
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="120" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Text="Auto Cones"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        FontSize="20"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        TextColor="White"/>
+
+
+                    <Stepper Grid.Column="1" Grid.Row="0"
+                        Minimum="0" Increment="1" BackgroundColor="#72C3F1" HorizontalOptions="Center" VerticalOptions="Center"
+                        ValueChanged="OnStepperValueChangedAutoCone"/>
+
+                    <Label
+                        x:Name="_displayAutoConeLabel"
+                        Text="0" FontSize="20"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        TextColor="White"/>
+
+                    <Label
+                        Text="Auto Cubes:"
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        FontSize="20" 
+                        HorizontalOptions="End"
+                        VerticalOptions="Center" TextColor="White"/>
+
+                    <Stepper
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Minimum="0"
+                        Increment="1"
+                        BackgroundColor="#72C3F1"
+                        ValueChanged="OnStepperValueChangedAutoCube" />
+
+                    <Label
+                        x:Name="_displayAutoCubeLabel"
+                        Text="0"
+                        FontSize="20"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        TextColor="White"/>
+
+                   
+
+
+                </Grid>
+
+                <Grid
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    HorizontalOptions="Center">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80" />
+                        <RowDefinition Height="80" />
+                        <RowDefinition Height="80" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250" />
+                        <ColumnDefinition Width="250" />
+                        
+                       
+                    </Grid.ColumnDefinitions>
+
+                    <Picker
+                            Title="Drivebase"
+                            FontSize="20"
+                            x:Name="driveBasePicker"
+                           
+                            VerticalOptions="Center"
+                            TitleColor="White"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            BackgroundColor="#72C3F1"
+                            SelectedIndexChanged="OnDriveBaseChanged">
+
+                        <Picker.Items>
+                            <x:String>Swerve</x:String>
+                            <x:String>Mecanum</x:String>
+                            <x:String>Westcoast</x:String>
+                            <x:String>Other</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    
+                    <Picker
+                            Title="Highest Cone Capabilities"
+                            FontSize="20"
+                            x:Name="coneCapPicker"
+                            
+                            VerticalOptions="Center"
+                            TitleColor="White"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            BackgroundColor="#72C3F1"
+                            SelectedIndexChanged="OnHighestConesChanged">
+
+                        <Picker.Items>
+                            <x:String>None</x:String>
+                            <x:String>Low</x:String>
+                            <x:String>Mid</x:String>
+                            <x:String>High</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <Picker
+                            Title="Highest Cube Capabilities"
+                            FontSize="20"
+                            x:Name="cubeCapPicker"
+                            
+                            VerticalOptions="Center"
+                            TitleColor="White"
+                            Grid.Row="2"
+                            
+                            Grid.Column="0"
+                            BackgroundColor="#72C3F1"
+                            SelectedIndexChanged="OnHighestCubesChanged">
+
+                        <Picker.Items>
+                            <x:String>None</x:String>
+                            <x:String>Low</x:String>
+                            <x:String>Mid</x:String>
+                            <x:String>High</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </Grid>
+
+
+
+
+
+
+
+
+
+
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+
+                
+                </Grid>
+
+                <Image
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    Source="pack_of_parts.png"
+                    SemanticProperties.Description="POP Logo"
+                    Margin="5"/>
+
+                <Grid
+                    Grid.Row="2"
+                    Grid.Column="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    
+
+                    
+                </Grid>
+
+                <Grid
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    >
+                    
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="80"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        
+                    </Grid.ColumnDefinitions>
+
+
+                    <Label
+                        Text="Auto Charge Station"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        TextColor="White" 
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"/>
+
+                    <Switch
+                        IsToggled="False"
+                        Toggled="OnChargeStationAutoChanged"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        OnColor="White"
+                        
+                        ThumbColor="#72C3F1"
+                        x:Name="autoCharge"/>
+
+                    <Label
+                        Text="Teleop Charge Station"
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        TextColor="White" 
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"/>
+
+                    <Switch
+                        IsToggled="False"
+                        Toggled="OnChargeStationTeleopChanged"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        OnColor="White"
+                        ThumbColor="#72C3F1"
+                        x:Name="teleopCharge"/>
+
+                    <Button
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Text="Scout Next Match"
+                        x:Name="nextMatch"
+                        Clicked="OnNextMatchClicked"
+                        
+                        Margin="5"/>
+
+                    <Button
+			            Grid.Row="2"
+			            Grid.Column="1" 
+			            x:Name="Next"
+			            Text="Show QR Code"
+			            Clicked="OnShowQRCodeClicked"
+                       
+                        
+                        Margin ="5"/>  
+
+
+
+
+
+                </Grid>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

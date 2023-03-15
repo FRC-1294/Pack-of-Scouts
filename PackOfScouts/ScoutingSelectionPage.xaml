@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PackOfScouts.ScoutingSelectionPage"
+    Title=""
+    BackgroundColor="Black">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Image
+                Source="pack_of_parts.png"
+                SemanticProperties.Description="POP Logo"
+                HeightRequest="200"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="What type of scouting are you scouting for?"
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                FontSize="Header"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                TextColor="White"
+                Margin="10"/>
+
+            <HorizontalStackLayout
+                HorizontalOptions="Center">
+
+                <Button
+                    Text="Pit Scouting"
+                    WidthRequest="220"
+                    Clicked="OnPitScoutingClicked" 
+                       
+                    />
+
+                <Button
+                    Text="Match Scouting"
+                    WidthRequest="220"
+                    Clicked="OnMatchScoutingClicked" />
+
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

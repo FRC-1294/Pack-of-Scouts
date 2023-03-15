@@ -59,6 +59,21 @@
 	  <MauiXaml Update="ImportShedulePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="ScanQRCodePitPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ShowQRCodePagePit.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="PitSchedulePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="PitScoutingPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ScoutingSelectionPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="ScanQRCodePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -76,6 +91,21 @@
 	  </Compile>
 	  <Compile Update="ImportShedulePage.xaml.cs">
 	    <DependentUpon>ImportShedulePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="ScanQRCodePitPage.xaml.cs">
+	    <DependentUpon>ScanQRCodePitPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="ShowQRCodePagePit.xaml.cs">
+	    <DependentUpon>ShowQRCodePagePit.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="PitSchedulePage.xaml.cs">
+	    <DependentUpon>PitSchedulePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="PitScoutingPage.xaml.cs">
+	    <DependentUpon>PitScoutingPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="ScoutingSelectionPage.xaml.cs">
+	    <DependentUpon>ScoutingSelectionPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="ScheduleSelectionPage.xaml.cs">
 	    <DependentUpon>ScheduleSelectionPage.xaml</DependentUpon>

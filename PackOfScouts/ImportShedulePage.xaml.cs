@@ -30,10 +30,10 @@ public partial class ImportSchedulePage : ContentPage
         httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
             "Basic", Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes("akshaisrinivasan:e1bcd614-4086-4c40-9754-8448161d9f5e")));
 
-        string downloadedData;
+        string downloadedScheduleData;
         try
         {
-            downloadedData = await GetJsonAsync(httpClient, "schedule/" + compid + "?tournamentLevel=Qualification");
+            downloadedScheduleData = await GetJsonAsync(httpClient, "schedule/" + compid + "?tournamentLevel=Qualification");
         }
         catch
         {
@@ -41,27 +41,59 @@ public partial class ImportSchedulePage : ContentPage
             return;
         }
 
-        var schedule = ProcessDownloadedData(downloadedData);
+        var schedule = ProcessDownloadedMatchData(downloadedScheduleData);
         var text = JsonSerializer.Serialize(schedule);
 
-        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PackOfScouts_MatchSchedule.json");
-        File.WriteAllText(path, text);
+        var matchPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PackOfScouts_MatchSchedule.json");
+        File.WriteAllText(matchPath, text);
 
-        Debug.WriteLine($"Data saved to '{path}' successfully!");
+        Debug.WriteLine($"Match Schedule Data saved to '{matchPath}' successfully!");
 
-        await DisplayAlert("Schedule saved!", $"Schedule saved to\n{path}", "OK");
+
+
+        string downloadedTeamData;
+        try
+        {
+            downloadedTeamData = await GetJsonAsync(httpClient, "rankings/" + compid);
+        }
+        catch
+        {
+            await DisplayAlert("😢 Error 😢", $"Could not download the list of teams for competition '{compid}'", "OK");
+            return;
+        }
+
+        
+
+        var teams = ProcessDownloadedTeamData(downloadedTeamData);
+        
+        
+        
+        var teamText = JsonSerializer.Serialize(teams);
+
+        Debug.WriteLine(teamText);
+
+        var teamPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PackOfScouts_Teams.json");
+        File.WriteAllText(teamPath, teamText);
+
+        Debug.WriteLine($"List of teams saved to '{teamPath}' successfully!");
+
+
+
+        await DisplayAlert("Match Schedule and list of teams saved!", $"Schedule and list of teams saved to \n{matchPath} and \n{teamPath}", "OK");
         _ = await Navigation.PopAsync();
+
+
 
     }
 
-    static List<ScheduleEntry> ProcessDownloadedData(string downloadedData)
+    static List<ScheduleEntry> ProcessDownloadedMatchData(string downloadedData)
     {
         var options = new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true
         };
 
-        var dd = JsonSerializer.Deserialize<DownloadedData>(downloadedData, options)!;
+        var dd = JsonSerializer.Deserialize<DownloadedMatchData>(downloadedData, options)!;
 
         var l = new List<ScheduleEntry>();
         foreach (var match in dd.Schedule)
@@ -90,6 +122,33 @@ public partial class ImportSchedulePage : ContentPage
         return l;
     }
 
+    static List<TeamEntry> ProcessDownloadedTeamData(string downloadedTeamData)
+    {
+        
+       
+        var options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
+
+        
+
+        var dd = JsonSerializer.Deserialize<DownloadedTeamData>(downloadedTeamData, options)!;
+
+        
+        var l = new List<TeamEntry>();
+        foreach (var team in dd.Rankings)
+        {
+            var s = new TeamEntry
+            {
+                TeamNumber = team.TeamNumber
+            };
+            l.Add(s);
+        }
+
+        return l;
+    }
+
     static async Task<string> GetJsonAsync(HttpClient httpClient, string path)
     {
         var response = await httpClient.GetAsync(path);
@@ -103,9 +162,14 @@ public partial class ImportSchedulePage : ContentPage
         compid = e.NewTextValue;
     }
 
-    public class DownloadedData
+    public class DownloadedMatchData
     {
         public List<Match> Schedule { get; set; } = new();
+    }
+
+    public class DownloadedTeamData
+    {
+        public List<Ranking> Rankings { get; set; } = new();
     }
 
     public class Match
@@ -124,4 +188,37 @@ public partial class ImportSchedulePage : ContentPage
         public string Station { get; set; } = string.Empty;
         public bool Surrogate { get; set; }
     }
+
+    public class Ranking
+    {
+        public int Rank { get; set; }
+        public int TeamNumber { get; set; }
+
+        public double SortOrder1 { get; set; }
+
+        public double SortOrder2 { get; set; }
+
+        public double SortOrder3 { get; set; }
+
+        public double SortOrder4 { get; set; }
+
+        public double SortOrder5 { get; set; }
+
+        public double SortOrder6 { get; set; }
+
+        public int Wins { get; set; }
+
+        public int Losses { get; set; }
+
+        public int Ties { get; set; }
+
+        public double QualAverage { get; set; }
+
+        public int DQ { get; set; }
+
+        public int MatchesPlayed { get; set; }
+
+
+    }
+
 }

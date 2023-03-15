@@ -3,21 +3,22 @@ using System.Text.Json;
 
 namespace PackOfScouts;
 
-public partial class ShowQRCodePage : ContentPage
+public partial class ShowQRCodePagePit : ContentPage
 {
     readonly ApplicationState appState;
     int count = -1;
 
-    internal ShowQRCodePage(ApplicationState applicationState)
-	{   
-		InitializeComponent();
+    internal ShowQRCodePagePit(ApplicationState applicationState)
+    {
+        InitializeComponent();
         this.appState = applicationState;
         this.count++;
-        var json= JsonSerializer.Serialize(this.appState.Matches[count]);
         
+        var json = JsonSerializer.Serialize(this.appState.Teams[count]);
         
+
         _qrImage.Source = ImageSource.FromStream(() => QrCode.QrCodeUtils.MakeQrCode(json));
-        if (this.appState.Matches.Count == 1)
+        if (this.appState.Teams.Count == 1)
         {
             NextQrCode.IsVisible = false;
         }
@@ -25,47 +26,48 @@ public partial class ShowQRCodePage : ContentPage
 
 
 
-    private void OnNextQrCodePressed (object sender, EventArgs e)
+    private void OnNextQrCodePressedPit(object sender, EventArgs e)
     {
-       
-        if (this.count < this.appState.Matches.Count - 1)
+
+        if (this.count < this.appState.Teams.Count - 1)
         {
             PreviousQrCode.IsVisible = true;
             this.count++;
-            var json = JsonSerializer.Serialize(this.appState.Matches[count]);
+            var json = JsonSerializer.Serialize(this.appState.Teams[count]);
             _qrImage.Source = ImageSource.FromStream(() => QrCode.QrCodeUtils.MakeQrCode(json));
-            if (this.count == this.appState.Matches.Count - 1)
+            if (this.count == this.appState.Teams.Count - 1)
             {
                 NextQrCode.IsVisible = false;
             }
         }
-        
-        
+
     }
 
 
+   
 
-    private void OnPreviousQrCodePressed(object sender, EventArgs e)
+
+    private void OnPreviousQrCodePressedPit(object sender, EventArgs e)
     {
-        
+
 
         if (this.count > 0)
         {
             this.count--;
             NextQrCode.IsVisible = true;
-            var json = JsonSerializer.Serialize(this.appState.Matches[count]);
+            var json = JsonSerializer.Serialize(this.appState.Teams[count]);
             _qrImage.Source = ImageSource.FromStream(() => QrCode.QrCodeUtils.MakeQrCode(json));
             if (this.count == 0)
             {
                 PreviousQrCode.IsVisible = false;
             }
         }
-        
+
+
     }
 
 
-
-    private void OnDonePressed(object sender, EventArgs e)
+    private void OnDonePressedPit(object sender, EventArgs e)
     {
         Done.IsVisible = false;
         YouSure.IsVisible = true;
@@ -73,19 +75,20 @@ public partial class ShowQRCodePage : ContentPage
         NotSure.IsVisible = true;
     }
 
-    private async void OnImSurePressed(object sender, EventArgs e)
+    
+
+    private async void OnImSurePressedPit(object sender, EventArgs e)
     {
-        this.appState.Matches.Clear();
-        
-            
-        var text = JsonSerializer.Serialize(appState.Matches);
-        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PackOfScouts_ScoutData.json");
+        this.appState.Teams.Clear();
+
+        var text = JsonSerializer.Serialize(appState.Teams);
+        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PackOfScouts_PitData.json");
         File.WriteAllText(path, text);
 
         List<Page> list = new();
         foreach (Page page in Navigation.NavigationStack)
         {
-            if (page is ScoutPage || page is TeleOperatorPage || page is ShowQRCodePage)
+            if (page is PitScoutingPage || page is ShowQRCodePagePit)
             {
                 list.Add(page);
             }
@@ -93,15 +96,16 @@ public partial class ShowQRCodePage : ContentPage
 
         foreach (Page _page in list)
         {
-            Debug.WriteLine("found a match qr code");
+
             Navigation.RemovePage(_page);
+            
         }
 
-        await Navigation.PushAsync(new MatchSchedulePage(appState));
-        
+        await Navigation.PushAsync(new PitSchedulePage(appState));
+
     }
 
-    private void OnNotSurePressed(Object sender, EventArgs e)
+    private void OnNotSurePressedPit(Object sender, EventArgs e)
     {
         Done.IsVisible = true;
         YouSure.IsVisible = false;

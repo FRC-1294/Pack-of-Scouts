@@ -12,5 +12,12 @@ public partial class ScoutLeadPage : ContentPage
         await Navigation.PushAsync(new ScanQRCodePage());
     }
 
-    
+    private async void OnScanScoutQRCodePitClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ScanQRCodePitPage());
+    }
+
+
+
+
 }
