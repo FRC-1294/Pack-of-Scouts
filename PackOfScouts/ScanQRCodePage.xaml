@@ -1,23 +1,46 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PackOfScouts.ScanQRCodePage"
-             Title="" >
-    <Grid>
-        <Grid.RowDefinitions>
-               <RowDefinition Height="*"/>
-               <RowDefinition Height="80"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-               <Editor x:Name="QrData" BackgroundColor="White" TextColor="Black" TextChanged="OnQrDataTextChanged" 
-                       Grid.Row="0" Grid.ColumnSpan="2" Margin="20" MaxLength="60000"/>
-               <Button Text="Cancel" WidthRequest="150" Clicked="OnCancelClicked" 
-                       Grid.Row="1" Grid.Column="0" HorizontalOptions="End"/>
-               <Button Text="Done" WidthRequest="150" Clicked="OnDoneClicked" 
-                       Grid.Row="1" Grid.Column="1" HorizontalOptions="Start"/>
-     </Grid>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PackOfScouts.ScanQRCodePage"
+    Background="Black">
 
+    <ScrollView>
+        <VerticalStackLayout
+            VerticalOptions="Center">
+            
+            <Label
+                Text="Use the QR code scanner to input scout data"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="Medium"
+                TextColor="White"
+                HorizontalOptions="Center" />
+
+            <Editor
+                x:Name="QrData"
+                BackgroundColor="White"
+                TextColor="Black"
+                Margin="20"
+                HeightRequest="150"
+                Placeholder="Scan some QR codes dude..." 
+                MaxLength="60000"/>
+
+            <HorizontalStackLayout
+                HorizontalOptions="Center">
+                
+                <Button
+                    Text="Save"
+                    WidthRequest="150"
+                    ToolTipProperties.Text="Save the imported data and go back to the previous page"
+                    Clicked="OnSaveClicked" />
+
+                <Button
+                    Text="Cancel"
+                    WidthRequest="150"
+                    ToolTipProperties.Text="Stop importing data and go back to the previous page"
+                    Clicked="OnCancelClicked"/>
+
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

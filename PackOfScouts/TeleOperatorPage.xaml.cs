@@ -1,5 +1,5 @@
-using System.Runtime.Serialization.Json;
 using System.Text.Json;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PackOfScouts;
 
@@ -175,7 +175,7 @@ public partial class TeleOperatorPage : ContentPage
         notes = notesTextBox.Text;
     }
 
-    private void SetUpMatchData()
+    private void AddMatchData()
     {
         SetVariables();
         var teleopChargeStaion = chargeStationIndex switch
@@ -218,33 +218,36 @@ public partial class TeleOperatorPage : ContentPage
         };
 
         appState.Matches.Add(m);
+
+        var text = JsonSerializer.Serialize(appState.Matches);
+        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PackOfScouts_ScoutData.json");
+        File.WriteAllText(path, text);
     }
 
     private async void OnNextMatchClicked(object sender, EventArgs e)
     {
+        AddMatchData();
+        List<Page> list = new();
 
-        SetUpMatchData();
-        List<Page> list = new List<Page>();
-
-        foreach(Page page in Navigation.NavigationStack)
+        foreach (Page page in Navigation.NavigationStack)
         {
-            if (page is ScoutPage)
-            {
-                list.Add(page);
-            } else if (page is TeleOperatorPage) 
+            if (page is ScoutPage || page is TeleOperatorPage)
             {
                 list.Add(page);
             }
         }
-        foreach(Page _page in list) {
+
+        foreach (Page _page in list)
+        {
             Navigation.RemovePage(_page);
         }
+        
         await Navigation.PushAsync(new MatchSchedulePage(appState));
     }
 
     private async void OnShowQRCodeClicked(object sender, EventArgs e)
     {
-        SetUpMatchData();
+        AddMatchData();
         await Navigation.PushAsync(new ShowQRCodePage(appState));
     }
 }

@@ -10,29 +10,4 @@
         Title=""
         ContentTemplate="{DataTemplate local:StartPage}"
         Route="StartPage" />
-
-    <ShellContent
-        Title="Scout Dashboard"
-        ContentTemplate="{DataTemplate local:ScoutPage}"
-        Route="ScoutPage" />
-
-    <ShellContent
-        Title="Scout Lead Dashboard"
-        ContentTemplate="{DataTemplate local:ScoutLeadPage}"
-        Route="ScoutLeadPage" />
-
-    <ShellContent
-        Title="Match and Robot Picker"
-        ContentTemplate="{DataTemplate local:MatchSchedulePage}"
-        Route="MatchSchedulePage" />
-
-    <ShellContent
-        Title="Scout Lead Dashboard"
-        ContentTemplate="{DataTemplate local:ShowQRCodePage}"
-        Route="ShowQRCodePage" />
-
-    <ShellContent
-        Title="Scout Lead Dashboard"
-        ContentTemplate="{DataTemplate local:TeleOperatorPage}"
-        Route="TeleOperatorPage" />
 </Shell>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PackOfScouts.TeleOperatorPage"
-             Title=""
-			 BackgroundColor="Black">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PackOfScouts.TeleOperatorPage"
+	BackgroundColor="Black">
 	        
     <Grid>
         <Grid.RowDefinitions>
@@ -12,22 +12,35 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="200" />
         </Grid.RowDefinitions>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label x:Name="ScoutingTeamLabel" FontSize="23" TextColor="#70D3EE" FontAttributes="Bold"
-                   HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="5"/>
+        <Label
+            x:Name="ScoutingTeamLabel"
+            FontSize="23"
+            TextColor="#70D3EE"
+            FontAttributes="Bold"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="5"/>
         
         <Grid
-            Grid.Column="0" Grid.Row="1">
+            Grid.Column="0"
+            Grid.Row="1">
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height= "*"/>
                 <RowDefinition Height= "*"/>
                 <RowDefinition Height= "*"/>
                 <RowDefinition Height= "*"/>
             </Grid.RowDefinitions>
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="75"/>
@@ -39,154 +52,410 @@
             </Grid.ColumnDefinitions>
 
             <!--Counting how many cones scored where-->
-            <Label Text="Cones Scored" FontSize="25" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0"/>
-            <Label Text="High" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0"/>
-            <Label Text ="Mid" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="2" Grid.Column="0"/>
-            <Label Text="Low" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="3" Grid.Column="0"/>
+            <Label
+                Text="Cones Scored"
+                FontSize="25"
+                TextColor="White"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Grid.Row="0"
+                Grid.Column="0"/>
+            
+            <Label
+                Text="High"
+                FontSize="20"
+                TextColor="White"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Grid.Row="1"
+                Grid.Column="0"/>
+            
+            <Label
+                Text="Mid"
+                FontSize="20"
+                TextColor="White"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Grid.Row="2"
+                Grid.Column="0"/>
+            
+            <Label
+                Text="Low"
+                FontSize="20"
+                TextColor="White"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Grid.Row="3"
+                Grid.Column="0"/>
 
-            <Stepper Minimum="0" Increment="1" BackgroundColor="#72C3F1" ValueChanged="OnStepperValueChangedHighCone" 
-                     VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="1" Grid.Column="1"/>
-            <Stepper Minimum="0" Increment="1" BackgroundColor="#72C3F1" ValueChanged="OnStepperValueChangedMidCone" 
-                     VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="2" Grid.Column="1"/>
-            <Stepper Minimum="0" Increment="1" BackgroundColor="#72C3F1" ValueChanged="OnStepperValueChangedLowCone" 
-                     VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="3" Grid.Column="1"/>
+            <Stepper
+                Minimum="0"
+                Increment="1" 
+                BackgroundColor="#72C3F1" 
+                ValueChanged="OnStepperValueChangedHighCone" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                Grid.Row="1" 
+                Grid.Column="1"/>
+            
+            <Stepper 
+                Minimum="0" 
+                Increment="1" 
+                BackgroundColor="#72C3F1" 
+                ValueChanged="OnStepperValueChangedMidCone" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                Grid.Row="2" 
+                Grid.Column="1"/>
+            
+            <Stepper 
+                Minimum="0" 
+                Increment="1" 
+                BackgroundColor="#72C3F1" 
+                ValueChanged="OnStepperValueChangedLowCone" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                Grid.Row="3" 
+                Grid.Column="1"/>
 
-            <Label Text="0" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"
-                   Grid.Row="1" Grid.Column="2" x:Name="HighCone"/>
-            <Label Text="0" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"
-                   Grid.Row="2" Grid.Column="2" x:Name="MidCone"/>
-            <Label Text="0" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"
-                   Grid.Row="3" Grid.Column="2" x:Name="LowCone"/>
+            <Label 
+                Text="0" 
+                FontSize="20" 
+                TextColor="White" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Grid.Row="1"
+                Grid.Column="2"
+                x:Name="HighCone"/>
+            
+            <Label
+                Text="0" 
+                FontSize="20" 
+                TextColor="White" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Grid.Row="2" 
+                Grid.Column="2" 
+                x:Name="MidCone"/>
+            
+            <Label
+                Text="0"
+                FontSize="20"
+                TextColor="White"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Grid.Row="3" 
+                Grid.Column="2" 
+                x:Name="LowCone"/>
 
             <!--Counting how many cubes scored where-->
-            <Label Text="Cubes Scored" FontSize="25" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="4"/>
-            <Label Text="High" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="1" Grid.Column="4"/>
-            <Label Text ="Mid" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="2" Grid.Column="4"/>
-            <Label Text="Low" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="3" Grid.Column="4"/>
+            
+            <Label
+                Text="Cubes Scored" 
+                FontSize="25" 
+                TextColor="White" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                Grid.Row="0" 
+                Grid.Column="4"/>
+            
+            <Label
+                Text="High" 
+                FontSize="20" 
+                TextColor="White" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                Grid.Row="1" 
+                Grid.Column="4"/>
+            
+            <Label
+                Text ="Mid"
+                FontSize="20"
+                TextColor="White"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Grid.Row="2"
+                Grid.Column="4"/>
+            
+            <Label
+                Text="Low"
+                FontSize="20"
+                TextColor="White"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Grid.Row="3"
+                Grid.Column="4"/>
 
-            <Stepper Minimum="0" Increment="1" BackgroundColor="#72C3F1" ValueChanged="OnStepperValueChangedHighCube" 
-                     VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="1" Grid.Column="5"/>
-            <Stepper Minimum="0" Increment="1" BackgroundColor="#72C3F1" ValueChanged="OnStepperValueChangedMidCube" 
-                     VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="2" Grid.Column="5"/>
-            <Stepper Minimum="0" Increment="1" BackgroundColor="#72C3F1" ValueChanged="OnStepperValueChangedLowCube" 
-                     VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="3" Grid.Column="5"/>
+            <Stepper
+                Minimum="0" 
+                Increment="1" 
+                BackgroundColor="#72C3F1" 
+                ValueChanged="OnStepperValueChangedHighCube" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                Grid.Row="1" 
+                Grid.Column="5"/>
+            
+            <Stepper
+                Minimum="0"
+                Increment="1"
+                BackgroundColor="#72C3F1"
+                ValueChanged="OnStepperValueChangedMidCube" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Grid.Row="2" 
+                Grid.Column="5"/>
 
-            <Label Text="0" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"
-                   Grid.Row="1" Grid.Column="6" x:Name="HighCube"/>
-            <Label Text="0" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"
-                   Grid.Row="2" Grid.Column="6" x:Name="MidCube"/>
-            <Label Text="0" FontSize="20" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"
-                   Grid.Row="3" Grid.Column="6" x:Name="LowCube"/>
+            <Stepper
+                Minimum="0" 
+                Increment="1" 
+                BackgroundColor="#72C3F1" 
+                ValueChanged="OnStepperValueChangedLowCube" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                Grid.Row="3" 
+                Grid.Column="5"/>
 
-
+            <Label
+                Text="0"
+                FontSize="20"
+                TextColor="White"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Grid.Row="1"
+                Grid.Column="6"
+                x:Name="HighCube"/>
+            
+            <Label
+                Text="0"
+                FontSize="20"
+                TextColor="White"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Grid.Row="2"
+                Grid.Column="6"
+                x:Name="MidCube"/>
+            
+            <Label
+                Text="0" 
+                FontSize="20" 
+                TextColor="White" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Grid.Row="3"
+                Grid.Column="6"
+                x:Name="LowCube"/>
         </Grid>
-
 
         <Image
             Grid.Column="1"
             Grid.Row="1"
             Source="pack_of_parts.png"
             SemanticProperties.Description="POP Logo"
+            HeightRequest="200"
             Margin="5"/>
 
-        <Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" >
+        <Grid
+            Grid.Row="2"
+            Grid.RowSpan="2"
+            Grid.Column="1" 
+            Margin="10">
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height= "30"/>
                 <RowDefinition Height= "*"/>
                 <RowDefinition Height= "30"/>
-                <RowDefinition Height= "100"/>
+                <RowDefinition Height= "60"/>
             </Grid.RowDefinitions>
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Row="0" Grid.ColumnSpan="2">
+            
+            <Grid
+                Grid.Row="0"
+                Grid.ColumnSpan="2">
+                
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
+                
+                <Grid
+                    Grid.Column="0">
+                    
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"
-                       Text="Defense?" TextColor="White" FontSize="15"/>
-                    <Switch IsToggled="False" Grid.Row="0" Grid.Column="1" x:Name="def" HorizontalOptions="Center" VerticalOptions="Center"
-                    OnColor="White" ThumbColor="#72C3F1"/>
-                    <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"
-                       Text="Broke?" TextColor="White" FontSize="15"/>
-                    <Switch IsToggled="False" Grid.Row="1" Grid.Column="1" x:Name="broken" HorizontalOptions="Center" VerticalOptions="Center"
-                    OnColor="White" ThumbColor="#72C3F1"/>
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalOptions="Center" 
+                        VerticalOptions="Center"
+                        Text="Defense?"
+                        TextColor="White"
+                        FontSize="15"/>
+                    
+                    <Switch 
+                        IsToggled="False" 
+                        Grid.Row="0" 
+                        Grid.Column="1" 
+                        x:Name="def" 
+                        HorizontalOptions="Center" 
+                        VerticalOptions="Center"
+                        OnColor="White" 
+                        ThumbColor="#72C3F1"/>
+                    
+                    <Label 
+                        Grid.Row="1" 
+                        Grid.Column="0" 
+                        HorizontalOptions="Center" 
+                        VerticalOptions="Center"
+                        Text="Broke?" 
+                        TextColor="White" 
+                        FontSize="15"/>
+                    
+                    <Switch
+                        IsToggled="False"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        x:Name="broken"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        OnColor="White"
+                        ThumbColor="#72C3F1"/>
                 </Grid>
             </Grid>
 
-
-            <Label Text="Notes" Grid.Row="1" Grid.ColumnSpan="2" FontSize="20"
-                   HorizontalOptions="Center" VerticalOptions="Center" TextColor="White"/>
-            <Editor x:Name="notesTextBox" MaxLength="200"
-            Placeholder="Enter match notes here." 
-            Grid.Row="2" Grid.ColumnSpan="2" 
-            BackgroundColor="White" TextColor="Black"
-            TextChanged="OnNotesTextChanged"/>
+            <Label
+                Text="Notes"
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                FontSize="20"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                TextColor="White"/>
+            
+            <Editor
+                x:Name="notesTextBox"
+                MaxLength="200"
+                Placeholder="Enter match notes here." 
+                Grid.Row="2"
+                Grid.ColumnSpan="2" 
+                BackgroundColor="White"
+                TextColor="Black"
+                TextChanged="OnNotesTextChanged"/>
+            
             <!--Completed="OnEditorCompleted"-->
-            <Label Text="Characters remaining: 200" TextColor="White" FontSize="15"
-                   HorizontalOptions="End" VerticalOptions="Center" Grid.Row="3" Grid.ColumnSpan="2"
-                   x:Name="CharacterCount"/>
-            <Button Grid.Row="4" Grid.Column="0" Text="Scout Next Match" TextColor="Black" BackgroundColor="#72C3F1"
-                    x:Name="nextMatch" Clicked="OnNextMatchClicked" Margin="10"/>
+            
+            <Label
+                Text="Characters remaining: 200"
+                TextColor="White" 
+                FontSize="15"
+                HorizontalOptions="End" 
+                VerticalOptions="Center" 
+                Grid.Row="3" 
+                Grid.ColumnSpan="2"
+                x:Name="CharacterCount"/>
+            
             <Button
-			Grid.Row="4"
-			Grid.Column="1" 
-			x:Name="Next"
-			Text="Show QR Code"
-			TextColor="Black"
-            BorderColor="Black"
-            BackgroundColor="#72C3F1"
-			Clicked="OnShowQRCodeClicked"
-            Margin ="10"/>
+                Grid.Row="4"
+                Grid.Column="0"
+                Text="Scout Next Match"
+                x:Name="nextMatch"
+                Clicked="OnNextMatchClicked"
+                WidthRequest="150"
+                Margin="10"/>
+            
+            <Button
+			    Grid.Row="4"
+			    Grid.Column="1" 
+			    x:Name="Next"
+			    Text="Show QR Code"
+			    Clicked="OnShowQRCodeClicked"
+                WidthRequest="150"
+                Margin ="10"/>
         </Grid>
 
-        <Grid Grid.Row="2" Grid.Column="0">
+        <Grid
+            Grid.Row="2"
+            Grid.Column="0">
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height= "*"/>
                 <RowDefinition Height= "*"/>
                 <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!-- End of Grid for number of cones/cubes scored-->
+            
             <!-- Start of Grid for number of missed scores-->
-            <Grid Grid.Row="0">
+            <Grid
+                Grid.Row="0">
+                
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Text="Missed scoring opportunities" Grid.Column="0" Grid.Row="0" FontSize="20"
-                       HorizontalOptions="End" VerticalOptions="Center" TextColor="White"/>
+                
+                <Label
+                    Text="Missed scoring opportunities"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    FontSize="20"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    TextColor="White"/>
+                
                 <Stepper 
-                    Minimum="0" Increment="1" BackgroundColor="#72C3F1"
-                    ValueChanged="OnStepperValueChangedMisses" HorizontalOptions="Center" VerticalOptions="Center"
-                    Grid.Column="1" Grid.Row="0"/>
+                    Minimum="0"
+                    Increment="1"
+                    BackgroundColor="#72C3F1"
+                    ValueChanged="OnStepperValueChangedMisses"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Grid.Column="1"
+                    Grid.Row="0"/>
 
-                <Label x:Name="_displayMistakesLabel"  Text="0" FontSize="20"
-                       HorizontalOptions="Start" VerticalOptions="Center"
-                       Grid.Column="2" Grid.Row="0" TextColor="White"/>
+                <Label
+                    x:Name="_displayMistakesLabel"
+                    Text="0"
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    Grid.Column="2"
+                    Grid.Row="0"
+                    TextColor="White"/>
             </Grid>
-            <Picker Title="Charge Station Status" x:Name="chargeStationPicker" FontSize="20"
-                    HorizontalOptions="Center" VerticalOptions="Center"
-                TitleColor="White" Grid.Row="1" Grid.Column="0" BackgroundColor="#72C3F1"
+            
+            <Picker
+                Title="Charge Station Status"
+                x:Name="chargeStationPicker"
+                FontSize="20"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                TitleColor="White"
+                Grid.Row="1"
+                Grid.Column="0"
+                BackgroundColor="#72C3F1"
                 SelectedIndexChanged="OnChargeStationStatusChanged">
+                
                 <Picker.Items>
                     <x:String>No Attempt</x:String>
                     <x:String>Failed Attempt</x:String>

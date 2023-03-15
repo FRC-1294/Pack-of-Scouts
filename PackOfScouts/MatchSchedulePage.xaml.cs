@@ -1,5 +1,3 @@
-using Microsoft.Maui.Graphics.Text;
-
 namespace PackOfScouts;
 
 public partial class MatchSchedulePage : ContentPage
@@ -11,8 +9,6 @@ public partial class MatchSchedulePage : ContentPage
         InitializeComponent();
 
         this.appState = applicationState;
-
-        AddHeader();
 
         foreach (var entry in appState.ScheduleEntries)
         {
@@ -70,8 +66,9 @@ public partial class MatchSchedulePage : ContentPage
                 Text = entry.MatchNumber.ToString(),
                 HorizontalOptions = LayoutOptions.Center,
                 VerticalOptions = LayoutOptions.Center,
+                TextColor = Colors.White,
                 FontSize = 15,
-            });
+            }) ;
 
             AddRobotButton(g, 1, Colors.Red, entry.MatchNumber, entry.RedRobot1);
             AddRobotButton(g, 2, Colors.Red, entry.MatchNumber, entry.RedRobot2);
@@ -99,7 +96,6 @@ public partial class MatchSchedulePage : ContentPage
             {
                 MatchNum = matchNum,
                 RobotNum = robotNum,
-                
             },
         };
 
@@ -113,58 +109,7 @@ public partial class MatchSchedulePage : ContentPage
         var bi = (ButtonInfo)b.CommandParameter;
         await Navigation.PushAsync(new ScoutPage(bi.MatchNum, bi.RobotNum, this.appState));
     }
-
-    private void AddHeader()
-    {
-        var g = new Grid
-        {
-            RowDefinitions =
-            {
-                new RowDefinition
-                {
-                    Height = GridLength.Auto
-                }
-            },
-
-            ColumnDefinitions =
-            {
-                new ColumnDefinition
-                {
-                    Width = new GridLength(80, GridUnitType.Absolute)
-                },
-
-                new ColumnDefinition
-                {
-                    Width = new GridLength(80 * 6, GridUnitType.Absolute)
-                },
-
-            }
-        };
-
-        g.Add(new Label
-        {
-            Text = "Match #",
-            HorizontalOptions = LayoutOptions.Center,
-            VerticalOptions = LayoutOptions.Center,
-            FontSize = 15,
-            TextColor = new Color(255, 255, 255)
-        });
-
-        g.Add(new Label
-        {
-            Text = "Robots to scout",
-            HorizontalOptions = LayoutOptions.Center,
-            VerticalOptions = LayoutOptions.Center,
-            FontSize = 15,
-            TextColor = new Color(255, 255, 255)
-        }, 1);
-
-        _tableView.Root[0].Add(new ViewCell
-        {
-            View = g,
-        });
-    }
-
+    
     private sealed class ButtonInfo
     {
         internal int MatchNum;

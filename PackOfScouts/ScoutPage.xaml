@@ -1,88 +1,187 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PackOfScouts.ScoutPage"
-             Title="" BackgroundColor="Black">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PackOfScouts.ScoutPage"
+    BackgroundColor="Black">
 
-    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Black">
-        <HorizontalStackLayout HorizontalOptions="Center">
-            <Grid BackgroundColor="Black">
+    <ScrollView>
+        <VerticalStackLayout
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+        
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="35"/>
                     <RowDefinition Height="240" />
                     <RowDefinition Height="240" />
-
                 </Grid.RowDefinitions>
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Label x:Name="ScoutingTeamLabel" FontSize="23" TextColor="#70D3EE" FontAttributes="Bold"
-                   HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="5"/>
+                <Label
+                    x:Name="ScoutingTeamLabel"
+                    FontSize="23"
+                    TextColor="#70D3EE"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="5"/>
 
-                <Grid Grid.Row="1" Grid.Column="0">
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="0">
+                    
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="Functioning auto?" Grid.Column="0" Grid.Row="0" TextColor="White" 
-                   FontSize="20" HorizontalOptions="Center" VerticalOptions="Center"/>
-                    <Switch IsToggled="False" Toggled="OnFunctionAutoToggled" Grid.Column="1" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center"
-                    OnColor="White" ThumbColor="#72C3F1" x:Name="autoWork"/>
-                    <Label Text="Move out of Zone?" Grid.Column="0" Grid.Row="1" TextColor="White"
-                   FontSize="20" HorizontalOptions="Center" VerticalOptions="Center"/>
-                    <Switch IsToggled="False" Toggled="OnMoveOutOfZoneToggled" Grid.Column="1" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center"
-                    OnColor="White" ThumbColor="#72C3F1" x:Name="movedZone"/>
+                    
+                    <Label
+                        Text="Functioning auto?"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        TextColor="White" 
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"/>
+                    
+                    <Switch
+                        IsToggled="False"
+                        Toggled="OnFunctionAutoToggled"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        OnColor="White"
+                        ThumbColor="#72C3F1"
+                        x:Name="autoWork"/>
+                    
+                    <Label
+                        Text="Move out of Zone?"
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        TextColor="White"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"/>
+                    
+                    <Switch
+                        IsToggled="False"
+                        Toggled="OnMoveOutOfZoneToggled"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        OnColor="White"
+                        ThumbColor="#72C3F1"
+                        x:Name="movedZone"/>
                 </Grid>
 
-                <Image Grid.Column="1" Grid.Row="1" Source="pack_of_parts.png"
-                    SemanticProperties.Description="POP Logo" Margin="5"/>
+                <Image
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Source="pack_of_parts.png"
+                    SemanticProperties.Description="POP Logo"
+                    Margin="5"/>
 
-
-                <Grid Grid.Row="2" Grid.Column="0">
+                <Grid
+                    Grid.Row="2"
+                    Grid.Column="0">
+                    
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
+                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-
-                    <Label Text="Cones Scored: " Grid.Column="0" Grid.Row="0" FontSize="20"
-                   HorizontalOptions="End" VerticalOptions="Center" TextColor="White"/>
+                    <Label
+                        Text="Cones Scored: "
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        FontSize="20"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        TextColor="White"/>
+                    
                     <Stepper Grid.Column="1" Grid.Row="0"
-                    Minimum="0" Increment="1" BackgroundColor="#72C3F1" HorizontalOptions="Center" VerticalOptions="Center"
-                    ValueChanged="OnStepperValueChangedCone"/>
-                    <Label x:Name="_displayConeLabel"  Text="0" FontSize="20"
-                   HorizontalOptions="Start" VerticalOptions="Center"
-                   Grid.Column="2" Grid.Row="0" TextColor="White"/>
+                        Minimum="0" Increment="1" BackgroundColor="#72C3F1" HorizontalOptions="Center" VerticalOptions="Center"
+                        ValueChanged="OnStepperValueChangedCone"/>
+        
+                    <Label
+                        x:Name="_displayConeLabel"
+                        Text="0" FontSize="20"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        TextColor="White"/>
 
-                    <Label Text="Cubes Scored:" Grid.Column="0" Grid.Row="1" FontSize="20" 
-                   HorizontalOptions="End" VerticalOptions="Center" TextColor="White"/>
-                    <Stepper Grid.Column="1" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center"
-                    Minimum="0" Increment="1" BackgroundColor="#72C3F1"
-                    ValueChanged="OnStepperValueChangedCube" />
-                    <Label x:Name="_displayCubeLabel"  Text="0" FontSize="20"
-                   HorizontalOptions="Start" VerticalOptions="Center"
-                   Grid.Column="2" Grid.Row="1" TextColor="White"/>
+                    <Label
+                        Text="Cubes Scored:"
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        FontSize="20" 
+                        HorizontalOptions="End"
+                        VerticalOptions="Center" TextColor="White"/>
+                    
+                    <Stepper
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Minimum="0"
+                        Increment="1"
+                        BackgroundColor="#72C3F1"
+                        ValueChanged="OnStepperValueChangedCube" />
+    
+                    <Label
+                        x:Name="_displayCubeLabel"
+                        Text="0"
+                        FontSize="20"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        TextColor="White"/>
                 </Grid>
 
-                <Grid Grid.Row="2" Grid.Column="1">
+                <Grid
+                    Grid.Row="2"
+                    Grid.Column="1">
+                    
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
-                    <Picker Title="Charge Station Status" FontSize="20" x:Name="chargeStationPicker" HorizontalOptions="Center" VerticalOptions="Center"
-                TitleColor="White" Grid.Row="0" BackgroundColor="#72C3F1"
-                SelectedIndexChanged="OnChargeStationStatusChanged">
+
+                    <Picker
+                        Title="Charge Station Status"
+                        FontSize="20"
+                        x:Name="chargeStationPicker"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        TitleColor="White"
+                        Grid.Row="0"
+                        BackgroundColor="#72C3F1"
+                        SelectedIndexChanged="OnChargeStationStatusChanged">
+                        
                         <Picker.Items>
                             <x:String>No Attempt</x:String>
                             <x:String>Failed Attempt</x:String>
@@ -91,12 +190,16 @@
                         </Picker.Items>
                     </Picker>
 
-                    <Button Grid.Row="1" x:Name="Finish" Text="Next"
-                    TextColor="Black" BackgroundColor="#72C3F1" BorderColor="Black" Clicked="OnDoneWithAutoClicked" Margin="10" />
+                    <Button
+                        Grid.Row="1"
+                        x:Name="Finish"
+                        Text="Next"
+                        WidthRequest="150"
+                        Clicked="OnDoneWithAutoClicked"
+                        Margin="10" />
                 </Grid>
-
             </Grid>
-        </HorizontalStackLayout>
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
    

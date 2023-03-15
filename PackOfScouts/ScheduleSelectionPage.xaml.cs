@@ -1,3 +1,4 @@
+using System.Net.NetworkInformation;
 using System.Text.Json;
 
 namespace PackOfScouts;
@@ -17,11 +18,24 @@ public partial class ScheduleSelectionPage : ContentPage
         await Navigation.PushAsync(new ImportSchedulePage());
     }
 
-    private async void OnUaeCurrentScheduleButtonClicked(object sender, EventArgs e)
+    private async void OnUseCurrentScheduleButtonClicked(object sender, EventArgs e)
     {
         List<ScheduleEntry> s;
 
         _appState.ScheduleEntries.Clear();
+
+        try
+        {
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PackOfScouts_ScoutData.json");
+            var text = File.ReadAllText(path);
+            var matches = JsonSerializer.Deserialize<List<MatchData>>(text)!;
+            _appState.Matches.Clear();
+            _appState.Matches.AddRange(matches);
+        }
+        catch
+        {
+            // never mind...
+        }
 
         try
         {
