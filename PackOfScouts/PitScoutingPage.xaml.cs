@@ -139,7 +139,7 @@ public partial class PitScoutingPage : ContentPage
         File.WriteAllText(path, text);
     }
 
-    private async void OnNextMatchClicked(object sender, EventArgs e)
+    private async void OnNextTeamClicked(object sender, EventArgs e)
     {
         AddMatchData();
         List<Page> list = new();

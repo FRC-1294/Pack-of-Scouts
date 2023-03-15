@@ -305,9 +305,9 @@
                     <Button
                         Grid.Row="2"
                         Grid.Column="0"
-                        Text="Scout Next Match"
+                        Text="Scout Next Team"
                         x:Name="nextMatch"
-                        Clicked="OnNextMatchClicked"
+                        Clicked="OnNextTeamClicked"
                         
                         Margin="5"/>
 
