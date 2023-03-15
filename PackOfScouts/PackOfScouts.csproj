@@ -56,7 +56,7 @@
 
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="ImportShedulePage.xaml">
+	  <MauiXaml Update="ImportSchedulePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ScanQRCodePitPage.xaml">
@@ -89,8 +89,8 @@
 	  <Compile Update="MatchSchedulePage.xaml.cs">
 	    <DependentUpon>MatchSchedulePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="ImportShedulePage.xaml.cs">
-	    <DependentUpon>ImportShedulePage.xaml</DependentUpon>
+	  <Compile Update="ImportSchedulePage.xaml.cs">
+	    <DependentUpon>ImportSchedulePage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="ScanQRCodePitPage.xaml.cs">
 	    <DependentUpon>ScanQRCodePitPage.xaml</DependentUpon>

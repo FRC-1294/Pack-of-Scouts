@@ -17,7 +17,7 @@ public partial class ImportSchedulePage : ContentPage
 
     private async void OnCancelClicked(object sender, EventArgs e)
     {
-        await Navigation.PopAsync();
+        _ = await Navigation.PopAsync();
     }
 
     private async void OnDownloadClicked(object sender, EventArgs e)
