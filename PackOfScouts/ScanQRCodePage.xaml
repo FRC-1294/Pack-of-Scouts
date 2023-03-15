@@ -13,7 +13,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
                <Editor x:Name="QrData" BackgroundColor="White" TextColor="Black" TextChanged="OnQrDataTextChanged" 
-                       Grid.Row="0" Grid.ColumnSpan="2" Margin="20"/>
+                       Grid.Row="0" Grid.ColumnSpan="2" Margin="20" MaxLength="60000"/>
                <Button Text="Cancel" WidthRequest="150" Clicked="OnCancelClicked" 
                        Grid.Row="1" Grid.Column="0" HorizontalOptions="End"/>
                <Button Text="Done" WidthRequest="150" Clicked="OnDoneClicked" 
