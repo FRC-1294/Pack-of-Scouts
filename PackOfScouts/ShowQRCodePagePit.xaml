@@ -44,7 +44,8 @@
 
             <Image
                 x:Name="_qrImage"
-                Grid.Column="1"/>
+                Grid.Column="1"
+                Scale="2"/>
 
             <Button
                 x:Name="NextQrCode"

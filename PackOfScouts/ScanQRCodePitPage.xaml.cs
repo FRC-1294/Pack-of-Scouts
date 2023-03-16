@@ -17,10 +17,10 @@ public partial class ScanQRCodePitPage : ContentPage
         {
             try
             {
-                var team = JsonSerializer.Deserialize<TeamEntry>(text);
+                var team = JsonSerializer.Deserialize<PitData>(text);
                 if (team != null)
                 {
-                    List<TeamEntry> teams = new()
+                    List<PitData> teams = new()
                     {
                         team
                     };
@@ -32,10 +32,10 @@ public partial class ScanQRCodePitPage : ContentPage
             {
                 try
                 {
-                    List<TeamEntry> teams = new();
+                    List<PitData> teams = new();
                     foreach (var line in text.Split('\n'))
                     {
-                        var team = JsonSerializer.Deserialize<TeamEntry>(line);
+                        var team = JsonSerializer.Deserialize<PitData>(line);
                         if (team != null)
                         {
                             teams.Add(team);
@@ -52,15 +52,15 @@ public partial class ScanQRCodePitPage : ContentPage
         }
     }
 
-    private async void RecordTeamData(List<TeamEntry> incoming)
+    private async void RecordTeamData(List<PitData> incoming)
     {
-        List<TeamEntry>? teams = null;
+        List<PitData>? teams = null;
 
         var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PackOfScouts_PitData.json");
         if (File.Exists(path))
         {
             var text = File.ReadAllText(path);
-            teams = JsonSerializer.Deserialize<List<TeamEntry>>(text);
+            teams = JsonSerializer.Deserialize<List<PitData>>(text);
         }
 
         teams ??= new();
@@ -70,7 +70,7 @@ public partial class ScanQRCodePitPage : ContentPage
             bool append = true;
             for (int i = 0; i < teams.Count; i++)
             {
-                if (teams[i].TeamNumber == inc.TeamNumber)
+                if (teams[i].RobotNum == inc.RobotNum)
                 {
                     // just replace the previous data.
                     teams[i] = inc;

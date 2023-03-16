@@ -91,13 +91,14 @@ public partial class PitScoutingPage : ContentPage
     private void AddMatchData()
     {
         var Drivebase = driveBaseIndex switch
+
         {
             0 => DriveBase.Swerve,
             1 => DriveBase.Mecanum,
             2 => DriveBase.WestCoast,
             3 => DriveBase.Other,
             _ => DriveBase.Other,
-        }; ;
+        }; 
 
 
         var ConeCapabilities = highestConeIndex switch
