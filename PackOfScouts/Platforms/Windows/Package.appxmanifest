@@ -11,7 +11,7 @@
   xmlns:uap6="http://schemas.microsoft.com/appx/manifest/uap/windows10/6"
   IgnorableNamespaces="uap rescap uap3 iot uap4 uap2 uap6">
 
-  <Identity Name="pack-of-scouts" Publisher="CN=User Name" Version="0.0.0.0" />
+  <Identity Name="pack-of-scouts" Publisher="CN=User Name" Version="1.1.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="57D760A7-3E19-4783-BA9B-303FC8B75FED" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -33,8 +33,8 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="pack-of-scouts"
-        Description="pack-of-scouts"
+        DisplayName="Pack of Scouts"
+        Description="Scouting app for the Pack of Parts FRC team."
         Square150x150Logo="pack_of_parts.png"
         Square44x44Logo="pack_of_parts.png"
         BackgroundColor="transparent">
@@ -52,12 +52,8 @@
 
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
-    <uap:Capability Name="removableStorage"/>
-    <uap6:Capability Name="graphicsCapture"/>
     <Capability Name="internetClientServer"/>
     <Capability Name="internetClient"/>
-    <DeviceCapability Name="webcam"/>
-    <DeviceCapability Name="lowLevel"/>
   </Capabilities>
 
 </Package>
