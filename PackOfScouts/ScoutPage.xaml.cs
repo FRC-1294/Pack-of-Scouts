@@ -17,7 +17,7 @@ public partial class ScoutPage : ContentPage
         robotNum = robot;
         matchNumber = match;
         appState = applicationState;
-        ScoutingTeamLabel.Text = $"SCOUTING TEAM {this.robotNum}";
+        ScoutingTeamLabel.Text = $"SCOUTING TEAM {this.robotNum} | AUTO";
         chargeStationPicker.SelectedItem = "No Attempt";
     }
 

@@ -39,7 +39,7 @@ public partial class TeleOperatorPage : ContentPage
         this.matchNum = matchNumber;
         this.roboNum = roboNumber;
         this.appState = applicationState;
-        ScoutingTeamLabel.Text = "SCOUTING TEAM " + Convert.ToString(this.roboNum);
+        ScoutingTeamLabel.Text = "SCOUTING TEAM " + Convert.ToString(this.roboNum) + " | TELE-OP";
         chargeStationPicker.SelectedItem = "No Attempt";
     }
 

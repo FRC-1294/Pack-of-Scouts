@@ -5,6 +5,7 @@
     x:Class="PackOfScouts.ShowQRCodePage"
     BackgroundColor="Black">
     
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.85*"/>

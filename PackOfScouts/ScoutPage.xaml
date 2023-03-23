@@ -5,7 +5,7 @@
     x:Class="PackOfScouts.ScoutPage"
     BackgroundColor="Black">
 
-    <ScrollView>
+    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
         <VerticalStackLayout
             VerticalOptions="Center"
             HorizontalOptions="Center">
@@ -55,7 +55,8 @@
                         TextColor="White" 
                         FontSize="20"
                         HorizontalOptions="Center"
-                        VerticalOptions="Center"/>
+                        VerticalOptions="Center"
+                        Margin ="4"/>
                     
                     <Switch
                         IsToggled="False"
@@ -66,7 +67,8 @@
                         VerticalOptions="Center"
                         OnColor="White"
                         ThumbColor="#72C3F1"
-                        x:Name="autoWork"/>
+                        x:Name="autoWork"
+                        Margin="4"/>
                     
                     <Label
                         Text="Move out of Zone?"
@@ -200,6 +202,6 @@
                 </Grid>
             </Grid>
         </VerticalStackLayout>
-    </ScrollView>
+    </HorizontalStackLayout>
 </ContentPage>
    
