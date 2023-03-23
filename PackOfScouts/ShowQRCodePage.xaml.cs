@@ -14,6 +14,7 @@ public partial class ShowQRCodePage : ContentPage
         this.appState = applicationState;
         this.count++;
         var json= JsonSerializer.Serialize(this.appState.Matches[count]);
+        matchNum.Text= "MATCH NUMBER " + this.appState.Matches[0].MatchNum.ToString() + " | TEAM " + this.appState.Matches[0].RobotNum.ToString();
         
         
         _qrImage.Source = ImageSource.FromStream(() => QrCode.QrCodeUtils.MakeQrCode(json));
@@ -34,6 +35,7 @@ public partial class ShowQRCodePage : ContentPage
             this.count++;
             var json = JsonSerializer.Serialize(this.appState.Matches[count]);
             _qrImage.Source = ImageSource.FromStream(() => QrCode.QrCodeUtils.MakeQrCode(json));
+            matchNum.Text= "MATCH NUMBER " + this.appState.Matches[count].MatchNum.ToString() + " | TEAM " + this.appState.Matches[0].RobotNum.ToString();
             if (this.count == this.appState.Matches.Count - 1)
             {
                 NextQrCode.IsVisible = false;
@@ -55,6 +57,7 @@ public partial class ShowQRCodePage : ContentPage
             NextQrCode.IsVisible = true;
             var json = JsonSerializer.Serialize(this.appState.Matches[count]);
             _qrImage.Source = ImageSource.FromStream(() => QrCode.QrCodeUtils.MakeQrCode(json));
+            matchNum.Text = "MATCH NUMBER " + this.appState.Matches[count].MatchNum.ToString() + " | TEAM " + this.appState.Matches[0].RobotNum.ToString();
             if (this.count == 0)
             {
                 PreviousQrCode.IsVisible = false;
