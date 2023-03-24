@@ -11,7 +11,7 @@
   xmlns:uap6="http://schemas.microsoft.com/appx/manifest/uap/windows10/6"
   IgnorableNamespaces="uap rescap uap3 iot uap4 uap2 uap6">
 
-  <Identity Name="pack-of-scouts" Publisher="CN=User Name" Version="1.1.0.0" />
+  <Identity Name="pack-of-scouts" Publisher="CN=User Name" Version="1.2.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="57D760A7-3E19-4783-BA9B-303FC8B75FED" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -46,13 +46,14 @@
           </uap:ShowNameOnTiles>
         </uap:DefaultTile >
         <uap:SplashScreen Image="pack_of_parts.png" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape"/></uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>
 
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
-    <Capability Name="internetClientServer"/>
     <Capability Name="internetClient"/>
   </Capabilities>
 

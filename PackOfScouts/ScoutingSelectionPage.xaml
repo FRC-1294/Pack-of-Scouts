@@ -19,7 +19,7 @@
                 HorizontalOptions="Center" />
 
             <Label
-                Text="What type of scouting are you scouting for?"
+                Text="What are you scouting for?"
                 Grid.Row="1"
                 Grid.ColumnSpan="2"
                 FontSize="Header"

@@ -1,4 +1,6 @@
-﻿namespace PackOfScouts;
+﻿using System.Reflection;
+
+namespace PackOfScouts;
 
 public partial class App : Application
 {
@@ -13,7 +15,7 @@ public partial class App : Application
     {
         var window = base.CreateWindow(activationState);
 
-        window.Title = "Pack of Scouts";
+        window.Title = $"Pack of Scouts ({VersionTracking.CurrentVersion})";
         window.Width = 930;
         window.Height = 600;
 
